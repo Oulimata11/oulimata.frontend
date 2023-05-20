@@ -1,0 +1,102 @@
+{
+	"projectName": "oulimata.frontend",
+	"decription": "Fichier de configuration de Taf",
+	"taf_base_url": "http://localhost/backend/taf/taf_angular/",
+	"les_modules": [
+		{
+			"module": "home",
+			"les_tables": [
+				{
+					"table": "agent",
+					"description": [
+						"prenom",
+						"nom",
+						"telephone",
+						"adresse",
+						"login",
+						"pwd"
+					],
+					"les_types": [
+						"add",
+						"edit",
+						"list",
+						"details"
+					]
+				},
+				{
+					"table": "deconnexion",
+					"description": [],
+					"les_types": [
+						"deconnexion"
+					]
+				},
+				{
+					"table": "not_found",
+					"description": [],
+					"les_types": [
+						"not-found"
+					]
+				},
+				{
+					"table": "client",
+					"description": [
+						"id_client",
+						"id_agent",
+						"longitude",
+						"lattitude",
+						"nom",
+						"prenom",
+						"telephone",
+						"adresse",
+						"created_at"
+					],
+					"les_types": [
+						"add",
+						"edit",
+						"list",
+						"details"
+					]
+				},
+				{
+					"table": "fournisseur",
+					"description": [
+						"id_fournisseur",
+						"nom_entreprise",
+						"prenom",
+						"nom",
+						"adresse",
+						"telephone"
+					],
+					"les_types": [
+						"add",
+						"edit",
+						"list",
+						"details"
+					]
+				}
+			]
+		},
+		{
+			"module": "public",
+			"les_tables": [
+				{
+					"table": "login",
+					"description": [
+						"login",
+						"pwd"
+					],
+					"les_types": [
+						"login"
+					]
+				},
+				{
+					"table": "not_found",
+					"description": [],
+					"les_types": [
+						"not-found"
+					]
+				}
+			]
+		}
+	]
+}

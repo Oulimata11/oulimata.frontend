@@ -1,0 +1,58 @@
+
+<form  [formGroup]="reactiveForm_edit_agent " (ngSubmit)="onSubmit_edit_agent ()" #form_edit_agent ="ngForm" class="row">
+  <!-- prenom field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >prenom</label>
+      <input class="form-control" type="text"  formControlName="prenom"  placeholder="prenom"  [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }"/>
+      <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+          <div *ngIf="f.prenom.errors.required"> prenom est obligatoire </div>
+      </div>
+    </div>  
+<!-- nom field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >nom</label>
+      <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
+      <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+          <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
+      </div>
+    </div>  
+<!-- telephone field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >telephone</label>
+      <input class="form-control" type="text"  formControlName="telephone"  placeholder="telephone"  [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }"/>
+      <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+          <div *ngIf="f.telephone.errors.required"> telephone est obligatoire </div>
+      </div>
+    </div>  
+<!-- adresse field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >adresse</label>
+      <input class="form-control" type="text"  formControlName="adresse"  placeholder="adresse"  [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }"/>
+      <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+          <div *ngIf="f.adresse.errors.required"> adresse est obligatoire </div>
+      </div>
+    </div>  
+<!-- login field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >login</label>
+      <input class="form-control" type="text"  formControlName="login"  placeholder="login"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }"/>
+      <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+          <div *ngIf="f.login.errors.required"> login est obligatoire </div>
+      </div>
+    </div>  
+<!-- pwd field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >pwd</label>
+      <input class="form-control" type="text"  formControlName="pwd"  placeholder="pwd"  [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }"/>
+      <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
+          <div *ngIf="f.pwd.errors.required"> pwd est obligatoire </div>
+      </div>
+    </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_agent "
+        (click)="form_edit_agent .ngSubmit.emit()">{{loading_edit_agent ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_agent ()">Vider</button>
+</div>

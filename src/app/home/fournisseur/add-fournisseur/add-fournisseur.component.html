@@ -1,0 +1,58 @@
+
+<form  [formGroup]="reactiveForm_add_fournisseur " (ngSubmit)="onSubmit_add_fournisseur ()" #form_add_fournisseur ="ngForm" class="row">
+  <!-- id_fournisseur field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_fournisseur</label>
+      <input class="form-control" type="text"  formControlName="id_fournisseur"  placeholder="id_fournisseur"  [ngClass]="{ 'is-invalid': submitted && f.id_fournisseur.errors }"/>
+      <div *ngIf="submitted && f.id_fournisseur.errors" class="invalid-feedback">
+          <div *ngIf="f.id_fournisseur.errors.required"> id_fournisseur est obligatoire </div>
+      </div>
+    </div>  
+<!-- nom_entreprise field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >nom_entreprise</label>
+      <input class="form-control" type="text"  formControlName="nom_entreprise"  placeholder="nom_entreprise"  [ngClass]="{ 'is-invalid': submitted && f.nom_entreprise.errors }"/>
+      <div *ngIf="submitted && f.nom_entreprise.errors" class="invalid-feedback">
+          <div *ngIf="f.nom_entreprise.errors.required"> nom_entreprise est obligatoire </div>
+      </div>
+    </div>  
+<!-- prenom field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >prenom</label>
+      <input class="form-control" type="text"  formControlName="prenom"  placeholder="prenom"  [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }"/>
+      <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+          <div *ngIf="f.prenom.errors.required"> prenom est obligatoire </div>
+      </div>
+    </div>  
+<!-- nom field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >nom</label>
+      <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
+      <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+          <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
+      </div>
+    </div>  
+<!-- adresse field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >adresse</label>
+      <input class="form-control" type="text"  formControlName="adresse"  placeholder="adresse"  [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }"/>
+      <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+          <div *ngIf="f.adresse.errors.required"> adresse est obligatoire </div>
+      </div>
+    </div>  
+<!-- telephone field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >telephone</label>
+      <input class="form-control" type="text"  formControlName="telephone"  placeholder="telephone"  [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }"/>
+      <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+          <div *ngIf="f.telephone.errors.required"> telephone est obligatoire </div>
+      </div>
+    </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_fournisseur "
+        (click)="form_add_fournisseur .ngSubmit.emit()">{{loading_add_fournisseur ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_fournisseur ()">Vider</button>
+</div>

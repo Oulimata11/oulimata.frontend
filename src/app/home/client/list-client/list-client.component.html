@@ -1,0 +1,80 @@
+<!-- entete -->
+<div class="d-flex align-items-center justify-content-between">
+  <div class="fs-1">Les Clients  - {{les_clients.length}}</div>
+  <div class="d-flex">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_client">Ajouter Client</button>
+  </div>
+</div>
+<!-- list -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id_client</th>
+<th scope="col">id_agent</th>
+<th scope="col">longitude</th>
+<th scope="col">lattitude</th>
+<th scope="col">nom</th>
+<th scope="col">prenom</th>
+<th scope="col">telephone</th>
+<th scope="col">adresse</th>
+<th scope="col">created_at</th><th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let one_client of les_clients">
+        <td>{{one_client.id_client}}</td>
+<td>{{one_client.id_agent}}</td>
+<td>{{one_client.longitude}}</td>
+<td>{{one_client.lattitude}}</td>
+<td>{{one_client.nom}}</td>
+<td>{{one_client.prenom}}</td>
+<td>{{one_client.telephone}}</td>
+<td>{{one_client.adresse}}</td>
+<td>{{one_client.created_at}}</td><td>
+  <div class="dropdown">
+    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
+    <div class="dropdown-menu">
+      <a (click)="on_click_edit(one_client)" class="dropdown-item" data-bs-toggle="modal"
+        data-bs-target="#modal_edit_client">
+        <i class="bx bx-edit-alt me-1"></i>
+        Modifier
+      </a>
+      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
+      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+    </div>
+  </div>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- ajout -->
+<div class="modal fade" id="modal_add_client" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " data-bs-theme="dark">
+              <h1 class="modal-title fs-5">Ajouter Client</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-client (cb_add_client)="after_add($event)"></app-add-client>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- modification -->
+<div class="modal fade" id="modal_edit_client" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Modifier Client</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+      </div>
+      <div class="modal-body">
+        <app-edit-client *ngIf="client_to_edit" (cb_edit_client)="after_edit($event)" [client_to_edit]="client_to_edit"></app-edit-client>
+      </div>
+    </div>
+  </div>
+</div>
+  
