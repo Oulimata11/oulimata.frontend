@@ -1,7 +1,7 @@
 {
 	"projectName": "oulimata.frontend",
 	"decription": "Fichier de configuration de Taf",
-	"taf_base_url": "http://localhost/backend/taf/taf_angular/",
+	"taf_base_url": "http://localhost/Memoire_Backend/",
 	"les_modules": [
 		{
 			"module": "home",
