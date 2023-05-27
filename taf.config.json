@@ -1,102 +1,211 @@
-{
-	"projectName": "oulimata.frontend",
-	"decription": "Fichier de configuration de Taf",
-	"taf_base_url": "http://localhost/backend/taf/taf_angular/",
-	"les_modules": [
-		{
-			"module": "home",
-			"les_tables": [
-				{
-					"table": "agent",
-					"description": [
-						"prenom",
-						"nom",
-						"telephone",
-						"adresse",
-						"login",
-						"pwd"
-					],
-					"les_types": [
-						"add",
-						"edit",
-						"list",
-						"details"
-					]
-				},
-				{
-					"table": "deconnexion",
-					"description": [],
-					"les_types": [
-						"deconnexion"
-					]
-				},
-				{
-					"table": "not_found",
-					"description": [],
-					"les_types": [
-						"not-found"
-					]
-				},
-				{
-					"table": "client",
-					"description": [
-						"id_client",
-						"id_agent",
-						"longitude",
-						"lattitude",
-						"nom",
-						"prenom",
-						"telephone",
-						"adresse",
-						"created_at"
-					],
-					"les_types": [
-						"add",
-						"edit",
-						"list",
-						"details"
-					]
-				},
-				{
-					"table": "fournisseur",
-					"description": [
-						"id_fournisseur",
-						"nom_entreprise",
-						"prenom",
-						"nom",
-						"adresse",
-						"telephone"
-					],
-					"les_types": [
-						"add",
-						"edit",
-						"list",
-						"details"
-					]
-				}
-			]
-		},
-		{
-			"module": "public",
-			"les_tables": [
-				{
-					"table": "login",
-					"description": [
-						"login",
-						"pwd"
-					],
-					"les_types": [
-						"login"
-					]
-				},
-				{
-					"table": "not_found",
-					"description": [],
-					"les_types": [
-						"not-found"
-					]
-				}
-			]
-		}
-	]
-}
+							{
+								"projectName": "oulimata.frontend",
+								"decription": "Fichier de configuration de Taf",
+								"taf_base_url": "http://localhost/os/oulimata.backend/",
+								"les_modules": [
+									{
+										"module": "home",
+										"les_tables": [
+											{
+												"table": "absence",
+												"description": [
+													"id_absence",
+													"id_utilisateur",
+													"id_gardien",
+													"date_absence",
+													"raison_absence",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "conges",
+												"description": [
+													"id_conges",
+													"id_utilisateur",
+													"id_gardien",
+													"date_debut_conges",
+													"date_fin_conges",
+													"date_demande_conges",
+													"duree_conges",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "gardien",
+												"description": [
+													"id_gardien",
+													"id_utilisateur",
+													"id_societe",
+													"matricule_gardien",
+													"nom_gardien",
+													"prenom_gardien",
+													"date_naissance_gardien",
+													"lieu_naissance_gardien",
+													"telephone_gardien",
+													"email_gardien",
+													"statut_gardien",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "indemnite",
+												"description": [
+													"id_indemnite",
+													"id_utilisateur",
+													"date_indemnite",
+													"nature_indemnite",
+													"montant_indemnite"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "indemnite_gardien",
+												"description": [
+													"id_i_g",
+													"id_indemnite",
+													"id_gardien",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "localisation",
+												"description": [
+													"id_localisation",
+													"longitude_localisation",
+													"latitude_localisation",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "note",
+												"description": [
+													"id_note",
+													"id_gardien",
+													"assiduite_note",
+													"ponctualite_note",
+													"satisfaction_client_note",
+													"date_note",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "role",
+												"description": [
+													"id_role",
+													"libelle_role",
+													"description_role",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "societe",
+												"description": [
+													"id_societe",
+													"nom_societe",
+													"description_societe",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
+												"table": "utilisateur",
+												"description": [
+													"id_utilisateur",
+													"id_role",
+													"matricule_utilisateur",
+													"nom_utilisateur",
+													"prenom_utilisateur",
+													"date_naissance_utilisateur",
+													"lieu_naissance_utilisateur",
+													"telephone_utilisateur",
+													"email_utilisateur",
+													"password_utilisateur",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											}
+										]
+									},
+									{
+										"module": "public",
+										"les_tables": [
+											{
+												"table": "login",
+												"description": [
+													"login",
+													"pwd"
+												],
+												"les_types": [
+													"login"
+												]
+											}
+										]
+									}
+								]
+							}

@@ -1,0 +1,50 @@
+
+<form  [formGroup]="reactiveForm_edit_localisation " (ngSubmit)="onSubmit_edit_localisation ()" #form_edit_localisation ="ngForm" class="row">
+  <!-- id_localisation field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_localisation</label>
+      <input class="form-control" type="text"  formControlName="id_localisation"  placeholder="id_localisation"  [ngClass]="{ 'is-invalid': submitted && f.id_localisation.errors }"/>
+      <div *ngIf="submitted && f.id_localisation.errors" class="invalid-feedback">
+          <div *ngIf="f.id_localisation.errors.required"> id_localisation est obligatoire </div>
+      </div>
+    </div>  
+<!-- longitude_localisation field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >longitude_localisation</label>
+      <input class="form-control" type="text"  formControlName="longitude_localisation"  placeholder="longitude_localisation"  [ngClass]="{ 'is-invalid': submitted && f.longitude_localisation.errors }"/>
+      <div *ngIf="submitted && f.longitude_localisation.errors" class="invalid-feedback">
+          <div *ngIf="f.longitude_localisation.errors.required"> longitude_localisation est obligatoire </div>
+      </div>
+    </div>  
+<!-- latitude_localisation field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >latitude_localisation</label>
+      <input class="form-control" type="text"  formControlName="latitude_localisation"  placeholder="latitude_localisation"  [ngClass]="{ 'is-invalid': submitted && f.latitude_localisation.errors }"/>
+      <div *ngIf="submitted && f.latitude_localisation.errors" class="invalid-feedback">
+          <div *ngIf="f.latitude_localisation.errors.required"> latitude_localisation est obligatoire </div>
+      </div>
+    </div>  
+<!-- created_at field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >created_at</label>
+      <input class="form-control" type="text"  formControlName="created_at"  placeholder="created_at"  [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
+      <div *ngIf="submitted && f.created_at.errors" class="invalid-feedback">
+          <div *ngIf="f.created_at.errors.required"> created_at est obligatoire </div>
+      </div>
+    </div>  
+<!-- updated_at field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >updated_at</label>
+      <input class="form-control" type="text"  formControlName="updated_at"  placeholder="updated_at"  [ngClass]="{ 'is-invalid': submitted && f.updated_at.errors }"/>
+      <div *ngIf="submitted && f.updated_at.errors" class="invalid-feedback">
+          <div *ngIf="f.updated_at.errors.required"> updated_at est obligatoire </div>
+      </div>
+    </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_localisation "
+        (click)="form_edit_localisation .ngSubmit.emit()">{{loading_edit_localisation ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_localisation ()">Vider</button>
+</div>

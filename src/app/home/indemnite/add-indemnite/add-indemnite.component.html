@@ -1,0 +1,50 @@
+
+<form  [formGroup]="reactiveForm_add_indemnite " (ngSubmit)="onSubmit_add_indemnite ()" #form_add_indemnite ="ngForm" class="row">
+  <!-- id_indemnite field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_indemnite</label>
+      <input class="form-control" type="text"  formControlName="id_indemnite"  placeholder="id_indemnite"  [ngClass]="{ 'is-invalid': submitted && f.id_indemnite.errors }"/>
+      <div *ngIf="submitted && f.id_indemnite.errors" class="invalid-feedback">
+          <div *ngIf="f.id_indemnite.errors.required"> id_indemnite est obligatoire </div>
+      </div>
+    </div>  
+<!-- id_utilisateur field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_utilisateur</label>
+      <input class="form-control" type="text"  formControlName="id_utilisateur"  placeholder="id_utilisateur"  [ngClass]="{ 'is-invalid': submitted && f.id_utilisateur.errors }"/>
+      <div *ngIf="submitted && f.id_utilisateur.errors" class="invalid-feedback">
+          <div *ngIf="f.id_utilisateur.errors.required"> id_utilisateur est obligatoire </div>
+      </div>
+    </div>  
+<!-- date_indemnite field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >date_indemnite</label>
+      <input class="form-control" type="text"  formControlName="date_indemnite"  placeholder="date_indemnite"  [ngClass]="{ 'is-invalid': submitted && f.date_indemnite.errors }"/>
+      <div *ngIf="submitted && f.date_indemnite.errors" class="invalid-feedback">
+          <div *ngIf="f.date_indemnite.errors.required"> date_indemnite est obligatoire </div>
+      </div>
+    </div>  
+<!-- nature_indemnite field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >nature_indemnite</label>
+      <input class="form-control" type="text"  formControlName="nature_indemnite"  placeholder="nature_indemnite"  [ngClass]="{ 'is-invalid': submitted && f.nature_indemnite.errors }"/>
+      <div *ngIf="submitted && f.nature_indemnite.errors" class="invalid-feedback">
+          <div *ngIf="f.nature_indemnite.errors.required"> nature_indemnite est obligatoire </div>
+      </div>
+    </div>  
+<!-- montant_indemnite field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >montant_indemnite</label>
+      <input class="form-control" type="text"  formControlName="montant_indemnite"  placeholder="montant_indemnite"  [ngClass]="{ 'is-invalid': submitted && f.montant_indemnite.errors }"/>
+      <div *ngIf="submitted && f.montant_indemnite.errors" class="invalid-feedback">
+          <div *ngIf="f.montant_indemnite.errors.required"> montant_indemnite est obligatoire </div>
+      </div>
+    </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_indemnite "
+        (click)="form_add_indemnite .ngSubmit.emit()">{{loading_add_indemnite ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_indemnite ()">Vider</button>
+</div>

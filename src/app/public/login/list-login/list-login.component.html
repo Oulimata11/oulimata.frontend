@@ -1,29 +1,50 @@
-<div class="d-flex align-items-center vh-100">
-  <div class="container">
-    <form  [formGroup]="reactiveForm_login_login " (ngSubmit)="onSubmit_login_login ()" #form_login_login ="ngForm" class="row">
-      <!-- login field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >login</label>
-      <input class="form-control" type="text"  formControlName="login"  placeholder="login"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }"/>
-      <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
-          <div *ngIf="f.login.errors.required"> login est obligatoire </div>
+<div class="auth-wrapper auth-v2">
+  <div class="auth-inner row m-0">
+    <!-- Brand logo--><a class="brand-logo" href="javascript:void(0);">
+      <img src="" alt="image ici" height="28" />
+      <h2 class="brand-text text-primary ml-1">oulimata.frontend</h2>
+    </a>
+    <!-- /Brand logo-->
+    <!-- Left Text-->
+    <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
+      <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
+        <img class="img-fluid" [src]="'assets/images/pages/login-v2.svg'
+          " alt="Login V2" />
       </div>
-    </div>  
-<!-- pwd field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >pwd</label>
-      <input class="form-control" type="text"  formControlName="pwd"  placeholder="pwd"  [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }"/>
-      <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
-          <div *ngIf="f.pwd.errors.required"> pwd est obligatoire </div>
-      </div>
-    </div>  
-    </form>
-    <!-- vous pouvez valider votre formulaire n'importe ou -->
-
-    <div class="text-center m-2">
-        <button type="button" class="btn btn-primary m-2" [disabled]="loading_login_login "
-            (click)="form_login_login .ngSubmit.emit()">{{loading_login_login ?"En cours ...":"Valider"}}</button>
-        <button class="btn btn-secondary m-2" type="reset" (click)="onReset_login_login ()">Vider</button>
     </div>
+    <!-- /Left Text-->
+    <!-- Login-->
+    <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+        <h2 class="card-title font-weight-bold mb-1">Welcome to oulimata.frontend! 👋</h2>
+        <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+        <form class="auth-login-form mt-2" [formGroup]="reactiveForm_login_login " (ngSubmit)="onSubmit_login_login ()"
+          #form_login_login="ngForm" class="row">
+          <!-- login field avec un control de validite -->
+          <div class="form-group">
+            <label>login</label>
+            <input class="form-control" type="text" formControlName="login" placeholder="login"
+              [ngClass]="{ 'is-invalid': submitted && f.login.errors }" />
+            <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+              <div *ngIf="f.login.errors.required"> login est obligatoire </div>
+            </div>
+          </div>
+          <!-- pwd field avec un control de validite -->
+          <div class="form-group">
+            <label>pwd</label>
+            <input class="form-control" type="text" formControlName="pwd" placeholder="pwd"
+              [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
+            <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
+              <div *ngIf="f.pwd.errors.required"> pwd est obligatoire </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-primary m-2" [disabled]="loading_login_login "
+              (click)="form_login_login .ngSubmit.emit()">{{loading_login_login ?"En cours ...":"Valider"}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- /Login-->
   </div>
 </div>

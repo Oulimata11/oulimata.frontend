@@ -9,7 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class ApiService {
   local_storage_prefixe = "oulimata.frontend";
-  taf_base_url = "http://localhost/JantTech/JantTaf/taf.schematics/taf/";
+  taf_base_url = "http://localhost/os/oulimata.backend/";
 
   network: any = {
     token: undefined,

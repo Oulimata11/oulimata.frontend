@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'oulimata.frontend';
+  
+
+  // Lifecycle hooks
+  // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * On init
+   */
+  ngOnInit(): void {
+  }
 }

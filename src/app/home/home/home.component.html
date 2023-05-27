@@ -1,19 +1,29 @@
-<div class="d-flex align-items-center justify-content-between">
-  <div class="fs-1">
-        Module home
-  </div>
-  <div class="d-flex">
-        <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                    data-bs-toggle="dropdown">{{menu.titre}}</button>
-              <div class="dropdown-menu">
-                    <a routerLinkActive="bg-primary text-white"  *ngFor="let one_menu of menu.items" [routerLink]="[one_menu.path]" class="dropdown-item" >
-                          {{one_menu.libelle}}
-                    </a>
-              </div>
-        </div>
-  </div>
-</div>
-<div class="container">
-      <router-outlet></router-outlet>
-</div>
+<!-- vertical-layout -->
+<ng-container *ngIf="coreConfig.layout.type === 'vertical'">
+      <vertical-layout></vertical-layout>
+    </ng-container>
+    <!-- / vertical-layout -->
+    
+    <!-- horizontal-layout -->
+    <ng-container *ngIf="coreConfig.layout.type === 'horizontal'">
+      <horizontal-layout></horizontal-layout>
+    </ng-container>
+    <!-- / horizontal-layout -->
+    
+    <!-- theme customizer -->
+    <core-sidebar
+      name="themeCustomizer"
+      class="customizer d-none d-md-block"
+      [invisibleOverlay]="true"
+      *ngIf="coreConfig.layout.customizer"
+    >
+      <a
+        class="customizer-toggle d-flex align-items-center justify-content-center"
+        (click)="toggleSidebar('themeCustomizer')"
+      >
+        <span [data-feather]="'settings'" [class]="'spinner'"></span>
+      </a>
+      <core-theme-customizer></core-theme-customizer>
+    </core-sidebar>
+    <!-- / theme customizer -->
+    

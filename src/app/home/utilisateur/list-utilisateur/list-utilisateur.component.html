@@ -1,0 +1,108 @@
+<!-- entete -->
+<div class="d-flex align-items-center justify-content-between">
+  <div class="fs-1">Les Utilisateurs - {{les_utilisateurs.length}}</div>
+  <div class="d-flex">
+    <!-- bouton adapté au template -->
+    <button class="btn btn-primary" (click)="open_modal(modal_add_utilisateur)">Ajouter
+      Utilisateur</button>
+    <!-- 
+      version bootstrap
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_utilisateur">Ajouter
+      Utilisateur</button> -->
+  </div>
+</div>
+<!-- list -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id_utilisateur</th>
+        <th scope="col">id_role</th>
+        <th scope="col">matricule_utilisateur</th>
+        <th scope="col">nom_utilisateur</th>
+        <th scope="col">prenom_utilisateur</th>
+        <th scope="col">date_naissance_utilisateur</th>
+        <th scope="col">lieu_naissance_utilisateur</th>
+        <th scope="col">telephone_utilisateur</th>
+        <th scope="col">email_utilisateur</th>
+        <th scope="col">password_utilisateur</th>
+        <th scope="col">created_at</th>
+        <th scope="col">updated_at</th>
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let one_utilisateur of les_utilisateurs">
+        <td>{{one_utilisateur.id_utilisateur}}</td>
+        <td>{{one_utilisateur.id_role}}</td>
+        <td>{{one_utilisateur.matricule_utilisateur}}</td>
+        <td>{{one_utilisateur.nom_utilisateur}}</td>
+        <td>{{one_utilisateur.prenom_utilisateur}}</td>
+        <td>{{one_utilisateur.date_naissance_utilisateur}}</td>
+        <td>{{one_utilisateur.lieu_naissance_utilisateur}}</td>
+        <td>{{one_utilisateur.telephone_utilisateur}}</td>
+        <td>{{one_utilisateur.email_utilisateur}}</td>
+        <td>{{one_utilisateur.password_utilisateur}}</td>
+        <td>{{one_utilisateur.created_at}}</td>
+        <td>{{one_utilisateur.updated_at}}</td>
+        <td>
+          <div class="dropdown">
+            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
+            <div class="dropdown-menu">
+              <a (click)="on_click_edit(one_utilisateur)" class="dropdown-item" data-bs-toggle="modal"
+                data-bs-target="#modal_edit_utilisateur">
+                <i class="bx bx-edit-alt me-1"></i>
+                Modifier
+              </a>
+              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
+              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal ajout adapté au template -->
+<ng-template #modal_add_utilisateur let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter Utilisateur</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <app-add-utilisateur (cb_add_utilisateur)="after_add($event)"></app-add-utilisateur>
+  </div>
+</ng-template>
+<!-- ajout -->
+<div class="modal fade" id="modal_add_utilisateur" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header " data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Ajouter Utilisateur</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-add-utilisateur (cb_add_utilisateur)="after_add($event)"></app-add-utilisateur>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modification -->
+<div class="modal fade" id="modal_edit_utilisateur" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Modifier Utilisateur</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="on_close_modal_edit()"></button>
+      </div>
+      <div class="modal-body">
+        <app-edit-utilisateur *ngIf="utilisateur_to_edit" (cb_edit_utilisateur)="after_edit($event)"
+          [utilisateur_to_edit]="utilisateur_to_edit"></app-edit-utilisateur>
+      </div>
+    </div>
+  </div>
+</div>

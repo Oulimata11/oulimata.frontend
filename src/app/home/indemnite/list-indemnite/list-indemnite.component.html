@@ -1,0 +1,72 @@
+<!-- entete -->
+<div class="d-flex align-items-center justify-content-between">
+  <div class="fs-1">Les Indemnites  - {{les_indemnites.length}}</div>
+  <div class="d-flex">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_indemnite">Ajouter Indemnite</button>
+  </div>
+</div>
+<!-- list -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id_indemnite</th>
+<th scope="col">id_utilisateur</th>
+<th scope="col">date_indemnite</th>
+<th scope="col">nature_indemnite</th>
+<th scope="col">montant_indemnite</th><th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let one_indemnite of les_indemnites">
+        <td>{{one_indemnite.id_indemnite}}</td>
+<td>{{one_indemnite.id_utilisateur}}</td>
+<td>{{one_indemnite.date_indemnite}}</td>
+<td>{{one_indemnite.nature_indemnite}}</td>
+<td>{{one_indemnite.montant_indemnite}}</td><td>
+  <div class="dropdown">
+    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
+    <div class="dropdown-menu">
+      <a (click)="on_click_edit(one_indemnite)" class="dropdown-item" data-bs-toggle="modal"
+        data-bs-target="#modal_edit_indemnite">
+        <i class="bx bx-edit-alt me-1"></i>
+        Modifier
+      </a>
+      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
+      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+    </div>
+  </div>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- ajout -->
+<div class="modal fade" id="modal_add_indemnite" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " data-bs-theme="dark">
+              <h1 class="modal-title fs-5">Ajouter Indemnite</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-indemnite (cb_add_indemnite)="after_add($event)"></app-add-indemnite>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- modification -->
+<div class="modal fade" id="modal_edit_indemnite" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Modifier Indemnite</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+      </div>
+      <div class="modal-body">
+        <app-edit-indemnite *ngIf="indemnite_to_edit" (cb_edit_indemnite)="after_edit($event)" [indemnite_to_edit]="indemnite_to_edit"></app-edit-indemnite>
+      </div>
+    </div>
+  </div>
+</div>
+  
