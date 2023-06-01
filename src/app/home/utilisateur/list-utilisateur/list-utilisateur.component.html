@@ -31,7 +31,7 @@
           <div class="dropdown">
             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
             <div class="dropdown-menu">
-              <a (click)="on_click_edit(one_utilisateur)" class="dropdown-item" data-bs-toggle="modal"
+              <a (click)="open_modal_edit(modal_edit_utilisateur,one_utilisateur)" class="dropdown-item" data-bs-toggle="modal"
                 data-bs-target="#modal_edit_utilisateur">
                 <i class="bx bx-edit-alt me-1"></i>
                 Modifier
@@ -58,33 +58,17 @@
     <app-add-utilisateur (cb_add_utilisateur)="after_add($event)"></app-add-utilisateur>
   </div>
 </ng-template>
-<!-- ajout -->
-<div class="modal fade" id="modal_add_utilisateur" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header " data-bs-theme="dark">
-        <h1 class="modal-title fs-5">Ajouter Utilisateur</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <app-add-utilisateur (cb_add_utilisateur)="after_add($event)"></app-add-utilisateur>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- modification -->
-<div class="modal fade" id="modal_edit_utilisateur" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" data-bs-theme="dark">
-        <h1 class="modal-title fs-5">Modifier Utilisateur</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-          (click)="on_close_modal_edit()"></button>
-      </div>
-      <div class="modal-body">
-        <app-edit-utilisateur *ngIf="utilisateur_to_edit" (cb_edit_utilisateur)="after_edit($event)"
-          [utilisateur_to_edit]="utilisateur_to_edit"></app-edit-utilisateur>
-      </div>
-    </div>
+<ng-template #modal_edit_utilisateur let-modal>
+  <div class="modal-header" data-bs-theme="dark">
+    <h1 class="modal-title fs-5">Modifier Utilisateur</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="on_close_modal_edit()">
+      </button>
   </div>
-</div>
+  <div class="modal-body">
+    <app-edit-utilisateur *ngIf="utilisateur_to_edit" (cb_edit_utilisateur)="after_edit($event)"
+     [utilisateur_to_edit]="utilisateur_to_edit"></app-edit-utilisateur>
+  </div>
+</ng-template>

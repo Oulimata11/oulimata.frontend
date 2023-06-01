@@ -57,4 +57,10 @@ export class ListUtilisateurComponent {
       centered: true
     });
   }
+  open_modal_edit(modal_edit, un_utilisateur: any) {
+    this.utilisateur_to_edit = un_utilisateur;
+    this.modalService.open(modal_edit, {
+      centered: true,
+    });
+  }
 }

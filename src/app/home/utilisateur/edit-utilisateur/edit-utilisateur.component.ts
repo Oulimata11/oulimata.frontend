@@ -81,12 +81,10 @@ updated_at: [utilisateur_to_edit.updated_at, Validators.required]
       this.loading_edit_utilisateur = true;
       this.api.taf_post("utilisateur/edit", utilisateur, (reponse: any) => {
           if (reponse.status) {
-              this.cb_edit_utilisateur.emit({
-                  new_data:JSON.parse(utilisateur.data)
-              })
+              this.cb_edit_utilisateur.emit({new_data:JSON.parse(utilisateur.data)})
               console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", reponse);
               this.onReset_edit_utilisateur()
-              alert("Opération effectuée avec succés sur la table utilisateur")
+              this.api.Swal_success("Utilisateur modifié avec succés")
           } else {
               console.log("L'opération sur la table utilisateur a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
