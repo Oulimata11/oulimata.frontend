@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   menu: any = {
     titre: "Menu",
     items: [
-      { libelle: "Absence", path: "/home/absence" },
+      { libelle: "Absence",icon: "users", path: "/home/absence" },
       { libelle: "Conges", path: "/home/conges" },
       { libelle: "Gardien", path: "/home/gardien" },
       { libelle: "Indemnite", path: "/home/indemnite" },

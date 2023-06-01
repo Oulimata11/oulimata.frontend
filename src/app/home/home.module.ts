@@ -94,7 +94,8 @@ import { BreadcrumbModule } from 'app/layout/components/content-header/breadcrum
    NgbModalModule,
    NgbAccordionModule,
    NgbCollapseModule,
-   BreadcrumbModule
+   BreadcrumbModule,
+   NgbModule,
   ]
 })
 export class HomeModule { }

@@ -20,19 +20,16 @@ export class AddUtilisateurComponent {
   }
   init_form() {
       this.reactiveForm_add_utilisateur  = this.formBuilder.group({
-          id_utilisateur: ["", Validators.required],
-id_role: ["", Validators.required],
-matricule_utilisateur: ["", Validators.required],
-nom_utilisateur: ["", Validators.required],
-prenom_utilisateur: ["", Validators.required],
-date_naissance_utilisateur: ["", Validators.required],
-lieu_naissance_utilisateur: ["", Validators.required],
-telephone_utilisateur: ["", Validators.required],
-email_utilisateur: ["", Validators.required],
-password_utilisateur: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
-      });
+        id_role: ["", Validators.required],
+        matricule_utilisateur: [0],
+        nom_utilisateur: ["", Validators.required],
+        prenom_utilisateur: ["", Validators.required],
+        date_naissance_utilisateur: ["", Validators.required],
+        lieu_naissance_utilisateur: ["", Validators.required],
+        telephone_utilisateur: ["", Validators.required],
+        email_utilisateur: ["", Validators.required],
+        password_utilisateur: ["", Validators.required],
+    });
   }
 
   // acces facile au champs de votre formulaire
@@ -60,7 +57,7 @@ updated_at: ["", Validators.required]
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", reponse);
           this.onReset_add_utilisateur()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Utilisateur ajouté avec succés")
           this.cb_add_utilisateur.emit({
             status:true,
             utilisateur:reponse.data

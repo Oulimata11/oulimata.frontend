@@ -16,35 +16,17 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">id_utilisateur</th>
-        <th scope="col">id_role</th>
-        <th scope="col">matricule_utilisateur</th>
-        <th scope="col">nom_utilisateur</th>
-        <th scope="col">prenom_utilisateur</th>
-        <th scope="col">date_naissance_utilisateur</th>
-        <th scope="col">lieu_naissance_utilisateur</th>
-        <th scope="col">telephone_utilisateur</th>
-        <th scope="col">email_utilisateur</th>
-        <th scope="col">password_utilisateur</th>
-        <th scope="col">created_at</th>
-        <th scope="col">updated_at</th>
+        <th scope="col">Matricule</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Email</th>
         <th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_utilisateur of les_utilisateurs">
-        <td>{{one_utilisateur.id_utilisateur}}</td>
-        <td>{{one_utilisateur.id_role}}</td>
         <td>{{one_utilisateur.matricule_utilisateur}}</td>
-        <td>{{one_utilisateur.nom_utilisateur}}</td>
-        <td>{{one_utilisateur.prenom_utilisateur}}</td>
-        <td>{{one_utilisateur.date_naissance_utilisateur}}</td>
-        <td>{{one_utilisateur.lieu_naissance_utilisateur}}</td>
-        <td>{{one_utilisateur.telephone_utilisateur}}</td>
+        <td>{{one_utilisateur.nom_utilisateur+" "+one_utilisateur.prenom_utilisateur}}</td>
         <td>{{one_utilisateur.email_utilisateur}}</td>
-        <td>{{one_utilisateur.password_utilisateur}}</td>
-        <td>{{one_utilisateur.created_at}}</td>
-        <td>{{one_utilisateur.updated_at}}</td>
         <td>
           <div class="dropdown">
             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
@@ -67,7 +49,7 @@
 <!-- Modal ajout adapté au template -->
 <ng-template #modal_add_utilisateur let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter Utilisateur</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouvel utilisateur</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

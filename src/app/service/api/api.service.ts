@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import Swal from 'sweetalert2';
 
 
 @Injectable({
@@ -129,5 +130,15 @@ export class ApiService {
     alert("Votre session s'est expiré! Veuillez vous connecter à nouveau")
     this.delete_from_local_storage("token")
     this.route.navigate(['/public/login'])
+  }
+  Swal_success(title:any){
+    let succes= Swal.fire({
+      title:title,
+      icon:"success",
+      timer:1500,
+      showConfirmButton: false,
+      position:"top-start"
+    });
+    return succes
   }
 }
