@@ -22,7 +22,7 @@
           #form_login_login="ngForm" class="row">
           <!-- login field avec un control de validite -->
           <div class="form-group">
-            <label>login</label>
+            <label>Email</label>
             <input class="form-control" type="text" formControlName="login" placeholder="login"
               [ngClass]="{ 'is-invalid': submitted && f.login.errors }" />
             <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
@@ -31,7 +31,7 @@
           </div>
           <!-- pwd field avec un control de validite -->
           <div class="form-group">
-            <label>pwd</label>
+            <label>Mot de passe</label>
             <input class="form-control" type="text" formControlName="pwd" placeholder="pwd"
               [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
             <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">

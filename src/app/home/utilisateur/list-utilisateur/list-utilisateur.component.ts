@@ -41,16 +41,11 @@ export class ListUtilisateurComponent {
     }
   }
   after_edit(params: any) {
-    this.les_utilisateurs[this.les_utilisateurs.indexOf(this.utilisateur_to_edit)]=params.new_data
+    this.les_utilisateurs[this.les_utilisateurs.indexOf(this.utilisateur_to_edit)]=params.new_data;
+    this.modalService.dismissAll()
   }
   voir_plus(one_utilisateur: any) {
     this.selected_utilisateur = one_utilisateur
-  }
-  on_click_edit(one_utilisateur: any) {
-    this.utilisateur_to_edit = one_utilisateur
-  }
-  on_close_modal_edit(){
-    this.utilisateur_to_edit=undefined
   }
   open_modal(modal:any){
     this.modalService.open(modal, {

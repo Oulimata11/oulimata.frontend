@@ -41,6 +41,7 @@ import { CoreModule } from '@angular/flex-layout';
 import { CoreCommonModule } from '@core/common.module';
 import { CoreSidebarModule, CoreThemeCustomizerModule } from '@core/components';
 import { BreadcrumbModule } from 'app/layout/components/content-header/breadcrumb/breadcrumb.module';
+import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { BreadcrumbModule } from 'app/layout/components/content-header/breadcrum
     ListSocieteComponent,
     AddUtilisateurComponent,
     EditUtilisateurComponent,
-    ListUtilisateurComponent
+    ListUtilisateurComponent,
+    ProfilUtilisateurComponent
   ],
   imports: [
     CommonModule,
