@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home/home.component';
 import { ErrorComponent } from './public/error/error.component';
+import { AuthGuard } from './service/controleur/auth.guard';
 
 const routes: Routes = [
     {
@@ -12,7 +13,7 @@ const routes: Routes = [
     {
         path: 'home',
         component:HomeComponent,
-        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule),canActivate:[AuthGuard]
     },
     {
         path: 'public',

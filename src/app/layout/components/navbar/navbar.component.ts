@@ -15,6 +15,7 @@ import { User } from 'app/auth/models';
 
 import { coreConfig } from 'app/app-config';
 import { Router } from '@angular/router';
+import { ApiService } from 'app/service/api/api.service';
 
 @Component({
   selector: 'app-navbar',
@@ -81,7 +82,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private _coreMediaService: CoreMediaService,
     private _coreSidebarService: CoreSidebarService,
     private _mediaObserver: MediaObserver,
-    public _translateService: TranslateService
+    public _translateService: TranslateService,
+    public api : ApiService
   ) {
     this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
 
@@ -165,8 +167,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * Logout method
    */
   logout() {
-    this._authenticationService.logout();
-    this._router.navigate(['/pages/authentication/login-v2']);
+    this.api.network = {
+      token: undefined,
+      status: true,
+      message: "Aucun probléme détecté",
+    }
+    this.api.token = {
+      token_key: null,
+      token_decoded: null,
+      user_connected: null,
+      is_expired: null,
+      date_expiration: null
+    }
+    this.api.delete_from_local_storage("token")
+    this._router.navigate(['/public/login'])
   }
 
   // Lifecycle Hooks
