@@ -10,6 +10,7 @@ import { ListNoteComponent } from './note/list-note/list-note.component';
 import { ListRoleComponent } from './role/list-role/list-role.component';
 import { ListSocieteComponent } from './societe/list-societe/list-societe.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
+import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
 
 const routes: Routes = [
   { path: "", component: ListUtilisateurComponent },
@@ -22,7 +23,9 @@ const routes: Routes = [
   { path: "note", component: ListNoteComponent },
   { path: "role", component: ListRoleComponent },
   { path: "societe", component: ListSocieteComponent },
-  { path: "utilisateur", component: ListUtilisateurComponent }
+  //utilisateur
+  { path: "utilisateur", component: ListUtilisateurComponent },
+  { path: "utilisateur/profil", component: ProfilUtilisateurComponent}
 ];
 
 @NgModule({
