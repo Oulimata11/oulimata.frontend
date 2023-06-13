@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddAbsenceComponent } from './absence/add-absence/add-absence.component';
 import { EditAbsenceComponent } from './absence/edit-absence/edit-absence.component';
@@ -42,6 +42,7 @@ import { CoreCommonModule } from '@core/common.module';
 import { CoreSidebarModule, CoreThemeCustomizerModule } from '@core/components';
 import { BreadcrumbModule } from 'app/layout/components/content-header/breadcrumb/breadcrumb.module';
 import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
+import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.module';
 
 
 @NgModule({
@@ -83,6 +84,9 @@ import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/pro
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
+    CardSnippetModule,
+
    //NgBootstrap
    NgbModule,
    CoreCommonModule,

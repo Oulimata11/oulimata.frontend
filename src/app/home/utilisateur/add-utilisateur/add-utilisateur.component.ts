@@ -13,24 +13,29 @@ export class AddUtilisateurComponent {
   reactiveForm_add_utilisateur !: FormGroup;
   submitted:boolean=false
   loading_add_utilisateur :boolean=false
+  loading_edit_role: boolean =false
+  loading_get_utilisateur :boolean =false
   constructor(private formBuilder: FormBuilder,public api:ApiService) { }
 
   ngOnInit(): void {
       this.init_form()
+      this.get_role()
   }
   init_form() {
-      this.reactiveForm_add_utilisateur  = this.formBuilder.group({
-        id_role: ["", Validators.required],
-        matricule_utilisateur: [0],
-        nom_utilisateur: ["", Validators.required],
-        prenom_utilisateur: ["", Validators.required],
-        date_naissance_utilisateur: ["", Validators.required],
-        lieu_naissance_utilisateur: ["", Validators.required],
-        telephone_utilisateur: ["", Validators.required],
-        email_utilisateur: ["", Validators.required],
-        password_utilisateur: ["", Validators.required],
+    this.reactiveForm_add_utilisateur  = this.formBuilder.group({
+        
+id_role: ["", Validators.required],
+matricule_utilisateur: [0],
+nom_utilisateur: ["", Validators.required],
+prenom_utilisateur: ["", Validators.required],
+date_naissance_utilisateur: ["", Validators.required],
+lieu_naissance_utilisateur: ["", Validators.required],
+date_insertion_utilisateur: ["", Validators.required],
+telephone_utilisateur: ["", Validators.required],
+email_utilisateur: ["", Validators.required],
+password_utilisateur: ["", Validators.required],
     });
-  }
+}
 
   // acces facile au champs de votre formulaire
   get f(): any { return this.reactiveForm_add_utilisateur .controls; }
@@ -58,10 +63,7 @@ export class AddUtilisateurComponent {
           console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", reponse);
           this.onReset_add_utilisateur()
           this.api.Swal_success("Utilisateur ajouté avec succés")
-          this.cb_add_utilisateur.emit({
-            status:true,
-            utilisateur:reponse.data
-          })
+          this.cb_add_utilisateur.emit({status:true,utilisateur:reponse.data})
       } else {
           console.log("L'opération sur la table utilisateur a échoué. Réponse= ", reponse);
           alert("L'opération a echoué")
@@ -70,5 +72,23 @@ export class AddUtilisateurComponent {
         this.loading_add_utilisateur = false;
     })
   }
-  
+  get_role(){
+    this.loading_edit_role = true;
+    this.api.taf_get("role/get",(reponse:any)=>{
+        //when success
+        this.loading_edit_role = false;
+        if(reponse.status){
+          this.api.les_roles_des_utilisateurs=reponse.data
+            console.log("Opération effectuée avec succés sur la table role. Réponse= ",reponse.data);
+        }else{
+            console.log("L\'opération sur la table role a échoué. Réponse= ",reponse);
+        }
+    },
+    (error:any)=>{
+        //when error
+        this.loading_edit_role = false;
+        console.log("Erreur inconnue! ",error);
+    })
+    }
+
 }

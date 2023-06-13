@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home/home.component';
 import { ErrorComponent } from './public/error/error.component';
 import { AuthGuard } from './service/controleur/auth.guard';
+import { CoreThemeCustomizerModule } from '@core/components';
 
 const routes: Routes = [
     {
@@ -31,7 +32,9 @@ const routes: Routes = [
             scrollPositionRestoration: 'enabled', // Add options right here
             relativeLinkResolution: 'legacy',
             useHash: true
-        })
+        }),
+        CoreThemeCustomizerModule,
+
     ],
     exports: [RouterModule]
 })

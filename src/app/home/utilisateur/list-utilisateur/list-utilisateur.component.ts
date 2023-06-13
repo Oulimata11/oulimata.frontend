@@ -8,7 +8,6 @@ import { ApiService } from 'app/service/api/api.service';
 })
 export class ListUtilisateurComponent {
   loading_get_utilisateur = false
-  les_utilisateurs: any[] = []
   selected_utilisateur: any = undefined
   utilisateur_to_edit: any = undefined
   constructor(public api: ApiService,private modalService:NgbModal) {
@@ -21,8 +20,12 @@ export class ListUtilisateurComponent {
     this.loading_get_utilisateur = true;
     this.api.taf_post("utilisateur/get", {}, (reponse: any) => {
       if (reponse.status) {
-        this.les_utilisateurs = reponse.data
-        console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", reponse);
+        this.api.les_utilisateurs = reponse.data
+        this.api.les_utilisateurs=this.api.les_utilisateurs.map(user =>{
+          const statut_compte= user.statut_utilisateur == 1 ? "Actif" : "Inactif";
+          return {...user,statut_compte};
+        });
+        console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", this.api.les_utilisateurs);
       } else {
         console.log("L'opération sur la table utilisateur a échoué. Réponse= ", reponse);
         alert("L'opération a echoué")
@@ -35,13 +38,14 @@ export class ListUtilisateurComponent {
 
   after_add(event: any) {
     if (event.status) {
-      this.les_utilisateurs.unshift(event.utilisateur)
+      this.api.les_utilisateurs.unshift(event.utilisateur)
+      this.get_utilisateur()
     } else {
 
     }
   }
   after_edit(params: any) {
-    this.les_utilisateurs[this.les_utilisateurs.indexOf(this.utilisateur_to_edit)]=params.new_data;
+    this.api.les_utilisateurs[this.api.les_utilisateurs.indexOf(this.utilisateur_to_edit)]=params.new_data;
     this.modalService.dismissAll()
   }
   voir_plus(one_utilisateur: any) {

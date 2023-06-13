@@ -9,6 +9,6 @@ export const menu: CoreMenu[] = [
   { id: "Localisation", title: "Localisation", translate: "Localisation", type: "item", icon: "map-pin", url: "/home/localisation" },
   { id: "Evaluation", title: "Evaluation", translate: "Evaluation", type: "item", icon: "arrow-up-circle", url: "/home/note" },
   // { id: "Role", title: "Role", translate: "Role", type: "item", icon: "file", url: "/home/role" },
-  { id: "Société", title: "Société", translate: "Société", type: "item", icon: "grid", url: "/home/societe" },
+  { id: "Collaborateurs", title: "Collaborateurs", translate: "Collaborateurs", type: "item", icon: "grid", url: "/home/societe" },
   { id: "Utilisateurs", title: "Utilisateurs", translate: "Utilisateurs", type: "item", icon: "users", url: "/home/utilisateur" }
 ]

@@ -24,7 +24,9 @@ export class ApiService {
     is_expired: null,
     date_expiration: null
   }
-  
+  //mes tableaux
+  les_utilisateurs : any []=[]
+  les_roles_des_utilisateurs :any []=[]
   constructor(private http: HttpClient, private route: Router) { }
   // sauvegardes
   async get_from_local_storage(key: string): Promise<any> {

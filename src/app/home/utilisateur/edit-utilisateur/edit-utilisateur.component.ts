@@ -24,35 +24,14 @@ export class EditUtilisateurComponent {
   }
   init_form() {
       this.reactiveForm_edit_utilisateur  = this.formBuilder.group({
-        id_utilisateur: ["", Validators.required],
-id_role: ["", Validators.required],
-matricule_utilisateur: ["", Validators.required],
-nom_utilisateur: ["", Validators.required],
-prenom_utilisateur: ["", Validators.required],
-date_naissance_utilisateur: ["", Validators.required],
-lieu_naissance_utilisateur: ["", Validators.required],
-telephone_utilisateur: ["", Validators.required],
-email_utilisateur: ["", Validators.required],
-password_utilisateur: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
-      });
+        id_role: ["", Validators.required],
+});
   }
   // mise à jour du formulaire
   update_form(utilisateur_to_edit:any) {
       this.reactiveForm_edit_utilisateur = this.formBuilder.group({
-          id_utilisateur: [utilisateur_to_edit.id_utilisateur, Validators.required],
-id_role: [utilisateur_to_edit.id_role, Validators.required],
-matricule_utilisateur: [utilisateur_to_edit.matricule_utilisateur, Validators.required],
-nom_utilisateur: [utilisateur_to_edit.nom_utilisateur, Validators.required],
-prenom_utilisateur: [utilisateur_to_edit.prenom_utilisateur, Validators.required],
-date_naissance_utilisateur: [utilisateur_to_edit.date_naissance_utilisateur, Validators.required],
-lieu_naissance_utilisateur: [utilisateur_to_edit.lieu_naissance_utilisateur, Validators.required],
-telephone_utilisateur: [utilisateur_to_edit.telephone_utilisateur, Validators.required],
-email_utilisateur: [utilisateur_to_edit.email_utilisateur, Validators.required],
-password_utilisateur: [utilisateur_to_edit.password_utilisateur, Validators.required],
-created_at: [utilisateur_to_edit.created_at, Validators.required],
-updated_at: [utilisateur_to_edit.updated_at, Validators.required]
+        id_role: [utilisateur_to_edit.id_role, Validators.required],
+
       });
   }
 

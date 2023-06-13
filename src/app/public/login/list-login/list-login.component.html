@@ -21,12 +21,12 @@
           #form_login_login="ngForm" class="row">
           <!-- login field avec un control de validite -->
           <div class="form-group">
-            <label for="email-id-icon">Email</label>
+            <label>Email</label>
             <div class="input-group input-group-merge">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i data-feather="mail"> </i> </span>
+                <span class="input-group-text"> <span [data-feather]="'mail'"> </span> </span>
               </div>
-              <input class="form-control" type="email" id="email-id-icon" formControlName="login" placeholder="xxxx@gmail.com"
+              <input class="form-control" type="email" formControlName="login" placeholder="xxxx@gmail.com"
                 [ngClass]="{ 'is-invalid': submitted && f.login.errors }" />
             </div>
             <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
@@ -36,8 +36,13 @@
           <!-- pwd field avec un control de validite -->
           <div class="form-group">
             <label>Mot de passe</label>
-            <input class="form-control" type="text" formControlName="pwd" placeholder="......."
-              [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <span [data-feather]="'lock'"> </span> </span>
+              </div>
+              <input class="form-control" type="text" formControlName="pwd" placeholder="......."
+                [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
+            </div>
             <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
               <div *ngIf="f.pwd.errors.required"> pwd est obligatoire </div>
             </div>
