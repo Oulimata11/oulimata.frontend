@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-gardien',
@@ -10,7 +11,7 @@ export class ListGardienComponent {
   les_gardiens: any[] = []
   selected_gardien: any = undefined
   gardien_to_edit: any = undefined
-  constructor(public api: ApiService,) {
+  constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -44,6 +45,11 @@ export class ListGardienComponent {
   }
   voir_plus(one_gardien: any) {
     this.selected_gardien = one_gardien
+  }
+  open_modal(modal:any){
+    this.modalService.open(modal, {
+      centered: true
+    });
   }
   on_click_edit(one_gardien: any) {
     this.gardien_to_edit = one_gardien

@@ -47,6 +47,7 @@ export class ListUtilisateurComponent {
   after_edit(params: any) {
     this.api.les_utilisateurs[this.api.les_utilisateurs.indexOf(this.utilisateur_to_edit)]=params.new_data;
     this.modalService.dismissAll()
+    this.get_utilisateur()
   }
   voir_plus(one_utilisateur: any) {
     this.selected_utilisateur = one_utilisateur

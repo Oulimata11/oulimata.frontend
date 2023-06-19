@@ -19,22 +19,17 @@ export class AddGardienComponent {
       this.init_form()
   }
   init_form() {
-      this.reactiveForm_add_gardien  = this.formBuilder.group({
-          id_gardien: ["", Validators.required],
-id_utilisateur: ["", Validators.required],
-id_societe: ["", Validators.required],
-matricule_gardien: ["", Validators.required],
-nom_gardien: ["", Validators.required],
-prenom_gardien: ["", Validators.required],
-date_naissance_gardien: ["", Validators.required],
-lieu_naissance_gardien: ["", Validators.required],
-telephone_gardien: ["", Validators.required],
-email_gardien: ["", Validators.required],
-statut_gardien: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
-      });
-  }
+    this.reactiveForm_add_gardien  = this.formBuilder.group({      
+    id_utilisateur: [this.api.token.token_decoded.taf_data.id_utilisateur],
+    nom_gardien: ["", Validators.required],
+    prenom_gardien: ["", Validators.required],
+    date_naissance_gardien: ["", Validators.required],
+    lieu_naissance_gardien: ["", Validators.required],
+    date_insertion_gardien: ["", Validators.required],
+    telephone_gardien: ["", Validators.required],
+    email_gardien: ["", Validators.required],
+        });
+}
 
   // acces facile au champs de votre formulaire
   get f(): any { return this.reactiveForm_add_gardien .controls; }

@@ -2,7 +2,8 @@
 <div class="d-flex align-items-center justify-content-between">
   <div class="fs-1">Les Gardiens  - {{les_gardiens.length}}</div>
   <div class="d-flex">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_gardien">Ajouter Gardien</button>
+    <button class="btn btn-primary m-1" data-bs-toggle="modal"
+     data-bs-target="#modal_add_gardien" (click)="open_modal(modal_add_gardien)">Ajouter Gardien</button>
   </div>
 </div>
 <!-- list -->
@@ -10,36 +11,21 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">id_gardien</th>
-<th scope="col">id_utilisateur</th>
-<th scope="col">id_societe</th>
-<th scope="col">matricule_gardien</th>
-<th scope="col">nom_gardien</th>
-<th scope="col">prenom_gardien</th>
-<th scope="col">date_naissance_gardien</th>
-<th scope="col">lieu_naissance_gardien</th>
-<th scope="col">telephone_gardien</th>
-<th scope="col">email_gardien</th>
-<th scope="col">statut_gardien</th>
-<th scope="col">created_at</th>
-<th scope="col">updated_at</th><th scope="col">actions</th>
+<!-- <th scope="col">Matricule</th> -->
+<th scope="col">Nom</th>
+<th scope="col">Statut</th>
+<th scope="col">Affectation</th>
+<th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_gardien of les_gardiens">
-        <td>{{one_gardien.id_gardien}}</td>
-<td>{{one_gardien.id_utilisateur}}</td>
-<td>{{one_gardien.id_societe}}</td>
-<td>{{one_gardien.matricule_gardien}}</td>
-<td>{{one_gardien.nom_gardien}}</td>
-<td>{{one_gardien.prenom_gardien}}</td>
-<td>{{one_gardien.date_naissance_gardien}}</td>
-<td>{{one_gardien.lieu_naissance_gardien}}</td>
-<td>{{one_gardien.telephone_gardien}}</td>
-<td>{{one_gardien.email_gardien}}</td>
+<!-- <td>{{one_gardien.matricule_gardien}}</td> -->
+<td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</td>
 <td>{{one_gardien.statut_gardien}}</td>
-<td>{{one_gardien.created_at}}</td>
-<td>{{one_gardien.updated_at}}</td><td>
+<td>{{one_gardien.id_societe}}</td>
+
+<td> 
   <div class="dropdown">
     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
     <div class="dropdown-menu">
@@ -57,6 +43,18 @@
     </tbody>
   </table>
 </div>
+<!-- modal d'ajout -->
+<ng-template #modal_add_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouvel gardien</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-add-gardien></app-add-gardien>
+  </div>
+</ng-template>
 <!-- ajout -->
 <div class="modal fade" id="modal_add_gardien" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

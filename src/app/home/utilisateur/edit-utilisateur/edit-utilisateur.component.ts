@@ -15,12 +15,14 @@ export class EditUtilisateurComponent {
   utilisateur_to_edit: any = {}
   @Output()
   cb_edit_utilisateur=new EventEmitter()
+    loading_edit_role: boolean;
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
   ngOnInit(): void {
       this.init_form()
       this.update_form(this.utilisateur_to_edit)
+      this.get_role()
   }
   init_form() {
       this.reactiveForm_edit_utilisateur  = this.formBuilder.group({
@@ -73,4 +75,23 @@ export class EditUtilisateurComponent {
           this.loading_edit_utilisateur = false;
       })
   }
+  get_role(){
+    this.loading_edit_role = true;
+    this.api.taf_get("role/get",(reponse:any)=>{
+        //when success
+        this.loading_edit_role = false;
+        if(reponse.status){
+          this.api.les_roles_des_utilisateurs=reponse.data
+            console.log("Opération effectuée avec succés sur la table role. Réponse= ",reponse.data);
+        }else{
+            console.log("L\'opération sur la table role a échoué. Réponse= ",reponse);
+        }
+    },
+    (error:any)=>{
+        //when error
+        this.loading_edit_role = false;
+        console.log("Erreur inconnue! ",error);
+    })
+    }
+
 }

@@ -33,37 +33,7 @@
     </div>
   </div>
 </div>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Nom</th>
-        <th scope="col">Email</th>
-        <th scope="col">actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let one_utilisateur of api.les_utilisateurs">
-        <td>{{one_utilisateur.nom_utilisateur+" "+one_utilisateur.prenom_utilisateur}}</td>
-        <td>{{one_utilisateur.email_utilisateur}}</td>
-        <td>
-          <div  ngbDropdown container="body">
-            <button type="button" class="btn btn-outline-primary" ngbDropdownToggle data-bs-toggle="dropdown">actions</button>
-            <div  ngbDropdownMenu>
-              <a (click)="open_modal_edit(modal_edit_utilisateur,one_utilisateur)" class="btn btn-outline-primary" data-bs-toggle="modal"
-                data-bs-target="#modal_edit_utilisateur">
-                <i class="bx bx-edit-alt me-1"></i>
-                Modifier
-              </a>
-              <a class="btn btn-outline-primary" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-              <a class="btn btn-outline-primary" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
 
 <!-- Modal ajout adapté au template -->
 <ng-template #modal_add_utilisateur let-modal>
