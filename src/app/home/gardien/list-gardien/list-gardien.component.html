@@ -21,7 +21,12 @@
     <tbody>
       <tr *ngFor="let one_gardien of les_gardiens">
 <!-- <td>{{one_gardien.matricule_gardien}}</td> -->
-<td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</td>
+<td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}
+  <div>
+    <span [data-feather]="'phone'"></span>
+    {{one_gardien.telephone_gardien}}
+  </div>
+</td>
 <td class="{{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-glow badge-success' : 'badge badge-glow badge-danger'}}">{{one_gardien.statut}}</td>
 <td>{{one_gardien.affectation}}</td>
 

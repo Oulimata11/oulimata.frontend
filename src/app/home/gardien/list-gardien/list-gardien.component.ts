@@ -58,23 +58,27 @@ export class ListGardienComponent {
   voir_plus(one_gardien: any) {
     this.selected_gardien = one_gardien
   }
+  //add-gardien
   open_modal(modal:any){
     this.modalService.open(modal, {
       centered: true
     });
   }
+  //edit-gardien
   open_modal_edit(modal:any, one_gardien: any){
     this.gardien_to_edit = one_gardien
     this.modalService.open(modal, {
       centered: true
     });
   }
+  //delete-gardien
   open_madal_delete( modal:any , one_gardien: any){
     this.gardien_to_delete = one_gardien
     this.modalService.open(modal, {
       centered: true
     });
   }
+  //detail-gardien
   open_madal_detail( modal:any , one_gardien: any){
     this.gardien_detail= one_gardien
     this.modalService.open(modal, {
@@ -82,6 +86,7 @@ export class ListGardienComponent {
     });
     console.log("detail GARDIEN",this.gardien_detail)
   }
+  //foction qui supprime un gardien 
   delete_gardien (){
     this.loading_delete_gardien = true;
     this.api.taf_post("gardien/delete",{id:this.gardien_to_delete.id_gardien},(reponse: any)=>{

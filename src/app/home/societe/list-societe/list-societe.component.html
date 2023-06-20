@@ -42,19 +42,17 @@
   </table>
 </div>
 <!-- ajout -->
-<div class="modal fade" id="modal_add_societe" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " data-bs-theme="dark">
-              <h1 class="modal-title fs-5">Ajouter Societe</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-societe (cb_add_societe)="after_add($event)"></app-add-societe>
-          </div>
-      </div>
-  </div>
-</div>
+<ng-template>
+    <div class="modal-header">
+      <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouveau Collaborateur</h5>
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-add-societe (cb_add_societe)="after_add($event)"></app-add-societe>
+    </div>
+</ng-template>
 <!-- modification -->
 <div class="modal fade" id="modal_edit_societe" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
