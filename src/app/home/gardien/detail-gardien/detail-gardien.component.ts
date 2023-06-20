@@ -11,6 +11,9 @@ export class DetailGardienComponent implements OnInit {
   les_gardiens: any[] = []
   @Input()
   gardien_detail : any = undefined
+
+  public isCollapsed5 = true;
+  
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
