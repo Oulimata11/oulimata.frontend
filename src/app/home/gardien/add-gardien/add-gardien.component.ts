@@ -56,7 +56,7 @@ export class AddGardienComponent {
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", reponse);
           this.onReset_add_gardien()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Gardien ajouté avec succés")
           this.cb_add_gardien.emit({
             status:true,
             gardien:reponse.data

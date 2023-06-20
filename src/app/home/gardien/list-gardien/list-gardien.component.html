@@ -22,20 +22,22 @@
       <tr *ngFor="let one_gardien of les_gardiens">
 <!-- <td>{{one_gardien.matricule_gardien}}</td> -->
 <td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</td>
-<td>{{one_gardien.statut_gardien}}</td>
-<td>{{one_gardien.id_societe}}</td>
+<td class="{{one_gardien.statut == 'Actif' ? 'badge badge-glow badge-success' : 'badge badge-glow badge-danger'}}">{{one_gardien.statut}}</td>
+<td>{{one_gardien.affectation}}</td>
 
 <td> 
-  <div class="dropdown">
-    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
-    <div class="dropdown-menu">
-      <a (click)="on_click_edit(one_gardien)" class="dropdown-item" data-bs-toggle="modal"
+  <div ngbDropdown container="body">
+    <button type="button" class="btn p-0  hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
+      <i data-feather="more-vertical"></i>
+    </button>
+    <div ngbDropdownMenu>
+      <a (click)="open_modal_edit(modal_edit_gardien,one_gardien)" ngbDropdownItem data-bs-toggle="modal"
         data-bs-target="#modal_edit_gardien">
         <i class="bx bx-edit-alt me-1"></i>
         Modifier
       </a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+      <a ngbDropdownItem href="javascript:void(0);" (click)="open_madal_detail(modal_detail_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Voir plus</a>
+      <a ngbDropdownItem href="javascript:void(0);" (click)="open_madal_delete(modal_delete_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Supprimer</a>
     </div>
   </div>
 </td>
@@ -43,44 +45,58 @@
     </tbody>
   </table>
 </div>
-<!-- modal d'ajout -->
+<!-- ajout -->
 <ng-template #modal_add_gardien let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouvel gardien</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouveau gardien</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <app-add-gardien></app-add-gardien>
+    <app-add-gardien (cb_add_gardien)="after_add($event)"></app-add-gardien>
   </div>
 </ng-template>
-<!-- ajout -->
-<div class="modal fade" id="modal_add_gardien" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " data-bs-theme="dark">
-              <h1 class="modal-title fs-5">Ajouter Gardien</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-gardien (cb_add_gardien)="after_add($event)"></app-add-gardien>
-          </div>
-      </div>
-  </div>
-</div>
 <!-- modification -->
-<div class="modal fade" id="modal_edit_gardien" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" data-bs-theme="dark">
-        <h1 class="modal-title fs-5">Modifier Gardien</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
-      </div>
-      <div class="modal-body">
-        <app-edit-gardien *ngIf="gardien_to_edit" (cb_edit_gardien)="after_edit($event)" [gardien_to_edit]="gardien_to_edit"></app-edit-gardien>
-      </div>
-    </div>
+<ng-template #modal_edit_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification gardien</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
-  
+  <div class="modal-body">
+    <app-edit-gardien *ngIf="gardien_to_edit" [gardien_to_edit]="gardien_to_edit" (cb_edit_gardien)="after_edit($event)" > </app-edit-gardien>
+  </div>
+</ng-template>
+<!-- Supprimer -->
+<ng-template #modal_delete_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirmation de la suppression</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{"Êtes-vous sûr de vouloir supprimer"}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_gardien()">
+        {{ loading_delete_gardien ? "En cours ..." : "Oui" }}
+    </button>
+\    <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+    </button>
+  </div>
+</ng-template>
+<!-- Details -->
+<ng-template #modal_detail_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Gardien</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-detail-gardien [gardien_detail]="gardien_detail" > </app-detail-gardien>
+  </div>
+</ng-template>

@@ -43,6 +43,7 @@ import { CoreSidebarModule, CoreThemeCustomizerModule } from '@core/components';
 import { BreadcrumbModule } from 'app/layout/components/content-header/breadcrumb/breadcrumb.module';
 import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
 import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.module';
+import { DetailGardienComponent } from './gardien/detail-gardien/detail-gardien.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.mo
     AddUtilisateurComponent,
     EditUtilisateurComponent,
     ListUtilisateurComponent,
-    ProfilUtilisateurComponent
+    ProfilUtilisateurComponent,
+    DetailGardienComponent
   ],
   imports: [
     CommonModule,

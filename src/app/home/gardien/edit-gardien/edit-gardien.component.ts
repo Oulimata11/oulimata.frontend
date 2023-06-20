@@ -23,8 +23,9 @@ export class EditGardienComponent {
       this.update_form(this.gardien_to_edit)
   }
   init_form() {
-      this.reactiveForm_edit_gardien  = this.formBuilder.group({
-        id_gardien: ["", Validators.required],
+    this.reactiveForm_edit_gardien  = this.formBuilder.group({
+        
+id_gardien: ["", Validators.required],
 id_utilisateur: ["", Validators.required],
 id_societe: ["", Validators.required],
 matricule_gardien: ["", Validators.required],
@@ -32,31 +33,28 @@ nom_gardien: ["", Validators.required],
 prenom_gardien: ["", Validators.required],
 date_naissance_gardien: ["", Validators.required],
 lieu_naissance_gardien: ["", Validators.required],
+date_insertion_gardien: ["", Validators.required],
 telephone_gardien: ["", Validators.required],
 email_gardien: ["", Validators.required],
 statut_gardien: ["", Validators.required],
 created_at: ["", Validators.required],
 updated_at: ["", Validators.required]
-      });
-  }
+    });
+}
   // mise à jour du formulaire
   update_form(gardien_to_edit:any) {
-      this.reactiveForm_edit_gardien = this.formBuilder.group({
-          id_gardien: [gardien_to_edit.id_gardien, Validators.required],
-id_utilisateur: [gardien_to_edit.id_utilisateur, Validators.required],
-id_societe: [gardien_to_edit.id_societe, Validators.required],
-matricule_gardien: [gardien_to_edit.matricule_gardien, Validators.required],
+    this.reactiveForm_edit_gardien = this.formBuilder.group({
+        
 nom_gardien: [gardien_to_edit.nom_gardien, Validators.required],
 prenom_gardien: [gardien_to_edit.prenom_gardien, Validators.required],
 date_naissance_gardien: [gardien_to_edit.date_naissance_gardien, Validators.required],
 lieu_naissance_gardien: [gardien_to_edit.lieu_naissance_gardien, Validators.required],
+date_insertion_gardien: [gardien_to_edit.date_insertion_gardien, Validators.required],
 telephone_gardien: [gardien_to_edit.telephone_gardien, Validators.required],
 email_gardien: [gardien_to_edit.email_gardien, Validators.required],
-statut_gardien: [gardien_to_edit.statut_gardien, Validators.required],
-created_at: [gardien_to_edit.created_at, Validators.required],
-updated_at: [gardien_to_edit.updated_at, Validators.required]
-      });
-  }
+    });
+}
+
 
   // acces facile au champs de votre formulaire
   get f(): any { return this.reactiveForm_edit_gardien .controls; }
@@ -88,7 +86,7 @@ updated_at: [gardien_to_edit.updated_at, Validators.required]
               })
               console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", reponse);
               this.onReset_edit_gardien()
-              alert("Opération effectuée avec succés sur la table gardien")
+              this.api.Swal_success("Gardien modifié avec succés")
           } else {
               console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
