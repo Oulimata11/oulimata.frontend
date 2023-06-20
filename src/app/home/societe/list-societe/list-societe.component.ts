@@ -8,9 +8,11 @@ import { ApiService } from 'app/service/api/api.service';
 })
 export class ListSocieteComponent {
   loading_get_societe = false
+  loading_delete_societe  =false
   les_societes: any[] = []
   selected_societe: any = undefined
   societe_to_edit: any = undefined
+  societe_to_delete :any =undefined
   constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
@@ -36,6 +38,7 @@ export class ListSocieteComponent {
   after_add(event: any) {
     if (event.status) {
       this.les_societes.unshift(event.societe)
+      this.get_societe()
     } else {
 
     }
@@ -61,10 +64,32 @@ export class ListSocieteComponent {
         centered: true
       });
     }
-  on_click_edit(one_societe: any) {
-    this.societe_to_edit = one_societe
-  }
-  on_close_modal_edit(){
-    this.societe_to_edit=undefined
-  }
+    //delete-societe
+    open_modal_delete( modal:any , one_societe: any){
+      this.societe_to_delete = one_societe
+      this.modalService.open(modal, {
+        centered: true
+      });
+    }
+  //foction qui supprime un societe 
+  delete_societe (){
+    this.loading_delete_societe = true;
+    this.api.taf_post("societe/delete",{id:this.societe_to_delete.id_societe},(reponse: any)=>{
+        //when success
+    this.loading_delete_societe = true;
+        if(reponse.status){
+        console.log("Opération effectuée avec succés sur la table societe . Réponse = ",reponse)
+        this.api.Swal_success("Suppression effectuée avec succes ! ")
+        this.modalService.dismissAll()
+        this.get_societe()
+        }else{
+        console.log("L\'opération sur la table societe  a échoué. Réponse = ",reponse)
+        }
+    },
+    (error: any)=>{
+        //when error
+    this.loading_delete_societe = true;
+        console.log("Erreur inconnue! ",error)
+    })
+    }
 }

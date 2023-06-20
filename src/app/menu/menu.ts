@@ -10,5 +10,5 @@ export const menu: CoreMenu[] = [
   // { id: "Evaluation", title: "Evaluation", translate: "Evaluation", type: "item", icon: "arrow-up-circle", url: "/home/note" },
   // { id: "Role", title: "Role", translate: "Role", type: "item", icon: "file", url: "/home/role" },
   { id: "Collaborateurs", title: "Collaborateurs", translate: "Collaborateurs", type: "item", icon: "grid", url: "/home/societe" },
-  // { id: "Utilisateurs", title: "Utilisateurs", translate: "Utilisateurs", type: "item", icon: "users", url: "/home/utilisateur" }
+   { id: "Utilisateurs", title: "Utilisateurs", translate: "Utilisateurs", type: "item", icon: "users", url: "/home/utilisateur" }
 ]

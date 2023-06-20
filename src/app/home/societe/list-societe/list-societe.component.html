@@ -31,7 +31,7 @@
         <i class="bx bx-edit-alt me-1"></i>
         Modifier
       </a>
-      <a ngbDropdownItem  href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+      <a ngbDropdownItem  href="javascript:void(0);" (click)="open_modal_delete(modal_delete_societe,one_societe)"><i class="bx bx-trash me-1"></i>Supprimer</a>
     </div>
   </div>
 </td>
@@ -63,5 +63,23 @@
     <app-edit-societe *ngIf="societe_to_edit" (cb_edit_societe)="after_edit($event)" [societe_to_edit]="societe_to_edit"></app-edit-societe>
   </div>
 </ng-template>
-
+<!-- Supprimer -->
+<ng-template #modal_delete_societe let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirmation de la suppression</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{"Êtes-vous sûr de vouloir supprimer"}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_societe()">
+        {{ loading_delete_societe? "En cours ..." : "Oui" }}
+    </button>
+  <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+    </button>
+  </div>
+</ng-template>
   
