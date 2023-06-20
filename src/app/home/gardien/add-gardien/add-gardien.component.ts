@@ -20,7 +20,7 @@ export class AddGardienComponent {
   }
   init_form() {
     this.reactiveForm_add_gardien  = this.formBuilder.group({      
-    id_utilisateur: [this.api.token.token_decoded.taf_data.id_utilisateur],
+    // id_utilisateur: [0],
     nom_gardien: ["", Validators.required],
     prenom_gardien: ["", Validators.required],
     date_naissance_gardien: ["", Validators.required],
@@ -41,9 +41,18 @@ export class AddGardienComponent {
       if (this.reactiveForm_add_gardien .invalid) {
           return;
       }
-      var gardien =this.reactiveForm_add_gardien .value
-      this.add_gardien (gardien )
-  }
+      const gardien = {
+        id_utilisateur: this.api.token.user_connected.id_utilisateur,
+        nom_gardien: this.f.nom_gardien.value,
+        prenom_gardien: this.f.prenom_gardien.value,
+        date_naissance_gardien: this.f.date_naissance_gardien.value, 
+        lieu_naissance_gardien: this.f.lieu_naissance_gardien.value ,
+        date_insertion_gardien:this.f.date_insertion_gardien.value,
+        email_gardien:this.f.email_gardien.value
+      }
+      this.add_gardien (gardien)
+    }
+
   // vider le formulaire
   onReset_add_gardien () {
       this.submitted = false;
