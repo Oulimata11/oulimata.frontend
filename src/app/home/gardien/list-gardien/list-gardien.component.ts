@@ -15,7 +15,7 @@ export class ListGardienComponent {
   gardien_to_edit: any = undefined
   gardien_to_delete :any = undefined
   gardien_detail : any =undefined
-  constructor(public api: ApiService,private modalService: NgbModal,private http: HttpClient) {
+  constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {

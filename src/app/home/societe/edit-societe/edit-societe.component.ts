@@ -24,21 +24,15 @@ export class EditSocieteComponent {
   }
   init_form() {
       this.reactiveForm_edit_societe  = this.formBuilder.group({
-        id_societe: ["", Validators.required],
 nom_societe: ["", Validators.required],
 description_societe: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
       });
   }
   // mise à jour du formulaire
   update_form(societe_to_edit:any) {
       this.reactiveForm_edit_societe = this.formBuilder.group({
-          id_societe: [societe_to_edit.id_societe, Validators.required],
 nom_societe: [societe_to_edit.nom_societe, Validators.required],
 description_societe: [societe_to_edit.description_societe, Validators.required],
-created_at: [societe_to_edit.created_at, Validators.required],
-updated_at: [societe_to_edit.updated_at, Validators.required]
       });
   }
 

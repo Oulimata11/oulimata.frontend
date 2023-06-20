@@ -1,45 +1,22 @@
 
 <form  [formGroup]="reactiveForm_add_societe " (ngSubmit)="onSubmit_add_societe ()" #form_add_societe ="ngForm" class="row">
-  <!-- id_societe field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >id_societe</label>
-      <input class="form-control" type="text"  formControlName="id_societe"  placeholder="id_societe"  [ngClass]="{ 'is-invalid': submitted && f.id_societe.errors }"/>
-      <div *ngIf="submitted && f.id_societe.errors" class="invalid-feedback">
-          <div *ngIf="f.id_societe.errors.required"> id_societe est obligatoire </div>
-      </div>
-    </div>  
 <!-- nom_societe field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >nom_societe</label>
-      <input class="form-control" type="text"  formControlName="nom_societe"  placeholder="nom_societe"  [ngClass]="{ 'is-invalid': submitted && f.nom_societe.errors }"/>
+      <label >Nom </label>
+      <input class="form-control" type="text"  formControlName="nom_societe"  placeholder="Christa SEN"  [ngClass]="{ 'is-invalid': submitted && f.nom_societe.errors }"/>
       <div *ngIf="submitted && f.nom_societe.errors" class="invalid-feedback">
           <div *ngIf="f.nom_societe.errors.required"> nom_societe est obligatoire </div>
       </div>
     </div>  
 <!-- description_societe field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >description_societe</label>
-      <input class="form-control" type="text"  formControlName="description_societe"  placeholder="description_societe"  [ngClass]="{ 'is-invalid': submitted && f.description_societe.errors }"/>
+      <label >Description</label>
+      <textarea class="form-control" type="text"  formControlName="description_societe"  placeholder="Societe de Gardiennage"  [ngClass]="{ 'is-invalid': submitted && f.description_societe.errors }">
+        </textarea>
       <div *ngIf="submitted && f.description_societe.errors" class="invalid-feedback">
           <div *ngIf="f.description_societe.errors.required"> description_societe est obligatoire </div>
       </div>
-    </div>  
-<!-- created_at field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >created_at</label>
-      <input class="form-control" type="text"  formControlName="created_at"  placeholder="created_at"  [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
-      <div *ngIf="submitted && f.created_at.errors" class="invalid-feedback">
-          <div *ngIf="f.created_at.errors.required"> created_at est obligatoire </div>
-      </div>
-    </div>  
-<!-- updated_at field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >updated_at</label>
-      <input class="form-control" type="text"  formControlName="updated_at"  placeholder="updated_at"  [ngClass]="{ 'is-invalid': submitted && f.updated_at.errors }"/>
-      <div *ngIf="submitted && f.updated_at.errors" class="invalid-feedback">
-          <div *ngIf="f.updated_at.errors.required"> updated_at est obligatoire </div>
-      </div>
-    </div>  
+    </div> 
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-societe',
@@ -10,7 +11,7 @@ export class ListSocieteComponent {
   les_societes: any[] = []
   selected_societe: any = undefined
   societe_to_edit: any = undefined
-  constructor(public api: ApiService,) {
+  constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -41,10 +42,25 @@ export class ListSocieteComponent {
   }
   after_edit(params: any) {
     this.les_societes[this.les_societes.indexOf(this.societe_to_edit)]=params.new_data
+    this.modalService.dismissAll();
+    this.get_societe();
   }
   voir_plus(one_societe: any) {
     this.selected_societe = one_societe
   }
+  //add-collaborateurs
+  open_modal(modal:any){
+    this.modalService.open(modal, {
+      centered: true
+    });
+  }
+    //edit-collaborateurs
+    open_modal_edit(modal:any, one_societe: any){
+      this.societe_to_edit = one_societe
+      this.modalService.open(modal, {
+        centered: true
+      });
+    }
   on_click_edit(one_societe: any) {
     this.societe_to_edit = one_societe
   }

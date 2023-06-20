@@ -1,8 +1,9 @@
 <!-- entete -->
 <div class="d-flex align-items-center justify-content-between">
-  <div class="fs-1">Les Societes  - {{les_societes.length}}</div>
-  <div class="d-flex">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_societe">Ajouter Societe</button>
+  <div class="fs-1">Nos collaborateurs - {{les_societes.length}}</div>
+  <div class="d-flex m-1">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_societe" 
+    (click)="open_modal(modal_add_societe)">Nouveau Collaborateur</button>
   </div>
 </div>
 <!-- list -->
@@ -10,30 +11,27 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">id_societe</th>
 <th scope="col">nom_societe</th>
 <th scope="col">description_societe</th>
-<th scope="col">created_at</th>
-<th scope="col">updated_at</th><th scope="col">actions</th>
+<th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_societe of les_societes">
-        <td>{{one_societe.id_societe}}</td>
 <td>{{one_societe.nom_societe}}</td>
 <td>{{one_societe.description_societe}}</td>
-<td>{{one_societe.created_at}}</td>
-<td>{{one_societe.updated_at}}</td><td>
-  <div class="dropdown">
-    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
-    <div class="dropdown-menu">
-      <a (click)="on_click_edit(one_societe)" class="dropdown-item" data-bs-toggle="modal"
-        data-bs-target="#modal_edit_societe">
+<td>
+  <div ngbDropdown container="body">
+    <button type="button" class="btn p-0 hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
+      <i data-feather="more-vertical"></i>
+    </button>
+    <div ngbDropdownMenu>
+      <a (click)="on_click_edit(one_societe)" ngbDropdownItem data-bs-toggle="modal"
+        data-bs-target="#modal_edit_societe" (click)="open_modal_edit(modal_edit_societe,one_societe)">
         <i class="bx bx-edit-alt me-1"></i>
         Modifier
       </a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+      <a ngbDropdownItem  href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
     </div>
   </div>
 </td>
@@ -42,7 +40,7 @@
   </table>
 </div>
 <!-- ajout -->
-<ng-template>
+<ng-template #modal_add_societe let-modal>
     <div class="modal-header">
       <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouveau Collaborateur</h5>
       <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
@@ -54,17 +52,16 @@
     </div>
 </ng-template>
 <!-- modification -->
-<div class="modal fade" id="modal_edit_societe" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" data-bs-theme="dark">
-        <h1 class="modal-title fs-5">Modifier Societe</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
-      </div>
-      <div class="modal-body">
-        <app-edit-societe *ngIf="societe_to_edit" (cb_edit_societe)="after_edit($event)" [societe_to_edit]="societe_to_edit"></app-edit-societe>
-      </div>
-    </div>
+<ng-template #modal_edit_societe let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modifier Collaborateur</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <app-edit-societe *ngIf="societe_to_edit" (cb_edit_societe)="after_edit($event)" [societe_to_edit]="societe_to_edit"></app-edit-societe>
+  </div>
+</ng-template>
+
   

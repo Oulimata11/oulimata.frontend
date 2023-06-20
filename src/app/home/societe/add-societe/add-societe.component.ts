@@ -19,12 +19,9 @@ export class AddSocieteComponent {
       this.init_form()
   }
   init_form() {
-      this.reactiveForm_add_societe  = this.formBuilder.group({
-          id_societe: ["", Validators.required],
-nom_societe: ["", Validators.required],
-description_societe: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
+    this.reactiveForm_add_societe  = this.formBuilder.group({
+    nom_societe: ["", Validators.required],
+    description_societe: ["", Validators.required],
       });
   }
 
