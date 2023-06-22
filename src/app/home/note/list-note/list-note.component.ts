@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ApiService } from 'src/app/service/api/api.service';
+import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-note',
   templateUrl: './list-note.component.html',
-  styleUrls: ['./list-note.component.css']
+  styleUrls: ['./list-note.component.scss']
 })
 export class ListNoteComponent {
   loading_get_note = false

@@ -1,11 +1,11 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/service/api/api.service';
+import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-edit-note',
   templateUrl: './edit-note.component.html',
-  styleUrls: ['./edit-note.component.css']
+  styleUrls: ['./edit-note.component.scss']
 })
 export class EditNoteComponent {
   reactiveForm_edit_note !: FormGroup;

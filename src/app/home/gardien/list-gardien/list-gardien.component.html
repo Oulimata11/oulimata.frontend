@@ -11,41 +11,39 @@
   <table class="table table-striped">
     <thead>
       <tr>
-<!-- <th scope="col">Matricule</th> -->
-<th scope="col">Nom</th>
-<th scope="col">Statut</th>
-<th scope="col">Affectation</th>
-<th scope="col">Actions</th>
+        <!-- <th scope="col">Matricule</th> -->
+        <th scope="col">Nom</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Affectation</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_gardien of les_gardiens">
-<!-- <td>{{one_gardien.matricule_gardien}}</td> -->
-<td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}
-  <div>
-    <span [data-feather]="'phone'"></span>
-    {{one_gardien.telephone_gardien}}
-  </div>
-</td>
-<td class="{{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-glow badge-success' : 'badge badge-glow badge-danger'}}">{{one_gardien.statut}}</td>
-<td>{{one_gardien.affectation}}</td>
-
-<td> 
-  <div ngbDropdown container="body">
-    <button type="button" class="btn p-0  hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
-      <i data-feather="more-vertical"></i>
-    </button>
-    <div ngbDropdownMenu>
-      <a (click)="open_modal_edit(modal_edit_gardien,one_gardien)" ngbDropdownItem data-bs-toggle="modal"
-        data-bs-target="#modal_edit_gardien">
-        <i class="bx bx-edit-alt me-1"></i>
-        Modifier
-      </a>
-      <a ngbDropdownItem href="javascript:void(0);" (click)="open_madal_detail(modal_detail_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a ngbDropdownItem href="javascript:void(0);" (click)="open_madal_delete(modal_delete_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Supprimer</a>
-    </div>
-  </div>
-</td>
+    <td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}
+      <div>
+        <span [data-feather]="'phone'"></span>
+        {{one_gardien.telephone_gardien}}
+      </div>
+    </td>
+    <td class="{{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-glow badge-success' : 'badge badge-glow badge-danger'}}">{{one_gardien.statut}}</td>
+    <td>{{one_gardien.affectation}}</td>
+    <td> 
+      <div ngbDropdown container="body">
+        <button type="button" class="btn p-0  hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
+          <i data-feather="more-vertical"></i>
+        </button>
+        <div ngbDropdownMenu>
+          <a (click)="open_modal_edit(modal_edit_gardien,one_gardien)" ngbDropdownItem data-bs-toggle="modal"
+            data-bs-target="#modal_edit_gardien">
+            <i class="bx bx-edit-alt me-1"></i>
+            Modifier
+          </a>
+          <a ngbDropdownItem href="javascript:void(0);" (click)="open_madal_detail(modal_detail_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Voir plus</a>
+          <a ngbDropdownItem href="javascript:void(0);" (click)="open_madal_delete(modal_delete_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Supprimer</a>
+        </div>
+      </div>
+    </td>
       </tr>
     </tbody>
   </table>

@@ -1,11 +1,11 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/service/api/api.service';
+import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-edit-gariden-note',
   templateUrl: './edit-gariden-note.component.html',
-  styleUrls: ['./edit-gariden-note.component.css']
+  styleUrls: ['./edit-gariden-note.component.scss']
 })
 export class EditGaridenNoteComponent {
   reactiveForm_edit_gariden_note !: FormGroup;

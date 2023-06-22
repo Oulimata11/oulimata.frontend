@@ -1,11 +1,11 @@
 
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/service/api/api.service';
+import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-add-note',
   templateUrl: './add-note.component.html',
-  styleUrls: ['./add-note.component.css']
+  styleUrls: ['./add-note.component.scss']
 })
 export class AddNoteComponent {
   @Output()

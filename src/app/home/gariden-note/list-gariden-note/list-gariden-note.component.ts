@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ApiService } from 'src/app/service/api/api.service';
+import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-gariden-note',
   templateUrl: './list-gariden-note.component.html',
-  styleUrls: ['./list-gariden-note.component.css']
+  styleUrls: ['./list-gariden-note.component.scss']
 })
 export class ListGaridenNoteComponent {
   loading_get_gariden_note = false
