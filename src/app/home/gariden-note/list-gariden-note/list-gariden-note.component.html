@@ -1,0 +1,76 @@
+<!-- entete -->
+<div class="d-flex align-items-center justify-content-between">
+  <div class="fs-1">Les GaridenNotes  - {{les_gariden_notes.length}}</div>
+  <div class="d-flex">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_gariden_note">Ajouter GaridenNote</button>
+  </div>
+</div>
+<!-- list -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id_gardien_note</th>
+<th scope="col">id_gardien</th>
+<th scope="col">id_note</th>
+<th scope="col">date_note</th>
+<th scope="col">commentaire</th>
+<th scope="col">created_at</th>
+<th scope="col">updated_at</th><th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let one_gariden_note of les_gariden_notes">
+        <td>{{one_gariden_note.id_gardien_note}}</td>
+<td>{{one_gariden_note.id_gardien}}</td>
+<td>{{one_gariden_note.id_note}}</td>
+<td>{{one_gariden_note.date_note}}</td>
+<td>{{one_gariden_note.commentaire}}</td>
+<td>{{one_gariden_note.created_at}}</td>
+<td>{{one_gariden_note.updated_at}}</td><td>
+  <div class="dropdown">
+    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
+    <div class="dropdown-menu">
+      <a (click)="on_click_edit(one_gariden_note)" class="dropdown-item" data-bs-toggle="modal"
+        data-bs-target="#modal_edit_gariden_note">
+        <i class="bx bx-edit-alt me-1"></i>
+        Modifier
+      </a>
+      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
+      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+    </div>
+  </div>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- ajout -->
+<div class="modal fade" id="modal_add_gariden_note" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " data-bs-theme="dark">
+              <h1 class="modal-title fs-5">Ajouter GaridenNote</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-gariden-note (cb_add_gariden_note)="after_add($event)"></app-add-gariden-note>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- modification -->
+<div class="modal fade" id="modal_edit_gariden_note" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Modifier GaridenNote</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+      </div>
+      <div class="modal-body">
+        <app-edit-gariden-note *ngIf="gariden_note_to_edit" (cb_edit_gariden_note)="after_edit($event)" [gariden_note_to_edit]="gariden_note_to_edit"></app-edit-gariden-note>
+      </div>
+    </div>
+  </div>
+</div>
+  

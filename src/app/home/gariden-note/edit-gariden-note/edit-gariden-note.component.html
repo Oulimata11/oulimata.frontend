@@ -1,0 +1,66 @@
+
+<form  [formGroup]="reactiveForm_edit_gariden_note " (ngSubmit)="onSubmit_edit_gariden_note ()" #form_edit_gariden_note ="ngForm" class="row">
+  <!-- id_gardien_note field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_gardien_note</label>
+      <input class="form-control" type="text"  formControlName="id_gardien_note"  placeholder="id_gardien_note"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien_note.errors }"/>
+      <div *ngIf="submitted && f.id_gardien_note.errors" class="invalid-feedback">
+          <div *ngIf="f.id_gardien_note.errors.required"> id_gardien_note est obligatoire </div>
+      </div>
+    </div>  
+<!-- id_gardien field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_gardien</label>
+      <input class="form-control" type="text"  formControlName="id_gardien"  placeholder="id_gardien"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien.errors }"/>
+      <div *ngIf="submitted && f.id_gardien.errors" class="invalid-feedback">
+          <div *ngIf="f.id_gardien.errors.required"> id_gardien est obligatoire </div>
+      </div>
+    </div>  
+<!-- id_note field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_note</label>
+      <input class="form-control" type="text"  formControlName="id_note"  placeholder="id_note"  [ngClass]="{ 'is-invalid': submitted && f.id_note.errors }"/>
+      <div *ngIf="submitted && f.id_note.errors" class="invalid-feedback">
+          <div *ngIf="f.id_note.errors.required"> id_note est obligatoire </div>
+      </div>
+    </div>  
+<!-- date_note field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >date_note</label>
+      <input class="form-control" type="text"  formControlName="date_note"  placeholder="date_note"  [ngClass]="{ 'is-invalid': submitted && f.date_note.errors }"/>
+      <div *ngIf="submitted && f.date_note.errors" class="invalid-feedback">
+          <div *ngIf="f.date_note.errors.required"> date_note est obligatoire </div>
+      </div>
+    </div>  
+<!-- commentaire field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >commentaire</label>
+      <input class="form-control" type="text"  formControlName="commentaire"  placeholder="commentaire"  [ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }"/>
+      <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
+          <div *ngIf="f.commentaire.errors.required"> commentaire est obligatoire </div>
+      </div>
+    </div>  
+<!-- created_at field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >created_at</label>
+      <input class="form-control" type="text"  formControlName="created_at"  placeholder="created_at"  [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
+      <div *ngIf="submitted && f.created_at.errors" class="invalid-feedback">
+          <div *ngIf="f.created_at.errors.required"> created_at est obligatoire </div>
+      </div>
+    </div>  
+<!-- updated_at field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >updated_at</label>
+      <input class="form-control" type="text"  formControlName="updated_at"  placeholder="updated_at"  [ngClass]="{ 'is-invalid': submitted && f.updated_at.errors }"/>
+      <div *ngIf="submitted && f.updated_at.errors" class="invalid-feedback">
+          <div *ngIf="f.updated_at.errors.required"> updated_at est obligatoire </div>
+      </div>
+    </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_gariden_note "
+        (click)="form_edit_gariden_note .ngSubmit.emit()">{{loading_edit_gariden_note ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_gariden_note ()">Vider</button>
+</div>

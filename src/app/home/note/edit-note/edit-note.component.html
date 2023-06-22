@@ -1,0 +1,50 @@
+
+<form  [formGroup]="reactiveForm_edit_note " (ngSubmit)="onSubmit_edit_note ()" #form_edit_note ="ngForm" class="row">
+  <!-- id_note field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >id_note</label>
+      <input class="form-control" type="text"  formControlName="id_note"  placeholder="id_note"  [ngClass]="{ 'is-invalid': submitted && f.id_note.errors }"/>
+      <div *ngIf="submitted && f.id_note.errors" class="invalid-feedback">
+          <div *ngIf="f.id_note.errors.required"> id_note est obligatoire </div>
+      </div>
+    </div>  
+<!-- note field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >note</label>
+      <input class="form-control" type="text"  formControlName="note"  placeholder="note"  [ngClass]="{ 'is-invalid': submitted && f.note.errors }"/>
+      <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+          <div *ngIf="f.note.errors.required"> note est obligatoire </div>
+      </div>
+    </div>  
+<!-- description_note field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >description_note</label>
+      <input class="form-control" type="text"  formControlName="description_note"  placeholder="description_note"  [ngClass]="{ 'is-invalid': submitted && f.description_note.errors }"/>
+      <div *ngIf="submitted && f.description_note.errors" class="invalid-feedback">
+          <div *ngIf="f.description_note.errors.required"> description_note est obligatoire </div>
+      </div>
+    </div>  
+<!-- created_at field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >created_at</label>
+      <input class="form-control" type="text"  formControlName="created_at"  placeholder="created_at"  [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
+      <div *ngIf="submitted && f.created_at.errors" class="invalid-feedback">
+          <div *ngIf="f.created_at.errors.required"> created_at est obligatoire </div>
+      </div>
+    </div>  
+<!-- updated_at field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >updated_at</label>
+      <input class="form-control" type="text"  formControlName="updated_at"  placeholder="updated_at"  [ngClass]="{ 'is-invalid': submitted && f.updated_at.errors }"/>
+      <div *ngIf="submitted && f.updated_at.errors" class="invalid-feedback">
+          <div *ngIf="f.updated_at.errors.required"> updated_at est obligatoire </div>
+      </div>
+    </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_note "
+        (click)="form_edit_note .ngSubmit.emit()">{{loading_edit_note ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_note ()">Vider</button>
+</div>

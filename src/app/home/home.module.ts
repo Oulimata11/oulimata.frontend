@@ -44,6 +44,9 @@ import { BreadcrumbModule } from 'app/layout/components/content-header/breadcrum
 import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
 import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.module';
 import { DetailGardienComponent } from './gardien/detail-gardien/detail-gardien.component';
+import { AddGaridenNoteComponent } from './gariden-note/add-gariden-note/add-gariden-note.component';
+import { EditGaridenNoteComponent } from './gariden-note/edit-gariden-note/edit-gariden-note.component';
+import { ListGaridenNoteComponent } from './gariden-note/list-gariden-note/list-gariden-note.component';
 
 
 @NgModule({
@@ -80,7 +83,10 @@ import { DetailGardienComponent } from './gardien/detail-gardien/detail-gardien.
     EditUtilisateurComponent,
     ListUtilisateurComponent,
     ProfilUtilisateurComponent,
-    DetailGardienComponent
+    DetailGardienComponent,
+    AddGaridenNoteComponent,
+    EditGaridenNoteComponent,
+    ListGaridenNoteComponent
   ],
   imports: [
     CommonModule,
