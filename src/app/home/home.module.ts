@@ -44,9 +44,10 @@ import { BreadcrumbModule } from 'app/layout/components/content-header/breadcrum
 import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
 import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.module';
 import { DetailGardienComponent } from './gardien/detail-gardien/detail-gardien.component';
-import { AddGaridenNoteComponent } from './gariden-note/add-gariden-note/add-gariden-note.component';
-import { EditGaridenNoteComponent } from './gariden-note/edit-gariden-note/edit-gariden-note.component';
-import { ListGaridenNoteComponent } from './gariden-note/list-gariden-note/list-gariden-note.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AddGardienNoteComponent } from './gardien-note/add-gardien-note/add-gardien-note.component';
+import { EditGardienNoteComponent } from './gardien-note/edit-gardien-note/edit-gardien-note.component';
+import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-gardien-note.component';
 
 
 @NgModule({
@@ -84,9 +85,9 @@ import { ListGaridenNoteComponent } from './gariden-note/list-gariden-note/list-
     ListUtilisateurComponent,
     ProfilUtilisateurComponent,
     DetailGardienComponent,
-    AddGaridenNoteComponent,
-    EditGaridenNoteComponent,
-    ListGaridenNoteComponent
+    AddGardienNoteComponent,
+    EditGardienNoteComponent,
+    ListGardienNoteComponent,
   ],
   imports: [
     CommonModule,
@@ -102,7 +103,8 @@ import { ListGaridenNoteComponent } from './gariden-note/list-gariden-note/list-
    CoreThemeCustomizerModule,
    //NgbModalModule,
    
-
+   FormsModule,
+  Ng2SearchPipeModule,
    /* SampleModule */
    LayoutModule,
    NgbModalModule,

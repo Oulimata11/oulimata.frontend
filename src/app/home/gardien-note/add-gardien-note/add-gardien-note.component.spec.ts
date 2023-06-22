@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddGaridenNoteComponent } from './add-gariden-note.component';
+import { AddGardienNoteComponent } from './add-gardien-note.component';
 
-describe('AddGaridenNoteComponent', () => {
-  let component: AddGaridenNoteComponent;
-  let fixture: ComponentFixture<AddGaridenNoteComponent>;
+describe('AddGardienNoteComponent', () => {
+  let component: AddGardienNoteComponent;
+  let fixture: ComponentFixture<AddGardienNoteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddGaridenNoteComponent ]
+      declarations: [ AddGardienNoteComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddGaridenNoteComponent);
+    fixture = TestBed.createComponent(AddGardienNoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -69,7 +69,7 @@
 												]
 											},
 											{
-												"table": "gariden_note",
+												"table": "gardien_note",
 												"description": [
 													"id_gardien_note",
 													"id_gardien",

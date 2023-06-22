@@ -1,5 +1,5 @@
 
-<form  [formGroup]="reactiveForm_edit_gariden_note " (ngSubmit)="onSubmit_edit_gariden_note ()" #form_edit_gariden_note ="ngForm" class="row">
+<form  [formGroup]="reactiveForm_add_gardien_note " (ngSubmit)="onSubmit_add_gardien_note ()" #form_add_gardien_note ="ngForm" class="row">
   <!-- id_gardien_note field avec un control de validite -->
     <div class="form-group col-sm-6">
       <label >id_gardien_note</label>
@@ -60,7 +60,7 @@
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_gariden_note "
-        (click)="form_edit_gariden_note .ngSubmit.emit()">{{loading_edit_gariden_note ?"En cours ...":"Valider"}}</button>
-    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_gariden_note ()">Vider</button>
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_gardien_note "
+        (click)="form_add_gardien_note .ngSubmit.emit()">{{loading_add_gardien_note ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_gardien_note ()">Vider</button>
 </div>

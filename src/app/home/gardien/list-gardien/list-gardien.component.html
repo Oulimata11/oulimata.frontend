@@ -1,9 +1,21 @@
 <!-- entete -->
-<div class="d-flex align-items-center justify-content-between">
+<div class="d-flex justify-content-between align-items-center ">
   <div class="fs-1">Les Gardiens  - {{les_gardiens.length}}</div>
-  <div class="d-flex">
+  <div class="d-flex align-items-center">
     <button class="btn btn-primary m-1" data-bs-toggle="modal"
-     data-bs-target="#modal_add_gardien" (click)="open_modal(modal_add_gardien)">Ajouter Gardien</button>
+      data-bs-target="#modal_add_gardien" (click)="open_modal(modal_add_gardien)">
+      <span [data-feather]="'plus'"> </span>
+      Ajouter une note 
+    </button>
+    <div class="form-group">
+      <input class="form-control" type="text" [(ngModel)]="searchText">
+    </div>
+    <button class="btn btn-primary m-1" data-bs-toggle="modal"
+      data-bs-target="#modal_add_gardien" (click)="open_modal(modal_add_gardien)">
+      <span [data-feather]="'plus'"> </span>
+      Ajouter Gardien
+    </button>
+    
   </div>
 </div>
 <!-- list -->
@@ -19,7 +31,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let one_gardien of les_gardiens">
+      <tr *ngFor="let one_gardien of les_gardiens | filter : searchText">
     <td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}
       <div>
         <span [data-feather]="'phone'"></span>
@@ -92,6 +104,18 @@
   </div>
 </ng-template>
 <!-- Details -->
+<ng-template #modal_detail_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Gardien</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-detail-gardien [gardien_detail]="gardien_detail" > </app-detail-gardien>
+  </div>
+</ng-template>
+<!-- Noter gardien-->
 <ng-template #modal_detail_gardien let-modal>
   <div class="modal-header">
     <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Gardien</h5>

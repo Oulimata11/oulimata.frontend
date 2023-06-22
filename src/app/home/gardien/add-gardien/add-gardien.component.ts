@@ -48,6 +48,7 @@ export class AddGardienComponent {
         date_naissance_gardien: this.f.date_naissance_gardien.value, 
         lieu_naissance_gardien: this.f.lieu_naissance_gardien.value ,
         date_insertion_gardien:this.f.date_insertion_gardien.value,
+        telephone_gardien:this.f.telephone_gardien.value,
         email_gardien:this.f.email_gardien.value
       }
       this.add_gardien (gardien)

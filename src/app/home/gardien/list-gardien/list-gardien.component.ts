@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
+
 @Component({
   selector: 'app-list-gardien',
   templateUrl: './list-gardien.component.html',
@@ -15,6 +16,8 @@ export class ListGardienComponent {
   gardien_to_edit: any = undefined
   gardien_to_delete :any = undefined
   gardien_detail : any =undefined
+  searchText : any 
+
   constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
@@ -84,7 +87,6 @@ export class ListGardienComponent {
     this.modalService.open(modal, {
       centered: true
     });
-    console.log("detail GARDIEN",this.gardien_detail)
   }
   //foction qui supprime un gardien 
   delete_gardien (){
