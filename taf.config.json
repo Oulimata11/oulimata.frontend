@@ -1,7 +1,7 @@
 							{
 								"projectName": "oulimata.frontend",
 								"decription": "Fichier de configuration de Taf",
-								"taf_base_url": "http://localhost/os/oulimata.backend/",
+								"taf_base_url": "http://localhost/oulimata.backend/",
 								"les_modules": [
 									{
 										"module": "home",
@@ -69,13 +69,33 @@
 												]
 											},
 											{
+												"table": "gariden_note",
+												"description": [
+													"id_gardien_note",
+													"id_gardien",
+													"id_note",
+													"date_note",
+													"commentaire",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
 												"table": "indemnite",
 												"description": [
 													"id_indemnite",
 													"id_utilisateur",
 													"date_indemnite",
 													"nature_indemnite",
-													"montant_indemnite"
+													"montant_indemnite",
+													"created_at",
+													"updated_at"
 												],
 												"les_types": [
 													"add",
@@ -120,11 +140,8 @@
 												"table": "note",
 												"description": [
 													"id_note",
-													"id_gardien",
-													"assiduite_note",
-													"ponctualite_note",
-													"satisfaction_client_note",
-													"date_note",
+													"note",
+													"description_note",
 													"created_at",
 													"updated_at"
 												],
