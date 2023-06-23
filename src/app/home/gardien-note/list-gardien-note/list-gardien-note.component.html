@@ -1,8 +1,9 @@
 <!-- entete -->
 <div class="d-flex align-items-center justify-content-between">
-  <div class="fs-1">Les GardienNotes  - {{les_gardien_notes.length}}</div>
+  <div class="fs-1">Les GardienNotes  - {{les_gardiens_notes.length}}</div>
   <div class="d-flex">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_gardien_note">Ajouter GardienNote</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_gardien_note"  
+    (click)="open_modal_add_note(modal_add_note)">Ajouter GardienNote</button>
   </div>
 </div>
 <!-- list -->
@@ -10,34 +11,32 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">id_gardien_note</th>
-<th scope="col">id_gardien</th>
-<th scope="col">id_note</th>
-<th scope="col">date_note</th>
-<th scope="col">commentaire</th>
-<th scope="col">created_at</th>
-<th scope="col">updated_at</th><th scope="col">actions</th>
+<th scope="col">Gardien</th>
+<th scope="col">Note reçue</th>
+<th scope="col">Date</th>
+<th scope="col">Commentaire</th>
+<th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let one_gardien_note of les_gardien_notes">
-        <td>{{one_gardien_note.id_gardien_note}}</td>
-<td>{{one_gardien_note.id_gardien}}</td>
-<td>{{one_gardien_note.id_note}}</td>
+      <tr *ngFor="let one_gardien_note of les_gardiens_notes">
+<td>{{one_gardien_note.prenom_gardien+" "+one_gardien_note.nom_gardien}}</td>
+<td>{{one_gardien_note.note}}</td>
 <td>{{one_gardien_note.date_note}}</td>
 <td>{{one_gardien_note.commentaire}}</td>
-<td>{{one_gardien_note.created_at}}</td>
-<td>{{one_gardien_note.updated_at}}</td><td>
-  <div class="dropdown">
-    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
-    <div class="dropdown-menu">
-      <a (click)="on_click_edit(one_gardien_note)" class="dropdown-item" data-bs-toggle="modal"
+<td>
+  <div ngbDropdown container="body">
+    <button type="button"  ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">
+      <i data-feather="more-vertical"></i>
+    </button>
+    <div ngbDropdownMenu>
+      <a (click)="open_modal_edit_note(modal_edit_note,one_gardien_note)" ngbDropdownItem data-bs-toggle="modal"
         data-bs-target="#modal_edit_gardien_note">
         <i class="bx bx-edit-alt me-1"></i>
         Modifier
       </a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+      <a ngbDropdownItem href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
+      <a ngbDropdownItem href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
     </div>
   </div>
 </td>
@@ -45,32 +44,28 @@
     </tbody>
   </table>
 </div>
-<!-- ajout -->
-<div class="modal fade" id="modal_add_gardien_note" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " data-bs-theme="dark">
-              <h1 class="modal-title fs-5">Ajouter GardienNote</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-gardien-note (cb_add_gardien_note)="after_add($event)"></app-add-gardien-note>
-          </div>
-      </div>
+<!-- ajout Note agent -->
+<ng-template #modal_add_note let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Evaluer gardien</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <app-add-gardien-note (cb_add_gardien_note)="after_add($event)"></app-add-gardien-note>
+  </div>
+</ng-template>
 <!-- modification -->
-<div class="modal fade" id="modal_edit_gardien_note" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" data-bs-theme="dark">
-        <h1 class="modal-title fs-5">Modifier GardienNote</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
-      </div>
-      <div class="modal-body">
-        <app-edit-gardien-note *ngIf="gardien_note_to_edit" (cb_edit_gardien_note)="after_edit($event)" [gardien_note_to_edit]="gardien_note_to_edit"></app-edit-gardien-note>
-      </div>
-    </div>
+<ng-template #modal_edit_note let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification note</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <app-edit-gardien-note *ngIf="gardien_note_to_edit" [gardien_note_to_edit]="gardien_note_to_edit"  (cb_edit_gardien_note)="after_edit($event)"> </app-edit-gardien-note>
+  </div>
+</ng-template>
   

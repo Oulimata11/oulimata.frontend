@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-gardien-note',
@@ -7,10 +8,10 @@ import { ApiService } from 'app/service/api/api.service';
 })
 export class ListGardienNoteComponent {
   loading_get_gardien_note = false
-  les_gardien_notes: any[] = []
+  les_gardiens_notes: any[] = []
   selected_gardien_note: any = undefined
   gardien_note_to_edit: any = undefined
-  constructor(public api: ApiService,) {
+  constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class ListGardienNoteComponent {
     this.loading_get_gardien_note = true;
     this.api.taf_post("gardien_note/get", {}, (reponse: any) => {
       if (reponse.status) {
-        this.les_gardien_notes = reponse.data
+        this.les_gardiens_notes = reponse.data
         console.log("Opération effectuée avec succés sur la table gardien_note. Réponse= ", reponse);
       } else {
         console.log("L'opération sur la table gardien_note a échoué. Réponse= ", reponse);
@@ -34,21 +35,29 @@ export class ListGardienNoteComponent {
 
   after_add(event: any) {
     if (event.status) {
-      this.les_gardien_notes.unshift(event.gardien_note)
+      this.les_gardiens_notes.unshift(event.gardien_note)
+      this.get_gardien_note()
     } else {
 
     }
   }
   after_edit(params: any) {
-    this.les_gardien_notes[this.les_gardien_notes.indexOf(this.gardien_note_to_edit)]=params.new_data
+    this.les_gardiens_notes[this.les_gardiens_notes.indexOf(this.gardien_note_to_edit)]=params.new_data;
+    this.get_gardien_note();
+    this.modalService.dismissAll()
   }
-  voir_plus(one_gardien_note: any) {
-    this.selected_gardien_note = one_gardien_note
+ //effectuer une evaluation
+  //add-gardien
+  open_modal_add_note(modal:any){
+    this.modalService.open(modal, {
+      centered: true
+    });
   }
-  on_click_edit(one_gardien_note: any) {
-    this.gardien_note_to_edit = one_gardien_note
-  }
-  on_close_modal_edit(){
-    this.gardien_note_to_edit=undefined
+   //edit-gardien
+   open_modal_edit_note(modal:any, one_gardien: any){
+    this.gardien_note_to_edit = one_gardien
+    this.modalService.open(modal, {
+      centered: true
+    });
   }
 }

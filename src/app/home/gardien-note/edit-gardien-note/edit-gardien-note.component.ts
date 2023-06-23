@@ -11,6 +11,10 @@ export class EditGardienNoteComponent {
   reactiveForm_edit_gardien_note !: FormGroup;
   submitted: boolean = false
   loading_edit_gardien_note: boolean = false
+  loading_get_note = false
+  les_notes: any[] = []
+  loading_get_gardien = false
+  les_gardiens: any[] = []
   @Input()
   gardien_note_to_edit: any = {}
   @Output()
@@ -21,28 +25,24 @@ export class EditGardienNoteComponent {
   ngOnInit(): void {
       this.init_form()
       this.update_form(this.gardien_note_to_edit)
+      this.get_note()
+      this.get_gardien()
   }
   init_form() {
       this.reactiveForm_edit_gardien_note  = this.formBuilder.group({
-        id_gardien_note: ["", Validators.required],
-id_gardien: ["", Validators.required],
-id_note: ["", Validators.required],
-date_note: ["", Validators.required],
-commentaire: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
+    id_gardien: ["", Validators.required],
+    id_note: ["", Validators.required],
+    date_note: ["", Validators.required],
+    commentaire: ["", Validators.required],
       });
   }
   // mise à jour du formulaire
   update_form(gardien_note_to_edit:any) {
-      this.reactiveForm_edit_gardien_note = this.formBuilder.group({
-          id_gardien_note: [gardien_note_to_edit.id_gardien_note, Validators.required],
-id_gardien: [gardien_note_to_edit.id_gardien, Validators.required],
-id_note: [gardien_note_to_edit.id_note, Validators.required],
-date_note: [gardien_note_to_edit.date_note, Validators.required],
-commentaire: [gardien_note_to_edit.commentaire, Validators.required],
-created_at: [gardien_note_to_edit.created_at, Validators.required],
-updated_at: [gardien_note_to_edit.updated_at, Validators.required]
+    this.reactiveForm_edit_gardien_note = this.formBuilder.group({
+    id_gardien: [gardien_note_to_edit.id_gardien, Validators.required],
+    id_note: [gardien_note_to_edit.id_note, Validators.required],
+    date_note: [gardien_note_to_edit.date_note, Validators.required],
+    commentaire: [gardien_note_to_edit.commentaire, Validators.required],
       });
   }
 
@@ -85,5 +85,42 @@ updated_at: [gardien_note_to_edit.updated_at, Validators.required]
       }, (error: any) => {
           this.loading_edit_gardien_note = false;
       })
+  }
+   //liste des notes disponibles
+   get_note() {
+    this.loading_get_note = true;
+    this.api.taf_post("note/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_notes = reponse.data
+        console.log("Opération effectuée avec succés sur la table note. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table note a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_note = false;
+    }, (error: any) => {
+      this.loading_get_note = false;
+    })
+  }
+  //liste des gerdiens 
+  get_gardien() {
+    this.loading_get_gardien = true;
+    this.api.taf_post("gardien/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_gardiens = reponse.data
+        this.les_gardiens=this.les_gardiens.map(gardien => {
+          var statut= gardien.statut_gardien == 1 ? "Actif" : "Inactif";
+          var affectation =gardien.id_societe == null ? "Pas Affecté" : "Affecté"
+          return {...gardien,statut,affectation}
+        })
+        console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", this.les_gardiens);
+      } else {
+        console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_gardien = false;
+    }, (error: any) => {
+      this.loading_get_gardien = false;
+    })
   }
 }

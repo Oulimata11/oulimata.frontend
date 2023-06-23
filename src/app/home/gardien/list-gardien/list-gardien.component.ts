@@ -58,9 +58,6 @@ export class ListGardienComponent {
     this.get_gardien();
     this.modalService.dismissAll()
   }
-  voir_plus(one_gardien: any) {
-    this.selected_gardien = one_gardien
-  }
   //add-gardien
   open_modal(modal:any){
     this.modalService.open(modal, {
@@ -109,4 +106,5 @@ export class ListGardienComponent {
         console.log("Erreur inconnue! ",error)
     })
     }
+
 }
