@@ -48,6 +48,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AddGardienNoteComponent } from './gardien-note/add-gardien-note/add-gardien-note.component';
 import { EditGardienNoteComponent } from './gardien-note/edit-gardien-note/edit-gardien-note.component';
 import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-gardien-note.component';
+import { AddSocieteGardienComponent } from './societe-gardien/add-societe-gardien/add-societe-gardien.component';
+import { EditSocieteGardienComponent } from './societe-gardien/edit-societe-gardien/edit-societe-gardien.component';
+import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
 
 
 @NgModule({
@@ -88,6 +91,9 @@ import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-
     AddGardienNoteComponent,
     EditGardienNoteComponent,
     ListGardienNoteComponent,
+    AddSocieteGardienComponent,
+    EditSocieteGardienComponent,
+    ListSocieteGardienComponent,
   ],
   imports: [
     CommonModule,

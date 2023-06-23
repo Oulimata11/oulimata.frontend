@@ -185,6 +185,23 @@
 												]
 											},
 											{
+												"table": "societe_gardien",
+												"description": [
+													"id_societe_gardien",
+													"id_societe",
+													"id_gardien",
+													"date_affectation",
+													"created_at",
+													"updated_at"
+												],
+												"les_types": [
+													"add",
+													"edit",
+													"list",
+													"details"
+												]
+											},
+											{
 												"table": "utilisateur",
 												"description": [
 													"id_utilisateur",
