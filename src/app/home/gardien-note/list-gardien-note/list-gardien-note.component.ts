@@ -11,6 +11,8 @@ export class ListGardienNoteComponent {
   les_gardiens_notes: any[] = []
   selected_gardien_note: any = undefined
   gardien_note_to_edit: any = undefined
+  gardien_note_to_delete : any =undefined
+  loading_delete_gardien_note: boolean =false;
   constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
@@ -46,7 +48,6 @@ export class ListGardienNoteComponent {
     this.get_gardien_note();
     this.modalService.dismissAll()
   }
- //effectuer une evaluation
   //add-gardien
   open_modal_add_note(modal:any){
     this.modalService.open(modal, {
@@ -60,4 +61,33 @@ export class ListGardienNoteComponent {
       centered: true
     });
   }
+  //delete-gardien
+  open_modal_delete_note( modal:any , one_gardien: any){
+    this.gardien_note_to_delete = one_gardien
+    this.modalService.open(modal, {
+      centered: true
+    });
+  }
+  //foction qui supprime un gardien 
+  delete_gardien_note (){
+    this.loading_delete_gardien_note = true;
+    this.api.taf_post("gardien_note/delete",{id:this.gardien_note_to_delete.id_gardien_note},(reponse: any)=>{
+        //when success
+    this.loading_delete_gardien_note = true;
+        if(reponse.status){
+        console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
+        this.api.Swal_success("Suppression effectuée avec succes ! ")
+        this.modalService.dismissAll()
+        this.get_gardien_note()
+        }else{
+        console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)
+        }
+    },
+    (error: any)=>{
+        //when error
+    this.loading_delete_gardien_note = true;
+        console.log("Erreur inconnue! ",error)
+    })
+    }
+
 }

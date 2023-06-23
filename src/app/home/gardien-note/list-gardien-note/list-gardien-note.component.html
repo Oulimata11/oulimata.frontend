@@ -11,35 +11,34 @@
   <table class="table table-striped">
     <thead>
       <tr>
-<th scope="col">Gardien</th>
-<th scope="col">Note reçue</th>
-<th scope="col">Date</th>
-<th scope="col">Commentaire</th>
-<th scope="col">actions</th>
+        <th scope="col">Gardien</th>
+        <th scope="col">Note reçue</th>
+        <th scope="col">Date</th>
+        <th scope="col">Commentaire</th>
+        <th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_gardien_note of les_gardiens_notes">
-<td>{{one_gardien_note.prenom_gardien+" "+one_gardien_note.nom_gardien}}</td>
-<td>{{one_gardien_note.note}}</td>
-<td>{{one_gardien_note.date_note}}</td>
-<td>{{one_gardien_note.commentaire}}</td>
-<td>
-  <div ngbDropdown container="body">
-    <button type="button"  ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">
-      <i data-feather="more-vertical"></i>
-    </button>
-    <div ngbDropdownMenu>
-      <a (click)="open_modal_edit_note(modal_edit_note,one_gardien_note)" ngbDropdownItem data-bs-toggle="modal"
-        data-bs-target="#modal_edit_gardien_note">
-        <i class="bx bx-edit-alt me-1"></i>
-        Modifier
-      </a>
-      <a ngbDropdownItem href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a ngbDropdownItem href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
-    </div>
-  </div>
-</td>
+        <td>{{one_gardien_note.prenom_gardien+" "+one_gardien_note.nom_gardien}}</td>
+        <td>{{one_gardien_note.note}}</td>
+        <td>{{one_gardien_note.date_note}}</td>
+        <td>{{one_gardien_note.commentaire}}</td>
+        <td>
+          <div ngbDropdown container="body">
+            <button type="button"  ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">
+              <i data-feather="more-vertical"></i>
+            </button>
+            <div ngbDropdownMenu>
+              <a (click)="open_modal_edit_note(modal_edit_note,one_gardien_note)" ngbDropdownItem data-bs-toggle="modal"
+                data-bs-target="#modal_edit_gardien_note">
+                <i class="bx bx-edit-alt me-1"></i>
+                Modifier
+              </a>
+              <a ngbDropdownItem href="javascript:void(0);" (click)="open_modal_delete_note(modal_delete_note,one_gardien_note)"><i class="bx bx-trash me-1"></i>Supprimer</a>
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -68,4 +67,24 @@
     <app-edit-gardien-note *ngIf="gardien_note_to_edit" [gardien_note_to_edit]="gardien_note_to_edit"  (cb_edit_gardien_note)="after_edit($event)"> </app-edit-gardien-note>
   </div>
 </ng-template>
+<!-- Supprimer -->
+<ng-template #modal_delete_note let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirmation de la suppression</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{"Êtes-vous sûr de vouloir supprimer"}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_gardien_note()">
+        {{ loading_delete_gardien_note ? "En cours ..." : "Oui" }}
+    </button>
+  <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+    </button>
+  </div>
+</ng-template>
+<!-- Details -->
   

@@ -72,14 +72,14 @@ export class ListGardienComponent {
     });
   }
   //delete-gardien
-  open_madal_delete( modal:any , one_gardien: any){
+  open_modal_delete( modal:any , one_gardien: any){
     this.gardien_to_delete = one_gardien
     this.modalService.open(modal, {
       centered: true
     });
   }
   //detail-gardien
-  open_madal_detail( modal:any , one_gardien: any){
+  open_modal_detail( modal:any , one_gardien: any){
     this.gardien_detail= one_gardien
     this.modalService.open(modal, {
       centered: true
