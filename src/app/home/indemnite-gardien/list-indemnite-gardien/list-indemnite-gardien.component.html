@@ -2,7 +2,8 @@
 <div class="d-flex align-items-center justify-content-between">
   <div class="fs-1">Les IndemniteGardiens  - {{les_indemnite_gardiens.length}}</div>
   <div class="d-flex">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_indemnite_gardien">Ajouter IndemniteGardien</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_indemnite_gardien"
+    (click)="open_modal(modal_add_indemnite_gardien)">Ajouter IndemniteGardien</button>
   </div>
 </div>
 <!-- list -->
@@ -10,51 +11,49 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">id_i_g</th>
-<th scope="col">id_indemnite</th>
-<th scope="col">id_gardien</th>
-<th scope="col">created_at</th>
-<th scope="col">updated_at</th><th scope="col">actions</th>
+        <th scope="col">Nature indemnite</th>
+        <th scope="col">Gardien</th>
+        <th scope="col">Montant</th>
+        <th scope="col">Date</th>
+        <th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_indemnite_gardien of les_indemnite_gardiens">
-        <td>{{one_indemnite_gardien.id_i_g}}</td>
-<td>{{one_indemnite_gardien.id_indemnite}}</td>
-<td>{{one_indemnite_gardien.id_gardien}}</td>
-<td>{{one_indemnite_gardien.created_at}}</td>
-<td>{{one_indemnite_gardien.updated_at}}</td><td>
-  <div class="dropdown">
-    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
-    <div class="dropdown-menu">
-      <a (click)="on_click_edit(one_indemnite_gardien)" class="dropdown-item" data-bs-toggle="modal"
-        data-bs-target="#modal_edit_indemnite_gardien">
-        <i class="bx bx-edit-alt me-1"></i>
-        Modifier
-      </a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
-    </div>
-  </div>
-</td>
+        <td>{{one_indemnite_gardien.id_indemnite}}</td>
+        <td>{{one_indemnite_gardien.id_gardien}}</td>
+        <td>{{one_indemnite_gardien.montant_indemnite}}</td>
+        <td>{{one_indemnite_gardien.date_indemnite}}</td>
+        <td>
+          <div ngbDropdown container="body">
+            <button type="button" ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">actions</button>
+            <div class="dropdown-menu">
+              <a (click)="on_click_edit(one_indemnite_gardien)" ngbDropdownItem data-bs-toggle="modal"
+                data-bs-target="#modal_edit_indemnite_gardien">
+                <i class="bx bx-edit-alt me-1"></i>
+                Modifier
+              </a>
+              <a ngbDropdownItem  href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
+              <a ngbDropdownItem  href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 <!-- ajout -->
-<div class="modal fade" id="modal_add_indemnite_gardien" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " data-bs-theme="dark">
-              <h1 class="modal-title fs-5">Ajouter IndemniteGardien</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-indemnite-gardien (cb_add_indemnite_gardien)="after_add($event)"></app-add-indemnite-gardien>
-          </div>
-      </div>
+<ng-template #modal_add_indemnite_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Indemnite</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <app-add-indemnite-gardien (cb_add_indemnite_gardien)="after_add($event)"></app-add-indemnite-gardien>
+  </div>
+</ng-template>
 <!-- modification -->
 <div class="modal fade" id="modal_edit_indemnite_gardien" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

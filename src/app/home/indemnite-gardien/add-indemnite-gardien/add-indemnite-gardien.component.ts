@@ -13,20 +13,27 @@ export class AddIndemniteGardienComponent {
   reactiveForm_add_indemnite_gardien !: FormGroup;
   submitted:boolean=false
   loading_add_indemnite_gardien :boolean=false
+  //gardien
+  loading_get_gardien = false
+  les_gardiens: any[] = []
+    //indemnite
+    loading_get_indemnite = false
+    les_indemnites: any[] = [] 
   constructor(private formBuilder: FormBuilder,public api:ApiService) { }
 
   ngOnInit(): void {
       this.init_form()
+      this.get_gardien()
+      this.get_indemnite()
   }
   init_form() {
-      this.reactiveForm_add_indemnite_gardien  = this.formBuilder.group({
-          id_i_g: ["", Validators.required],
-id_indemnite: ["", Validators.required],
-id_gardien: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
-      });
-  }
+    this.reactiveForm_add_indemnite_gardien  = this.formBuilder.group({     
+    id_indemnite: ["", Validators.required],
+    id_gardien: ["", Validators.required],
+    montant_indemnite: ["", Validators.required],
+    date_indemnite: ["", Validators.required],
+    });
+}
 
   // acces facile au champs de votre formulaire
   get f(): any { return this.reactiveForm_add_indemnite_gardien .controls; }
@@ -66,5 +73,37 @@ updated_at: ["", Validators.required]
         this.loading_add_indemnite_gardien = false;
     })
   }
-  
+  //liste des gardiens 
+  get_gardien() {
+    this.loading_get_gardien = true;
+    this.api.taf_post("gardien/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_gardiens = reponse.data
+        console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", this.les_gardiens);
+      } else {
+        console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_gardien = false;
+    }, (error: any) => {
+      this.loading_get_gardien = false;
+    })
+  }
+  //indemnite
+  get_indemnite() {
+    this.loading_get_indemnite = true;
+    this.api.taf_post("indemnite/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_indemnites = reponse.data
+        console.log("Opération effectuée avec succés sur la table indemnite. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table indemnite a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_indemnite = false;
+    }, (error: any) => {
+      this.loading_get_indemnite = false;
+    })
+  }
+
 }

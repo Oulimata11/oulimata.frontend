@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: "absence", component: ListAbsenceComponent },
   { path: "conges", component: ListCongesComponent },
   { path: "gardien", component: ListGardienComponent },
-  { path: "indemnite", component: ListIndemniteComponent },
+  { path: "indemnite", component: ListIndemniteGardienComponent },
   { path: "societe_gardien", component: ListSocieteGardienComponent},
   { path: "localisation", component: ListLocalisationComponent },
   { path: "evaluation", component: ListGardienNoteComponent },

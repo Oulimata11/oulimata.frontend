@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-indemnite-gardien',
@@ -10,7 +11,7 @@ export class ListIndemniteGardienComponent {
   les_indemnite_gardiens: any[] = []
   selected_indemnite_gardien: any = undefined
   indemnite_gardien_to_edit: any = undefined
-  constructor(public api: ApiService,) {
+  constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -50,5 +51,11 @@ export class ListIndemniteGardienComponent {
   }
   on_close_modal_edit(){
     this.indemnite_gardien_to_edit=undefined
+  }
+  //add-indemnite-gardien
+  open_modal(modal:any){
+    this.modalService.open(modal, {
+      centered: true
+    });
   }
 }
