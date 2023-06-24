@@ -55,15 +55,15 @@ export class ListGardienNoteComponent {
     });
   }
    //edit-gardien
-   open_modal_edit_note(modal:any, one_gardien: any){
-    this.gardien_note_to_edit = one_gardien
+   open_modal_edit_note(modal:any, one_gardien_note: any){
+    this.gardien_note_to_edit = one_gardien_note
     this.modalService.open(modal, {
       centered: true
     });
   }
   //delete-gardien
-  open_modal_delete_note( modal:any , one_gardien: any){
-    this.gardien_note_to_delete = one_gardien
+  open_modal_delete_note( modal:any , one_gardien_note: any){
+    this.gardien_note_to_delete = one_gardien_note
     this.modalService.open(modal, {
       centered: true
     });
