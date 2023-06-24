@@ -10,20 +10,14 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">id_indemnite</th>
-<th scope="col">id_utilisateur</th>
-<th scope="col">date_indemnite</th>
 <th scope="col">nature_indemnite</th>
-<th scope="col">montant_indemnite</th><th scope="col">actions</th>
+<th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_indemnite of les_indemnites">
-        <td>{{one_indemnite.id_indemnite}}</td>
-<td>{{one_indemnite.id_utilisateur}}</td>
-<td>{{one_indemnite.date_indemnite}}</td>
 <td>{{one_indemnite.nature_indemnite}}</td>
-<td>{{one_indemnite.montant_indemnite}}</td><td>
+<td>
   <div class="dropdown">
     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
     <div class="dropdown-menu">
@@ -32,7 +26,6 @@
         <i class="bx bx-edit-alt me-1"></i>
         Modifier
       </a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
       <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
     </div>
   </div>

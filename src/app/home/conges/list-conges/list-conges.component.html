@@ -1,8 +1,9 @@
 <!-- entete -->
 <div class="d-flex align-items-center justify-content-between">
-  <div class="fs-1">Les Congess  - {{les_congess.length}}</div>
+  <div class="fs-1">Les Conges  - {{les_conges.length}}</div>
   <div class="d-flex">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_conges">Ajouter Conges</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_conges"
+    (click)="open_modal(modal_add_conges)">Ajouter Conges</button>
   </div>
 </div>
 <!-- list -->
@@ -10,71 +11,78 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">id_conges</th>
-<th scope="col">id_utilisateur</th>
-<th scope="col">id_gardien</th>
-<th scope="col">date_debut_conges</th>
-<th scope="col">date_fin_conges</th>
-<th scope="col">date_demande_conges</th>
-<th scope="col">duree_conges</th>
-<th scope="col">created_at</th>
-<th scope="col">updated_at</th><th scope="col">actions</th>
+<th scope="col">conges</th>
+<th scope="col">Date de début</th>
+<th scope="col">Date de fin</th>
+<th scope="col">Date de la demande</th>
+<th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let one_conges of les_congess">
-        <td>{{one_conges.id_conges}}</td>
-<td>{{one_conges.id_utilisateur}}</td>
-<td>{{one_conges.id_gardien}}</td>
-<td>{{one_conges.date_debut_conges}}</td>
-<td>{{one_conges.date_fin_conges}}</td>
-<td>{{one_conges.date_demande_conges}}</td>
-<td>{{one_conges.duree_conges}}</td>
-<td>{{one_conges.created_at}}</td>
-<td>{{one_conges.updated_at}}</td><td>
-  <div class="dropdown">
-    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
-    <div class="dropdown-menu">
-      <a (click)="on_click_edit(one_conges)" class="dropdown-item" data-bs-toggle="modal"
-        data-bs-target="#modal_edit_conges">
-        <i class="bx bx-edit-alt me-1"></i>
-        Modifier
-      </a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
-    </div>
-  </div>
-</td>
+      <tr *ngFor="let one_conges of les_conges">
+        <td>{{one_conges.prenom_gardien+" "+one_conges.nom_gardien}}</td>
+        <td>{{one_conges.date_debut_conges}}</td>
+        <td>{{one_conges.date_fin_conges}}</td>
+        <td>{{one_conges.date_demande_conges}}</td>
+        <td>
+          <div ngbDropdown container="body">
+            <button type="button"  ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">
+              <i data-feather="more-vertical"></i>
+            </button>
+            <div ngbDropdownMenu>
+              <a (click)="open_modal_edit(modal_edit_conges,one_conges)" ngbDropdownItem data-bs-toggle="modal"
+                data-bs-target="#modal_edit_conges">
+                <i class="bx bx-edit-alt me-1"></i>
+                Modifier
+              </a>
+              <a ngbDropdownItem href="javascript:void(0);" (click)="open_modal_delete(modal_delete_conges,one_conges)"><i class="bx bx-trash me-1"></i>Supprimer</a>
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 <!-- ajout -->
-<div class="modal fade" id="modal_add_conges" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " data-bs-theme="dark">
-              <h1 class="modal-title fs-5">Ajouter Conges</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-conges (cb_add_conges)="after_add($event)"></app-add-conges>
-          </div>
-      </div>
+<ng-template #modal_add_conges let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouveau conges</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <app-add-conges (cb_add_conges)="after_add($event)"></app-add-conges>
+  </div>
+</ng-template>
 <!-- modification -->
-<div class="modal fade" id="modal_edit_conges" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" data-bs-theme="dark">
-        <h1 class="modal-title fs-5">Modifier Conges</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
-      </div>
-      <div class="modal-body">
-        <app-edit-conges *ngIf="conges_to_edit" (cb_edit_conges)="after_edit($event)" [conges_to_edit]="conges_to_edit"></app-edit-conges>
-      </div>
-    </div>
+<ng-template #modal_edit_conges let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification conges</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
-  
+  <div class="modal-body">
+    <app-edit-conges *ngIf="conges_to_edit" (cb_edit_conges)="after_edit($event)" [conges_to_edit]="conges_to_edit"></app-edit-conges>
+  </div>
+</ng-template>
+  <!-- Supprimer -->
+<ng-template #modal_delete_conges let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirmation de la suppression</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{"Êtes-vous sûr de vouloir supprimer"}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_conges()">
+        {{ loading_delete_conges ? "En cours ..." : "Oui" }}
+    </button>
+  <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+    </button>
+  </div>
+</ng-template>

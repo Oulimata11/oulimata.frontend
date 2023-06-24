@@ -20,11 +20,8 @@ export class AddIndemniteComponent {
   }
   init_form() {
       this.reactiveForm_add_indemnite  = this.formBuilder.group({
-          id_indemnite: ["", Validators.required],
-id_utilisateur: ["", Validators.required],
-date_indemnite: ["", Validators.required],
-nature_indemnite: ["", Validators.required],
-montant_indemnite: ["", Validators.required]
+    nature_indemnite: ["", Validators.required],
+
       });
   }
 
@@ -38,7 +35,10 @@ montant_indemnite: ["", Validators.required]
       if (this.reactiveForm_add_indemnite .invalid) {
           return;
       }
-      var indemnite =this.reactiveForm_add_indemnite .value
+      var indemnite ={
+        id_utilisateur: this.api.token.user_connected.id_utilisateur,
+        nature_indemnite : this.f.nature_indemnite.value
+      }
       this.add_indemnite (indemnite )
   }
   // vider le formulaire

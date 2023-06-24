@@ -85,7 +85,7 @@ export class ListGardienComponent {
       centered: true
     });
   }
-  //foction qui supprime un gardien 
+  //fonction qui supprime un gardien 
   delete_gardien (){
     this.loading_delete_gardien = true;
     this.api.taf_post("gardien/delete",{id:this.gardien_to_delete.id_gardien},(reponse: any)=>{

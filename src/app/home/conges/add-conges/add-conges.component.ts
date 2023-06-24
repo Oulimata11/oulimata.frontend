@@ -13,22 +13,23 @@ export class AddCongesComponent {
   reactiveForm_add_conges !: FormGroup;
   submitted:boolean=false
   loading_add_conges :boolean=false
+
+   //les gardiens
+   loading_get_gardien = false
+   les_gardiens: any[] = []
   constructor(private formBuilder: FormBuilder,public api:ApiService) { }
 
   ngOnInit(): void {
       this.init_form()
+      this.get_gardien()
   }
   init_form() {
       this.reactiveForm_add_conges  = this.formBuilder.group({
-          id_conges: ["", Validators.required],
-id_utilisateur: ["", Validators.required],
 id_gardien: ["", Validators.required],
 date_debut_conges: ["", Validators.required],
 date_fin_conges: ["", Validators.required],
 date_demande_conges: ["", Validators.required],
 duree_conges: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
       });
   }
 
@@ -42,7 +43,13 @@ updated_at: ["", Validators.required]
       if (this.reactiveForm_add_conges .invalid) {
           return;
       }
-      var conges =this.reactiveForm_add_conges .value
+      var conges = {
+        id_utilisateur: this.api.token.user_connected.id_utilisateur,
+        id_gardien : this.f.id_gardien.value,
+        date_debut_conges: this.f.date_debut_conges.value,
+        date_fin_conges: this.f.date_fin_conges.value,
+        date_demande_conges: this.f.date_demande_conges.value,
+      }
       this.add_conges (conges )
   }
   // vider le formulaire
@@ -70,5 +77,25 @@ updated_at: ["", Validators.required]
         this.loading_add_conges = false;
     })
   }
-  
+   //liste des gardiens
+   get_gardien() {
+    this.loading_get_gardien = true;
+    this.api.taf_post("gardien/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_gardiens = reponse.data
+        this.les_gardiens=this.les_gardiens.map(gardien => {
+          var statut= gardien.statut_gardien == 1 ? "Actif" : "Inactif";
+          var affectation =gardien.id_societe == null ? "Pas Affecté" : "Affecté"
+          return {...gardien,statut,affectation}
+        })
+        console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", this.les_gardiens);
+      } else {
+        console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_gardien = false;
+    }, (error: any) => {
+      this.loading_get_gardien = false;
+    })
+  }
 }
