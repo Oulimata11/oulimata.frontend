@@ -12,6 +12,7 @@ import { ListSocieteComponent } from './societe/list-societe/list-societe.compon
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
 import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-gardien-note.component';
+import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
 
 const routes: Routes = [
   { path: "", component: ListUtilisateurComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: "conges", component: ListCongesComponent },
   { path: "gardien", component: ListGardienComponent },
   { path: "indemnite", component: ListIndemniteComponent },
-  { path: "indemnite_gardien", component: ListIndemniteGardienComponent },
+  { path: "societe_gardien", component: ListSocieteGardienComponent},
   { path: "localisation", component: ListLocalisationComponent },
   { path: "evaluation", component: ListGardienNoteComponent },
   { path: "role", component: ListRoleComponent },

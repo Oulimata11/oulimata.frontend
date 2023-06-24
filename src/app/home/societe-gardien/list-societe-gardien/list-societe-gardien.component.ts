@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-societe-gardien',
@@ -10,7 +11,9 @@ export class ListSocieteGardienComponent {
   les_societe_gardiens: any[] = []
   selected_societe_gardien: any = undefined
   societe_gardien_to_edit: any = undefined
-  constructor(public api: ApiService,) {
+
+  
+  constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -35,20 +38,29 @@ export class ListSocieteGardienComponent {
   after_add(event: any) {
     if (event.status) {
       this.les_societe_gardiens.unshift(event.societe_gardien)
+      this.get_societe_gardien()
     } else {
 
     }
   }
   after_edit(params: any) {
     this.les_societe_gardiens[this.les_societe_gardiens.indexOf(this.societe_gardien_to_edit)]=params.new_data
+    this.get_societe_gardien()
+    this.modalService.dismissAll()
   }
-  voir_plus(one_societe_gardien: any) {
-    this.selected_societe_gardien = one_societe_gardien
+  //add-gardien
+  open_modal_add_affectation(modal:any){
+    this.modalService.open(modal, {
+      centered: true
+    });
   }
-  on_click_edit(one_societe_gardien: any) {
-    this.societe_gardien_to_edit = one_societe_gardien
-  }
-  on_close_modal_edit(){
-    this.societe_gardien_to_edit=undefined
-  }
+
+//edit-gardien
+open_modal_edit_affectation(modal:any, one_societe_gardien: any){
+  this.societe_gardien_to_edit = one_societe_gardien
+  this.modalService.open(modal, {
+    centered: true
+  });
+}
+ 
 }

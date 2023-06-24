@@ -15,32 +15,35 @@ export class EditSocieteGardienComponent {
   societe_gardien_to_edit: any = {}
   @Output()
   cb_edit_societe_gardien=new EventEmitter()
+
+    //les collaborateurs
+    loading_get_societe = false
+    les_societes: any[] = []
+    //les gardiens
+    loading_get_gardien = false
+    les_gardiens: any[] = []
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
   ngOnInit(): void {
       this.init_form()
       this.update_form(this.societe_gardien_to_edit)
+      this.get_gardien()
+      this.get_societe()
   }
   init_form() {
       this.reactiveForm_edit_societe_gardien  = this.formBuilder.group({
-        id_societe_gardien: ["", Validators.required],
 id_societe: ["", Validators.required],
 id_gardien: ["", Validators.required],
 date_affectation: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
       });
   }
   // mise à jour du formulaire
   update_form(societe_gardien_to_edit:any) {
-      this.reactiveForm_edit_societe_gardien = this.formBuilder.group({
-          id_societe_gardien: [societe_gardien_to_edit.id_societe_gardien, Validators.required],
-id_societe: [societe_gardien_to_edit.id_societe, Validators.required],
-id_gardien: [societe_gardien_to_edit.id_gardien, Validators.required],
-date_affectation: [societe_gardien_to_edit.date_affectation, Validators.required],
-created_at: [societe_gardien_to_edit.created_at, Validators.required],
-updated_at: [societe_gardien_to_edit.updated_at, Validators.required]
+    this.reactiveForm_edit_societe_gardien = this.formBuilder.group({
+    id_societe: [societe_gardien_to_edit.id_societe, Validators.required],
+    id_gardien: [societe_gardien_to_edit.id_gardien, Validators.required],
+    date_affectation: [societe_gardien_to_edit.date_affectation, Validators.required],
       });
   }
 
@@ -84,4 +87,36 @@ updated_at: [societe_gardien_to_edit.updated_at, Validators.required]
           this.loading_edit_societe_gardien = false;
       })
   }
+     //liste des collaborateurs
+     get_societe() {
+        this.loading_get_societe = true;
+        this.api.taf_post("societe/get", {}, (reponse: any) => {
+          if (reponse.status) {
+            this.les_societes = reponse.data
+            console.log("Opération effectuée avec succés sur la table societe. Réponse= ", reponse);
+          } else {
+            console.log("L'opération sur la table societe a échoué. Réponse= ", reponse);
+            alert("L'opération a echoué")
+          }
+          this.loading_get_societe = false;
+        }, (error: any) => {
+          this.loading_get_societe = false;
+        })
+      }
+      //liste des gardiens
+      get_gardien() {
+        this.loading_get_gardien = true;
+        this.api.taf_post("gardien/get", {}, (reponse: any) => {
+          if (reponse.status) {
+            this.les_gardiens = reponse.data
+            console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", this.les_gardiens);
+          } else {
+            console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
+            alert("L'opération a echoué")
+          }
+          this.loading_get_gardien = false;
+        }, (error: any) => {
+          this.loading_get_gardien = false;
+        })
+      }
 }

@@ -5,7 +5,7 @@ export const menu: CoreMenu[] = [
   { id: "Gardien", title: "Gardien", translate: "Gardien", type: "item", icon: "user-check", url: "/home/gardien" },
   { id: "Congés", title: "Congés", translate: "Congés", type: "item", icon: "calendar", url: "/home/conges" },
   { id: "Indemnité", title: "Indemnité", translate: "Indemnité", type: "item", icon: "server", url: "/home/indemnite" },
-  // { id: "IndemniteGardien", title: "IndemniteGardien", translate: "IndemniteGardien", type: "item", icon: "file", url: "/home/indemnite_gardien" },
+  { id: "Affectation", title: "Affectation", translate: "Affectation", type: "item", icon: "file", url: "/home/societe_gardien" },
   { id: "Maps", title: "Maps", translate: "Maps", type: "item", icon: "map-pin", url: "/home/localisation" },
   { id: "Evaluation", title: "Evaluation", translate: "Evaluation", type: "item", icon: "arrow-up-circle", url: "/home/evaluation" },
   // { id: "Role", title: "Role", translate: "Role", type: "item", icon: "file", url: "/home/role" },
