@@ -13,20 +13,20 @@ export class AddAbsenceComponent {
   reactiveForm_add_absence !: FormGroup;
   submitted:boolean=false
   loading_add_absence :boolean=false
+    //les gardiens
+    loading_get_gardien = false
+    les_gardiens: any[] = []
   constructor(private formBuilder: FormBuilder,public api:ApiService) { }
 
   ngOnInit(): void {
       this.init_form()
+      this.get_gardien()
   }
   init_form() {
       this.reactiveForm_add_absence  = this.formBuilder.group({
-          id_absence: ["", Validators.required],
-id_utilisateur: ["", Validators.required],
 id_gardien: ["", Validators.required],
 date_absence: ["", Validators.required],
 raison_absence: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
       });
   }
 
@@ -40,7 +40,12 @@ updated_at: ["", Validators.required]
       if (this.reactiveForm_add_absence .invalid) {
           return;
       }
-      var absence =this.reactiveForm_add_absence .value
+      var absence = { 
+        id_utilisateur: this.api.token.user_connected.id_utilisateur,
+        id_gardien : this.f.id_gardien.value,
+        date_absence: this.f.date_absence.value,
+        raison_absence: this.f.raison_absence.value,
+    } 
       this.add_absence (absence )
   }
   // vider le formulaire
@@ -68,5 +73,20 @@ updated_at: ["", Validators.required]
         this.loading_add_absence = false;
     })
   }
-  
+     //liste des gardiens
+     get_gardien() {
+        this.loading_get_gardien = true;
+        this.api.taf_post("gardien/get", {}, (reponse: any) => {
+          if (reponse.status) {
+            this.les_gardiens = reponse.data
+            console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", this.les_gardiens);
+          } else {
+            console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
+            alert("L'opération a echoué")
+          }
+          this.loading_get_gardien = false;
+        }, (error: any) => {
+          this.loading_get_gardien = false;
+        })
+      }
 }

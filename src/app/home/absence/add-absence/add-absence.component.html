@@ -1,61 +1,33 @@
 
 <form  [formGroup]="reactiveForm_add_absence " (ngSubmit)="onSubmit_add_absence ()" #form_add_absence ="ngForm" class="row">
-  <!-- id_absence field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >id_absence</label>
-      <input class="form-control" type="text"  formControlName="id_absence"  placeholder="id_absence"  [ngClass]="{ 'is-invalid': submitted && f.id_absence.errors }"/>
-      <div *ngIf="submitted && f.id_absence.errors" class="invalid-feedback">
-          <div *ngIf="f.id_absence.errors.required"> id_absence est obligatoire </div>
-      </div>
-    </div>  
-<!-- id_utilisateur field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >id_utilisateur</label>
-      <input class="form-control" type="text"  formControlName="id_utilisateur"  placeholder="id_utilisateur"  [ngClass]="{ 'is-invalid': submitted && f.id_utilisateur.errors }"/>
-      <div *ngIf="submitted && f.id_utilisateur.errors" class="invalid-feedback">
-          <div *ngIf="f.id_utilisateur.errors.required"> id_utilisateur est obligatoire </div>
-      </div>
-    </div>  
+
 <!-- id_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >id_gardien</label>
-      <input class="form-control" type="text"  formControlName="id_gardien"  placeholder="id_gardien"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien.errors }"/>
+      <label >Gardien</label>
+      <select class="form-control" type="text"  formControlName="id_gardien"  placeholder="id_gardien"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien.errors }">
+        <option value="{{one_gardien.id_gardien}}" *ngFor="let one_gardien of les_gardiens"> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</option>
+        </select>
       <div *ngIf="submitted && f.id_gardien.errors" class="invalid-feedback">
           <div *ngIf="f.id_gardien.errors.required"> id_gardien est obligatoire </div>
       </div>
     </div>  
 <!-- date_absence field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >date_absence</label>
-      <input class="form-control" type="text"  formControlName="date_absence"  placeholder="date_absence"  [ngClass]="{ 'is-invalid': submitted && f.date_absence.errors }"/>
+      <label >Date de l'absence</label>
+      <input class="form-control" type="date"  formControlName="date_absence"  placeholder="date_absence"  [ngClass]="{ 'is-invalid': submitted && f.date_absence.errors }"/>
       <div *ngIf="submitted && f.date_absence.errors" class="invalid-feedback">
           <div *ngIf="f.date_absence.errors.required"> date_absence est obligatoire </div>
       </div>
     </div>  
 <!-- raison_absence field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >raison_absence</label>
-      <input class="form-control" type="text"  formControlName="raison_absence"  placeholder="raison_absence"  [ngClass]="{ 'is-invalid': submitted && f.raison_absence.errors }"/>
+      <label >Raison de l'absence</label>
+      <textarea class="form-control" type="text"  formControlName="raison_absence"  placeholder="raison_absence"  [ngClass]="{ 'is-invalid': submitted && f.raison_absence.errors }">
+        </textarea>
       <div *ngIf="submitted && f.raison_absence.errors" class="invalid-feedback">
           <div *ngIf="f.raison_absence.errors.required"> raison_absence est obligatoire </div>
       </div>
-    </div>  
-<!-- created_at field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >created_at</label>
-      <input class="form-control" type="text"  formControlName="created_at"  placeholder="created_at"  [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
-      <div *ngIf="submitted && f.created_at.errors" class="invalid-feedback">
-          <div *ngIf="f.created_at.errors.required"> created_at est obligatoire </div>
-      </div>
-    </div>  
-<!-- updated_at field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >updated_at</label>
-      <input class="form-control" type="text"  formControlName="updated_at"  placeholder="updated_at"  [ngClass]="{ 'is-invalid': submitted && f.updated_at.errors }"/>
-      <div *ngIf="submitted && f.updated_at.errors" class="invalid-feedback">
-          <div *ngIf="f.updated_at.errors.required"> updated_at est obligatoire </div>
-      </div>
-    </div>  
+    </div>   
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 

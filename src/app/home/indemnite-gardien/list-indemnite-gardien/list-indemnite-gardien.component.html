@@ -20,21 +20,20 @@
     </thead>
     <tbody>
       <tr *ngFor="let one_indemnite_gardien of les_indemnite_gardiens">
-        <td>{{one_indemnite_gardien.id_indemnite}}</td>
-        <td>{{one_indemnite_gardien.id_gardien}}</td>
+        <td>{{one_indemnite_gardien.nature_indemnite}}</td>
+        <td>{{one_indemnite_gardien.prenom_gardien +" "+one_indemnite_gardien.nom_gardien}}</td>
         <td>{{one_indemnite_gardien.montant_indemnite}}</td>
         <td>{{one_indemnite_gardien.date_indemnite}}</td>
         <td>
           <div ngbDropdown container="body">
             <button type="button" ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">actions</button>
-            <div class="dropdown-menu">
-              <a (click)="on_click_edit(one_indemnite_gardien)" ngbDropdownItem data-bs-toggle="modal"
+            <div ngbDropdownMenu>
+              <a (click)="open_modal_edit(modal_edit_indemnite_gardien,one_indemnite_gardien)" ngbDropdownItem data-bs-toggle="modal"
                 data-bs-target="#modal_edit_indemnite_gardien">
                 <i class="bx bx-edit-alt me-1"></i>
                 Modifier
               </a>
-              <a ngbDropdownItem  href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-              <a ngbDropdownItem  href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
+              <a ngbDropdownItem  href="javascript:void(0);" (click)="open_modal_delete(modal_delete_indemnite_gardien,one_indemnite_gardien)"><i class="bx bx-trash me-1"></i>Supprimer</a>
             </div>
           </div>
         </td>
@@ -55,17 +54,35 @@
   </div>
 </ng-template>
 <!-- modification -->
-<div class="modal fade" id="modal_edit_indemnite_gardien" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" data-bs-theme="dark">
-        <h1 class="modal-title fs-5">Modifier IndemniteGardien</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
-      </div>
-      <div class="modal-body">
-        <app-edit-indemnite-gardien *ngIf="indemnite_gardien_to_edit" (cb_edit_indemnite_gardien)="after_edit($event)" [indemnite_gardien_to_edit]="indemnite_gardien_to_edit"></app-edit-indemnite-gardien>
-      </div>
-    </div>
+<ng-template #modal_edit_indemnite_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Indemnite</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <app-edit-indemnite-gardien *ngIf="indemnite_gardien_to_edit" (cb_edit_indemnite_gardien)="after_edit($event)" 
+    [indemnite_gardien_to_edit]="indemnite_gardien_to_edit"></app-edit-indemnite-gardien>
+  </div>
+</ng-template>
+  <!-- Supprimer -->
+  <ng-template #modal_delete_indemnite_gardien let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Confirmation de la suppression</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      {{"Êtes-vous sûr de vouloir supprimer"}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_indemnite_gardien()">
+          {{ loading_delete_indemnite_gardien ? "En cours ..." : "Oui" }}
+      </button>
+    <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+      </button>
+    </div>
+  </ng-template>
   

@@ -1,7 +1,7 @@
 import { CoreMenu } from '@core/types'
 
 export const menu: CoreMenu[] = [
-  // { id: "Absence", title: "Absence", translate: "Absence", type: "item", icon: "clipboard", url: "/home/absence" },
+  { id: "Absence", title: "Absence", translate: "Absence", type: "item", icon: "clipboard", url: "/home/absence" },
   { id: "Gardien", title: "Gardien", translate: "Gardien", type: "item", icon: "user-check", url: "/home/gardien" },
   { id: "Congés", title: "Congés", translate: "Congés", type: "item", icon: "calendar", url: "/home/conges" },
   { id: "Indemnité", title: "Indemnité", translate: "Indemnité", type: "item", icon: "server", url: "/home/indemnite" },

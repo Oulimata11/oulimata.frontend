@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-absence',
@@ -10,7 +11,9 @@ export class ListAbsenceComponent {
   les_absences: any[] = []
   selected_absence: any = undefined
   absence_to_edit: any = undefined
-  constructor(public api: ApiService,) {
+  absence_to_delete: any=undefined;
+  loading_delete_absence: boolean =false;
+  constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -35,12 +38,15 @@ export class ListAbsenceComponent {
   after_add(event: any) {
     if (event.status) {
       this.les_absences.unshift(event.absence)
+      this.get_absence()
     } else {
 
     }
   }
   after_edit(params: any) {
     this.les_absences[this.les_absences.indexOf(this.absence_to_edit)]=params.new_data
+    this.get_absence()
+    this.modalService.dismissAll()
   }
   voir_plus(one_absence: any) {
     this.selected_absence = one_absence
@@ -51,4 +57,44 @@ export class ListAbsenceComponent {
   on_close_modal_edit(){
     this.absence_to_edit=undefined
   }
+     //add-absence
+  open_modal(modal:any){
+      this.modalService.open(modal, {
+        centered: true
+      });
+  }//edit-absence
+  open_modal_edit(modal:any, one_absence: any){
+    this.absence_to_edit = one_absence
+    this.modalService.open(modal, {
+      centered: true
+    });
+  }
+  //delete-absence
+  open_modal_delete( modal:any , one_absence: any){
+    this.absence_to_delete = one_absence
+    this.modalService.open(modal, {
+      centered: true
+    });
+  }
+  //fonction qui supprime une absence 
+  delete_absence (){
+    this.loading_delete_absence = true;
+    this.api.taf_post("absence/delete",{id:this.absence_to_delete.id_absence},(reponse: any)=>{
+        //when success
+    this.loading_delete_absence = true;
+        if(reponse.status){
+        console.log("Opération effectuée avec succés sur la table absence . Réponse = ",reponse)
+        this.api.Swal_success("Suppression effectuée avec succes ! ")
+        this.modalService.dismissAll()
+        this.get_absence()
+        }else{
+        console.log("L\'opération sur la table absence  a échoué. Réponse = ",reponse)
+        }
+    },
+    (error: any)=>{
+        //when error
+    this.loading_delete_absence = true;
+        console.log("Erreur inconnue! ",error)
+    })
+    }
 }

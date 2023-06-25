@@ -15,34 +15,30 @@ export class EditAbsenceComponent {
   absence_to_edit: any = {}
   @Output()
   cb_edit_absence=new EventEmitter()
+   //les gardiens
+   loading_get_gardien = false
+   les_gardiens: any[] = []
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
   ngOnInit(): void {
       this.init_form()
       this.update_form(this.absence_to_edit)
+      this.get_gardien()
   }
   init_form() {
       this.reactiveForm_edit_absence  = this.formBuilder.group({
-        id_absence: ["", Validators.required],
-id_utilisateur: ["", Validators.required],
 id_gardien: ["", Validators.required],
 date_absence: ["", Validators.required],
 raison_absence: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
       });
   }
   // mise à jour du formulaire
   update_form(absence_to_edit:any) {
       this.reactiveForm_edit_absence = this.formBuilder.group({
-          id_absence: [absence_to_edit.id_absence, Validators.required],
-id_utilisateur: [absence_to_edit.id_utilisateur, Validators.required],
 id_gardien: [absence_to_edit.id_gardien, Validators.required],
 date_absence: [absence_to_edit.date_absence, Validators.required],
 raison_absence: [absence_to_edit.raison_absence, Validators.required],
-created_at: [absence_to_edit.created_at, Validators.required],
-updated_at: [absence_to_edit.updated_at, Validators.required]
       });
   }
 
@@ -86,4 +82,20 @@ updated_at: [absence_to_edit.updated_at, Validators.required]
           this.loading_edit_absence = false;
       })
   }
+       //liste des gardiens
+    get_gardien() {
+        this.loading_get_gardien = true;
+        this.api.taf_post("gardien/get", {}, (reponse: any) => {
+          if (reponse.status) {
+            this.les_gardiens = reponse.data
+            console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", this.les_gardiens);
+          } else {
+            console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
+            alert("L'opération a echoué")
+          }
+          this.loading_get_gardien = false;
+        }, (error: any) => {
+          this.loading_get_gardien = false;
+        })
+    }
 }

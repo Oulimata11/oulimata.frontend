@@ -29,7 +29,6 @@ id_gardien: ["", Validators.required],
 date_debut_conges: ["", Validators.required],
 date_fin_conges: ["", Validators.required],
 date_demande_conges: ["", Validators.required],
-duree_conges: ["", Validators.required],
       });
   }
 

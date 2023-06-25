@@ -15,30 +15,36 @@ export class EditIndemniteGardienComponent {
   indemnite_gardien_to_edit: any = {}
   @Output()
   cb_edit_indemnite_gardien=new EventEmitter()
+   //gardien
+   loading_get_gardien = false
+   les_gardiens: any[] = []
+    //indemnite
+    loading_get_indemnite = false
+    les_indemnites: any[] = [] 
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
   ngOnInit(): void {
       this.init_form()
       this.update_form(this.indemnite_gardien_to_edit)
+      this.get_gardien()
+      this.get_indemnite()
   }
   init_form() {
-      this.reactiveForm_edit_indemnite_gardien  = this.formBuilder.group({
-        id_i_g: ["", Validators.required],
-id_indemnite: ["", Validators.required],
-id_gardien: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
-      });
+    this.reactiveForm_edit_indemnite_gardien  = this.formBuilder.group({
+    id_indemnite: ["", Validators.required],
+    id_gardien: ["", Validators.required],
+    montant_indemnite: ["", Validators.required],
+    date_indemnite: ["", Validators.required],
+    });
   }
   // mise à jour du formulaire
   update_form(indemnite_gardien_to_edit:any) {
-      this.reactiveForm_edit_indemnite_gardien = this.formBuilder.group({
-          id_i_g: [indemnite_gardien_to_edit.id_i_g, Validators.required],
-id_indemnite: [indemnite_gardien_to_edit.id_indemnite, Validators.required],
-id_gardien: [indemnite_gardien_to_edit.id_gardien, Validators.required],
-created_at: [indemnite_gardien_to_edit.created_at, Validators.required],
-updated_at: [indemnite_gardien_to_edit.updated_at, Validators.required]
+    this.reactiveForm_edit_indemnite_gardien = this.formBuilder.group({
+    id_indemnite: [indemnite_gardien_to_edit.id_indemnite, Validators.required],
+    id_gardien: [indemnite_gardien_to_edit.id_gardien, Validators.required],
+    montant_indemnite: [indemnite_gardien_to_edit.montant_indemnite, Validators.required],
+    date_indemnite: [indemnite_gardien_to_edit.date_indemnite, Validators.required],
       });
   }
 
@@ -54,7 +60,7 @@ updated_at: [indemnite_gardien_to_edit.updated_at, Validators.required]
       }
       var indemnite_gardien = this.reactiveForm_edit_indemnite_gardien.value
       this.edit_indemnite_gardien({
-      condition:JSON.stringify({id_indemnite_gardien:this.indemnite_gardien_to_edit.id_indemnite_gardien}),
+      condition:JSON.stringify({id_i_g:this.indemnite_gardien_to_edit.id_i_g}),
       data:JSON.stringify(indemnite_gardien)
       })
   }
@@ -67,9 +73,7 @@ updated_at: [indemnite_gardien_to_edit.updated_at, Validators.required]
       this.loading_edit_indemnite_gardien = true;
       this.api.taf_post("indemnite_gardien/edit", indemnite_gardien, (reponse: any) => {
           if (reponse.status) {
-              this.cb_edit_indemnite_gardien.emit({
-                  new_data:JSON.parse(indemnite_gardien.data)
-              })
+              this.cb_edit_indemnite_gardien.emit({new_data:JSON.parse(indemnite_gardien.data)})
               console.log("Opération effectuée avec succés sur la table indemnite_gardien. Réponse= ", reponse);
               this.onReset_edit_indemnite_gardien()
               alert("Opération effectuée avec succés sur la table indemnite_gardien")
@@ -82,4 +86,36 @@ updated_at: [indemnite_gardien_to_edit.updated_at, Validators.required]
           this.loading_edit_indemnite_gardien = false;
       })
   }
+    //liste des gardiens 
+    get_gardien() {
+        this.loading_get_gardien = true;
+        this.api.taf_post("gardien/get", {}, (reponse: any) => {
+          if (reponse.status) {
+            this.les_gardiens = reponse.data
+            console.log("Opération effectuée avec succés sur la table gardien. Réponse= ", this.les_gardiens);
+          } else {
+            console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
+            alert("L'opération a echoué")
+          }
+          this.loading_get_gardien = false;
+        }, (error: any) => {
+          this.loading_get_gardien = false;
+        })
+      }
+      //indemnite
+      get_indemnite() {
+        this.loading_get_indemnite = true;
+        this.api.taf_post("indemnite/get", {}, (reponse: any) => {
+          if (reponse.status) {
+            this.les_indemnites = reponse.data
+            console.log("Opération effectuée avec succés sur la table indemnite. Réponse= ", reponse);
+          } else {
+            console.log("L'opération sur la table indemnite a échoué. Réponse= ", reponse);
+            alert("L'opération a echoué")
+          }
+          this.loading_get_indemnite = false;
+        }, (error: any) => {
+          this.loading_get_indemnite = false;
+        })
+      }
 }
