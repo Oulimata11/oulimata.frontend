@@ -39,6 +39,7 @@ export class ListAbsenceComponent {
     if (event.status) {
       this.les_absences.unshift(event.absence)
       this.get_absence()
+      this.modalService.dismissAll()
     } else {
 
     }
@@ -47,15 +48,6 @@ export class ListAbsenceComponent {
     this.les_absences[this.les_absences.indexOf(this.absence_to_edit)]=params.new_data
     this.get_absence()
     this.modalService.dismissAll()
-  }
-  voir_plus(one_absence: any) {
-    this.selected_absence = one_absence
-  }
-  on_click_edit(one_absence: any) {
-    this.absence_to_edit = one_absence
-  }
-  on_close_modal_edit(){
-    this.absence_to_edit=undefined
   }
      //add-absence
   open_modal(modal:any){

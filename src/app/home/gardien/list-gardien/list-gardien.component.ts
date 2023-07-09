@@ -49,6 +49,7 @@ export class ListGardienComponent {
     if (event.status) {
       this.les_gardiens.unshift(event.gardien)
       this.get_gardien()
+      this.modalService.dismissAll()
     } else {
 
     }

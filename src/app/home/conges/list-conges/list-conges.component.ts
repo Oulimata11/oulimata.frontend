@@ -39,6 +39,7 @@ export class ListCongesComponent {
     if (event.status) {
       this.les_conges.unshift(event.conges)
       this.get_conges()
+      this.modalService.dismissAll()
     } else {
 
     }

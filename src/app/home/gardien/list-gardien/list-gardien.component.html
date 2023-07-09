@@ -1,12 +1,12 @@
 <!-- entete -->
 <div class="d-flex justify-content-between align-items-center ">
-  <h2 class="m-0 text-primary"> Les Gardiens  - {{les_gardiens.length}}</h2>
+  <h2 class="m-0 text-primary"> Les Gardiens - {{les_gardiens.length}}</h2>
   <div class="d-flex align-items-center">
     <div class="form-group m-0">
       <input class="form-control" type="text" [(ngModel)]="searchText">
     </div>
-    <button class="btn btn-primary m-1" data-bs-toggle="modal"
-      data-bs-target="#modal_add_gardien" (click)="open_modal(modal_add_gardien)">
+    <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
+      (click)="open_modal(modal_add_gardien)">
       Ajouter gardien
       <span class="ml-1" [data-feather]="'user-plus'"> </span>
     </button>
@@ -14,46 +14,56 @@
 </div>
 <!-- list -->
 <div class="table-responsive">
-  <table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
-        <!-- <th scope="col">Matricule</th> -->
-        <th scope="col">Nom</th>
-        <th scope="col">Statut</th>
-        <!-- <th scope="col">Affectation</th> -->
-        <th scope="col">Actions</th>
+        <th></th>
+        <th>Prénom</th>
+        <th>Télephone</th>
+        <th>Statut</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_gardien of les_gardiens | filter : searchText">
-    <td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}
-      <div>
-        <span [data-feather]="'phone'"></span>
-        {{one_gardien.telephone_gardien}}
-      </div>
-    </td>
-    <td class="{{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-glow badge-success' : 'badge badge-glow badge-danger'}}">{{one_gardien.statut}}</td>
-    <!-- <td>{{one_gardien.affectation}}</td> -->
-    <td> 
-      <div ngbDropdown container="body">
-        <button type="button" class="btn p-0  hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
-          <i data-feather="more-vertical"></i>
-        </button>
-        <div ngbDropdownMenu>
-          <a (click)="open_modal_edit(modal_edit_gardien,one_gardien)" ngbDropdownItem data-bs-toggle="modal"
-            data-bs-target="#modal_edit_gardien">
-            <i class="bx bx-edit-alt me-1"></i>
-            Modifier
-          </a>
-          <a ngbDropdownItem href="javascript:void(0);" (click)="open_modal_detail(modal_detail_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Voir plus</a>
-          <a ngbDropdownItem href="javascript:void(0);" (click)="open_modal_delete(modal_delete_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Supprimer</a>
-        </div>
-      </div>
-    </td>
+        <td>
+          <div class="avatar-group">
+            <div data-toggle="tooltip" data-popup="tooltip-custom" placement="top" container="body" title=""
+              class="avatar pull-up my-0" ngbTooltip="{{one_gardien.prenom_gardien+' '+one_gardien.nom_gardien}}">
+              <img src="assets/images/portrait/small/avatar-s-5.jpg" alt="Avatar" height="26" width="26" />
+            </div>
+          </div>
+        </td>
+        <td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</td>
+        <td>{{one_gardien.telephone_gardien}}</td>
+        <td
+          class="{{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-light-success mr-1' : 'badge badge-pill badge-light-danger mr-1'}}">
+          {{one_gardien.statut}}</td>
+          <td>
+            <div ngbDropdown container="body">
+              <button type="button" class="btn p-0  hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
+                <i data-feather="more-vertical"></i>
+              </button>
+              <div ngbDropdownMenu>
+                <a (click)="open_modal_edit(modal_edit_gardien,one_gardien)" ngbDropdownItem data-bs-toggle="modal"
+                  data-bs-target="#modal_edit_gardien">
+                  <i class="bx bx-edit-alt me-1"></i>
+                  Modifier
+                </a>
+                <a ngbDropdownItem href="javascript:void(0);"
+                  (click)="open_modal_detail(modal_detail_gardien,one_gardien)"><i class="bx bx-trash me-1"></i>Voir
+                  plus</a>
+                <a ngbDropdownItem href="javascript:void(0);"
+                  (click)="open_modal_delete(modal_delete_gardien,one_gardien)"><i
+                    class="bx bx-trash me-1"></i>Supprimer</a>
+              </div>
+            </div>
+          </td>
       </tr>
     </tbody>
   </table>
 </div>
+
 <!-- ajout -->
 <ng-template #modal_add_gardien let-modal>
   <div class="modal-header">
@@ -75,7 +85,8 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-edit-gardien *ngIf="gardien_to_edit" [gardien_to_edit]="gardien_to_edit" (cb_edit_gardien)="after_edit($event)" > </app-edit-gardien>
+    <app-edit-gardien *ngIf="gardien_to_edit" [gardien_to_edit]="gardien_to_edit"
+      (cb_edit_gardien)="after_edit($event)"> </app-edit-gardien>
   </div>
 </ng-template>
 <!-- Supprimer -->
@@ -90,10 +101,11 @@
     {{"Êtes-vous sûr de vouloir supprimer"}}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn bg-danger  bg-darken-2 text-white" [disabled]="loading_delete_gardien" (click)="delete_gardien()">
-        {{ loading_delete_gardien ? "En cours ..." : "Oui" }}
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" [disabled]="loading_delete_gardien"
+      (click)="delete_gardien()">
+      {{ loading_delete_gardien ? "En cours ..." : "Oui" }}
     </button>
-  <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+    <button type="button" class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
     </button>
   </div>
 </ng-template>
@@ -106,6 +118,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-detail-gardien [gardien_detail]="gardien_detail" > </app-detail-gardien>
+    <app-detail-gardien [gardien_detail]="gardien_detail"> </app-detail-gardien>
   </div>
 </ng-template>

@@ -39,6 +39,7 @@ export class ListSocieteComponent {
     if (event.status) {
       this.les_societes.unshift(event.societe)
       this.get_societe()
+      this.modalService.dismissAll()
     } else {
 
     }

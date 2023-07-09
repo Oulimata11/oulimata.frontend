@@ -40,6 +40,7 @@ export class ListUtilisateurComponent {
     if (event.status) {
       this.api.les_utilisateurs.unshift(event.utilisateur)
       this.get_utilisateur()
+      this.modalService.dismissAll()
     } else {
 
     }

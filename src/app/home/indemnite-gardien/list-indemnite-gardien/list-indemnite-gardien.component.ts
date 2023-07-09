@@ -39,6 +39,7 @@ export class ListIndemniteGardienComponent {
     if (event.status) {
       this.les_indemnite_gardiens.unshift(event.indemnite_gardien)
       this.get_indemnite_gardien()
+      this.modalService.dismissAll()
     } else {
 
     }

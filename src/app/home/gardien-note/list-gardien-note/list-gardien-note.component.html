@@ -3,7 +3,9 @@
   <h2 class="m-0 text-primary">Les Evaluations  - {{les_gardiens_notes.length}}</h2>
   <div class="d-flex align-items-center m-1">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_gardien_note"  
-    (click)="open_modal_add_note(modal_add_note)">Ajouter évaluation</button>
+    (click)="open_modal_add_note(modal_add_note)">Ajouter évaluation
+    <span [data-feather]="'plus-circle'"> </span>
+  </button>
   </div>
 </div>
 <!-- list -->

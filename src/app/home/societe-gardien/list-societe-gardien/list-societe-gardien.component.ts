@@ -40,6 +40,7 @@ export class ListSocieteGardienComponent {
     if (event.status) {
       this.les_societe_gardiens.unshift(event.societe_gardien)
       this.get_societe_gardien()
+      this.modalService.dismissAll()
     } else {
 
     }

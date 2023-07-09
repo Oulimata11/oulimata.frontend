@@ -3,7 +3,9 @@
   <h2 class="m-0 text-primary">Nos collaborateurs - {{les_societes.length}}</h2>
   <div class="d-flex m-1">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_societe" 
-    (click)="open_modal(modal_add_societe)">Nouveau Collaborateur</button>
+    (click)="open_modal(modal_add_societe)">Nouveau Collaborateur
+    <span [data-feather]="'plus-circle'"> </span>
+  </button>
   </div>
 </div>
 <!-- list -->

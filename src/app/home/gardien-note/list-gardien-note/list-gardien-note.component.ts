@@ -39,6 +39,7 @@ export class ListGardienNoteComponent {
     if (event.status) {
       this.les_gardiens_notes.unshift(event.gardien_note)
       this.get_gardien_note()
+      this.modalService.dismissAll()
     } else {
 
     }
