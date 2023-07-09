@@ -11,6 +11,7 @@ export class EditGardienComponent {
   reactiveForm_edit_gardien !: FormGroup;
   submitted: boolean = false
   loading_edit_gardien: boolean = false
+  hasChange: boolean =false
   @Input()
   gardien_to_edit: any = {}
   @Output()
@@ -65,6 +66,11 @@ email_gardien: [gardien_to_edit.email_gardien, Validators.required],
       // stop here if form is invalid
       if (this.reactiveForm_edit_gardien.invalid) {
           return;
+      }
+      this.hasChange=this.api.check_change(this.reactiveForm_edit_gardien.value,this.gardien_to_edit)
+      if(!this.hasChange){
+        alert("Il y'a pas eu de changement");
+        return;
       }
       var gardien = this.reactiveForm_edit_gardien.value
       this.edit_gardien({

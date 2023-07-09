@@ -21,7 +21,6 @@
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_societe "
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_societe || !hasChange"
         (click)="form_edit_societe .ngSubmit.emit()">{{loading_edit_societe ?"En cours ...":"Valider"}}</button>
-    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_societe ()">Vider</button>
 </div>

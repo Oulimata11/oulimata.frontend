@@ -18,6 +18,7 @@ export class EditCongesComponent {
    //les gardiens
    loading_get_gardien = false
    les_gardiens: any[] = []
+   hasChange : boolean =false 
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
@@ -53,6 +54,11 @@ export class EditCongesComponent {
       // stop here if form is invalid
       if (this.reactiveForm_edit_conges.invalid) {
           return;
+      }
+      this.hasChange= this.api.check_change(this.reactiveForm_edit_conges.value,this.conges_to_edit)
+      if(!this.hasChange){
+        alert("Il y'a pas eu de changement");
+        return;
       }
       var conges = this.reactiveForm_edit_conges.value
       this.edit_conges({

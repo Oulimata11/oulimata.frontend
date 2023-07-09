@@ -21,6 +21,7 @@ export class EditIndemniteGardienComponent {
     //indemnite
     loading_get_indemnite = false
     les_indemnites: any[] = [] 
+  hasChange : boolean =false
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
@@ -57,6 +58,11 @@ export class EditIndemniteGardienComponent {
       // stop here if form is invalid
       if (this.reactiveForm_edit_indemnite_gardien.invalid) {
           return;
+      }
+      this.hasChange=this.api.check_change(this.reactiveForm_edit_indemnite_gardien.value,this.indemnite_gardien_to_edit)
+      if(!this.hasChange){
+        alert("Il n'y a pas eu de changement");
+        return;
       }
       var indemnite_gardien = this.reactiveForm_edit_indemnite_gardien.value
       this.edit_indemnite_gardien({

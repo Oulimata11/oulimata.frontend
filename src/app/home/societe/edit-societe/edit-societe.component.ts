@@ -11,6 +11,7 @@ export class EditSocieteComponent {
   reactiveForm_edit_societe !: FormGroup;
   submitted: boolean = false
   loading_edit_societe: boolean = false
+  hasChange :boolean =false
   @Input()
   societe_to_edit: any = {}
   @Output()
@@ -45,6 +46,11 @@ description_societe: [societe_to_edit.description_societe, Validators.required],
       // stop here if form is invalid
       if (this.reactiveForm_edit_societe.invalid) {
           return;
+      }
+      this.hasChange=this.api.check_change(this.reactiveForm_edit_societe.value,this.societe_to_edit)
+      if(!this.hasChange) {
+        alert("Il n'y a pas eu de changement");
+        return;
       }
       var societe = this.reactiveForm_edit_societe.value
       this.edit_societe({

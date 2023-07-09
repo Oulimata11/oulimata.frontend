@@ -1,6 +1,6 @@
 <!-- entete -->
 <div class="d-flex align-items-center justify-content-between">
-  <div class="fs-1">Les GardienNotes  - {{les_gardiens_notes.length}}</div>
+  <h2 class="m-0 text-primary">Les Evaluations  - {{les_gardiens_notes.length}}</h2>
   <div class="d-flex">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_gardien_note"  
     (click)="open_modal_add_note(modal_add_note)">Ajouter GardienNote</button>
@@ -22,7 +22,7 @@
       <tr *ngFor="let one_gardien_note of les_gardiens_notes">
         <td>{{one_gardien_note.prenom_gardien+" "+one_gardien_note.nom_gardien}}</td>
         <td>{{one_gardien_note.note}}</td>
-        <td>{{one_gardien_note.date_note}}</td>
+        <td>{{one_gardien_note.date_note | date : "dd-MM-yyyy"}}</td>
         <td>{{one_gardien_note.commentaire}}</td>
         <td>
           <div ngbDropdown container="body">

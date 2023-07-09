@@ -143,4 +143,15 @@ export class ApiService {
     });
     return succes
   }
+  //determiner s'il y'a chagement au niveau du formulaire ou pas 
+  check_change(formulaire_actuel : any, donnees_update :any) : boolean {
+    // retourne true s'il y'a changement et false sinon
+    for (const [key, value] of Object.entries(formulaire_actuel)) {
+      if (donnees_update[key] != value) {
+        // il y'a eu un changement
+        return true;
+      }
+    }
+    return false;
+  }
 }

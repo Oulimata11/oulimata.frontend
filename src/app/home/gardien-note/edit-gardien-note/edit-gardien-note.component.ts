@@ -15,6 +15,7 @@ export class EditGardienNoteComponent {
   les_notes: any[] = []
   loading_get_gardien = false
   les_gardiens: any[] = []
+  hasChange :boolean = false
   @Input()
   gardien_note_to_edit: any = {}
   @Output()
@@ -55,6 +56,11 @@ export class EditGardienNoteComponent {
       // stop here if form is invalid
       if (this.reactiveForm_edit_gardien_note.invalid) {
           return;
+      }
+      this.hasChange= this.api.check_change(this.reactiveForm_edit_gardien_note.value,this.gardien_note_to_edit)
+      if(!this.hasChange){
+        alert("Il n'y a pas eu de changement");
+        return;
       }
       var gardien_note = this.reactiveForm_edit_gardien_note.value
       this.edit_gardien_note({

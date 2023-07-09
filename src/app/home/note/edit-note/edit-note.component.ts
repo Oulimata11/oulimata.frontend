@@ -11,13 +11,12 @@ export class EditNoteComponent {
   reactiveForm_edit_note !: FormGroup;
   submitted: boolean = false
   loading_edit_note: boolean = false
+  hasChange : boolean = false 
   @Input()
   note_to_edit: any = {}
   @Output()
   cb_edit_note=new EventEmitter()
-  constructor(private formBuilder: FormBuilder, public api: ApiService) { 
-      
-  }
+  constructor(private formBuilder: FormBuilder, public api: ApiService) {}
   ngOnInit(): void {
       this.init_form()
       this.update_form(this.note_to_edit)
@@ -51,6 +50,11 @@ updated_at: [note_to_edit.updated_at, Validators.required]
       // stop here if form is invalid
       if (this.reactiveForm_edit_note.invalid) {
           return;
+      }
+      this.hasChange=this.api.check_change(this.reactiveForm_edit_note.value,this.note_to_edit)
+      if(!this.hasChange){
+        alert("Il n'y a pas eu de changement");
+        return;
       }
       var note = this.reactiveForm_edit_note.value
       this.edit_note({

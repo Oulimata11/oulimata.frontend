@@ -26,7 +26,7 @@ export class AddAbsenceComponent {
       this.reactiveForm_add_absence  = this.formBuilder.group({
 id_gardien: ["", Validators.required],
 date_absence: ["", Validators.required],
-raison_absence: ["", Validators.required],
+raison_absence: ["",],
       });
   }
 

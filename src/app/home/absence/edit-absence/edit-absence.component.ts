@@ -10,7 +10,7 @@ import { ApiService } from 'app/service/api/api.service';
 export class EditAbsenceComponent {
   reactiveForm_edit_absence !: FormGroup;
   submitted: boolean = false
-  loading_edit_absence: boolean = false
+  loading_edit_absence: boolean
   @Input()
   absence_to_edit: any = {}
   @Output()
@@ -18,6 +18,7 @@ export class EditAbsenceComponent {
    //les gardiens
    loading_get_gardien = false
    les_gardiens: any[] = []
+   hasChange : boolean =false
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
@@ -30,7 +31,7 @@ export class EditAbsenceComponent {
       this.reactiveForm_edit_absence  = this.formBuilder.group({
 id_gardien: ["", Validators.required],
 date_absence: ["", Validators.required],
-raison_absence: ["", Validators.required],
+raison_absence: [""],
       });
   }
   // mise à jour du formulaire
@@ -52,6 +53,13 @@ raison_absence: [absence_to_edit.raison_absence, Validators.required],
       if (this.reactiveForm_edit_absence.invalid) {
           return;
       }
+    //     //determiner s'il y'a chagement au niveau du formulaire ou pas 
+     this.hasChange= this.api.check_change(this.reactiveForm_edit_absence.value,this.absence_to_edit)
+    if (!this.hasChange) {
+        alert("Il n'y a pas eu de changements");
+        console.log("La valeur apres comparaison", this.hasChange)
+        return;
+      }
       var absence = this.reactiveForm_edit_absence.value
       this.edit_absence({
       condition:JSON.stringify({id_absence:this.absence_to_edit.id_absence}),
@@ -66,10 +74,9 @@ raison_absence: [absence_to_edit.raison_absence, Validators.required],
   edit_absence(absence: any) {
       this.loading_edit_absence = true;
       this.api.taf_post("absence/edit", absence, (reponse: any) => {
+        this.loading_edit_absence = false;
           if (reponse.status) {
-              this.cb_edit_absence.emit({
-                  new_data:JSON.parse(absence.data)
-              })
+              this.cb_edit_absence.emit({new_data:JSON.parse(absence.data)})
               console.log("Opération effectuée avec succés sur la table absence. Réponse= ", reponse);
               this.onReset_edit_absence()
               alert("Opération effectuée avec succés sur la table absence")
@@ -77,12 +84,12 @@ raison_absence: [absence_to_edit.raison_absence, Validators.required],
               console.log("L'opération sur la table absence a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }
-          this.loading_edit_absence = false;
       }, (error: any) => {
           this.loading_edit_absence = false;
       })
   }
-       //liste des gardiens
+
+  //liste des gardiens
     get_gardien() {
         this.loading_get_gardien = true;
         this.api.taf_post("gardien/get", {}, (reponse: any) => {

@@ -1,6 +1,6 @@
 <!-- entete -->
 <div class="d-flex align-items-center justify-content-between">
-  <div class="fs-1">Les Affectations - {{les_societe_gardiens.length}}</div>
+  <h2 class="m-0 text-primary">Les Affectations - {{les_societe_gardiens.length}}</h2>
   <div class="d-flex">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_societe_gardien"
     (click)="open_modal_add_affectation(modal_add_affectation)">Ajouter Affectation</button>
@@ -21,7 +21,7 @@
       <tr *ngFor="let one_societe_gardien of les_societe_gardiens">
         <td>{{one_societe_gardien.nom_societe}}</td>
         <td>{{one_societe_gardien.prenom_gardien+" "+one_societe_gardien.nom_gardien}}</td>
-        <td>{{one_societe_gardien.date_affectation}}</td>
+        <td>{{one_societe_gardien.date_affectation | date : "dd-MM-yyyy"}}</td>
         <td>
           <div ngbDropdown container="body">
             <button type="button" ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">

@@ -1,14 +1,14 @@
 <!-- entete -->
 <div class="d-flex justify-content-between align-items-center ">
-  <div class="fs-1">Les Gardiens  - {{les_gardiens.length}}</div>
+  <h2 class="m-0 text-primary"> Les Gardiens  - {{les_gardiens.length}}</h2>
   <div class="d-flex align-items-center">
-    <div class="form-group">
+    <div class="form-group m-0">
       <input class="form-control" type="text" [(ngModel)]="searchText">
     </div>
     <button class="btn btn-primary m-1" data-bs-toggle="modal"
       data-bs-target="#modal_add_gardien" (click)="open_modal(modal_add_gardien)">
-      <span [data-feather]="'plus'"> </span>
-      Ajouter Gardien
+      Ajouter gardien
+      <span class="ml-1" [data-feather]="'user-plus'"> </span>
     </button>
   </div>
 </div>

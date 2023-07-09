@@ -60,10 +60,8 @@
         aria-expanded="false"
       >
         <div class="user-nav d-sm-flex d-none">
-          <span class="user-name font-weight-bolder">
-            {{this.api.token.token_decoded.taf_data.prenom_utilisateur+" "+this.api.token.token_decoded.taf_data.nom_utilisateur}}
-          </span>
-            <span class="user-status mt-1">{{this.api.token.token_decoded.taf_data.libelle_role}}</span>
+          <span class="user-name font-weight-bolder">{{this.api.token.token_decoded.taf_data.prenom_utilisateur+" "+this.api.token.token_decoded.taf_data.nom_utilisateur}}</span>
+          <span class="user-status">{{this.api.token.token_decoded.taf_data.libelle_role}}</span>
         </div>
         <span class="avatar"
           ><img
