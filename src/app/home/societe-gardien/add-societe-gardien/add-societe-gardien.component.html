@@ -7,20 +7,22 @@
     <div class="form-group col-sm-6">
       <label >Societe <span class="text-danger fs-1">*</span></label>
       <select class="form-control" type="text"  formControlName="id_societe"  placeholder="id_societe"  [ngClass]="{ 'is-invalid': submitted && f.id_societe.errors }">
+        <option value="" disabled>Selectionnez la société</option>
         <option value="{{one_societe.id_societe}}" *ngFor="let one_societe of les_societes"> {{one_societe.nom_societe}}</option>
         </select>
       <div *ngIf="submitted && f.id_societe.errors" class="invalid-feedback">
-          <div *ngIf="f.id_societe.errors.required"> id_societe est obligatoire </div>
+          <div *ngIf="f.id_societe.errors.required"> La société est obligatoire </div>
       </div>
     </div>  
 <!-- id_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
       <label >Gardien<span class="text-danger fs-1">*</span></label>
       <select class="form-control" type="text"  formControlName="id_gardien"  placeholder="id_gardien"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien.errors }">
+        <option value="" disabled> Selectionnez le gardien</option>
         <option value="{{one_gardien.id_gardien}}" *ngFor="let one_gardien of les_gardiens"> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</option>
         </select>
       <div *ngIf="submitted && f.id_gardien.errors" class="invalid-feedback">
-          <div *ngIf="f.id_gardien.errors.required"> id_gardien est obligatoire </div>
+          <div *ngIf="f.id_gardien.errors.required"> Le gardien est obligatoire </div>
       </div>
     </div>  
 <!-- date_affectation field avec un control de validite -->
@@ -28,7 +30,7 @@
       <label >Date d'affectation<span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_affectation"  placeholder="date_affectation"  [ngClass]="{ 'is-invalid': submitted && f.date_affectation.errors }"/>
       <div *ngIf="submitted && f.date_affectation.errors" class="invalid-feedback">
-          <div *ngIf="f.date_affectation.errors.required"> date_affectation est obligatoire </div>
+          <div *ngIf="f.date_affectation.errors.required"> La date d'affectation est obligatoire </div>
       </div>
     </div>  
 

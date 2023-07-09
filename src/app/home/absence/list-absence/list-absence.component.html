@@ -1,8 +1,8 @@
 <!-- entete -->
-<div class="d-flex align-items-center justify-content-between">
+<div class="d-flex justify-content-between align-items-center ">
   <h2 class="m-0 text-primary">Les Absences  - {{les_absences.length}}</h2>
-  <div class="d-flex">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_absence"
+  <div class="d-flex align-items-center">
+    <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_absence"
     (click)="open_modal(modal_add_absence)" >
     Ajouter Absence
     <i class="bi bi-clipboard2-plus-fill ml-1"></i>
@@ -27,7 +27,9 @@
         <td>{{one_absence.raison_absence}}</td>
         <td>
           <div ngbDropdown container="body">
-            <button type="button" ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">actions</button>
+            <button type="button" ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">    
+             <i data-feather="more-vertical"></i>
+            </button>
             <div  ngbDropdownMenu>
               <a (click)="open_modal_edit(modal_edit_absence,one_absence)" ngbDropdownItem data-bs-toggle="modal"
                 data-bs-target="#modal_edit_absence">

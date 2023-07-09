@@ -21,7 +21,7 @@ export class AddSocieteComponent {
   init_form() {
     this.reactiveForm_add_societe  = this.formBuilder.group({
     nom_societe: ["", Validators.required],
-    description_societe: ["", Validators.required],
+    description_societe: ["",],
       });
   }
 

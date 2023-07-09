@@ -1,28 +1,31 @@
 
+<div class="alert alert-warning text-center">
+    <p>Tous les champs marqués d'un astérisque (*) sont obligatoires.</p>
+</div>
 <form  [formGroup]="reactiveForm_add_utilisateur " (ngSubmit)="onSubmit_add_utilisateur ()" #form_add_utilisateur ="ngForm" class="row">
     <!-- prenom_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-        <label >Prénom</label>
+        <label >Prénom <span class="text-danger fs-1">*</span> </label>
         <input class="form-control" type="text"  formControlName="prenom_utilisateur"  placeholder="Oulimata"  [ngClass]="{ 'is-invalid': submitted && f.prenom_utilisateur.errors }"/>
         <div *ngIf="submitted && f.prenom_utilisateur.errors" class="invalid-feedback">
-            <div *ngIf="f.prenom_utilisateur.errors.required"> Prénom est obligatoire </div>
+            <div *ngIf="f.prenom_utilisateur.errors.required"> Le prénom est obligatoire </div>
         </div>
     </div>  
 
     <!-- nom_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-        <label >Nom</label>
+        <label >Nom <span class="text-danger fs-1">*</span> </label>
         <input class="form-control" type="text"  formControlName="nom_utilisateur"  placeholder="SENE"  [ngClass]="{ 'is-invalid': submitted && f.nom_utilisateur.errors }"/>
         <div *ngIf="submitted && f.nom_utilisateur.errors" class="invalid-feedback">
-            <div *ngIf="f.nom_utilisateur.errors.required"> Nom est obligatoire </div>
+            <div *ngIf="f.nom_utilisateur.errors.required"> Le nom est obligatoire </div>
         </div>
       </div>  
 <!-- date_naissance_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-        <label >Date de naissance</label>
+        <label >Date de naissance <span class="text-danger fs-1">*</span></label>
         <input class="form-control" type="date"  formControlName="date_naissance_utilisateur"  placeholder="date_naissance_utilisateur"  [ngClass]="{ 'is-invalid': submitted && f.date_naissance_utilisateur.errors }"/>
         <div *ngIf="submitted && f.date_naissance_utilisateur.errors" class="invalid-feedback">
-            <div *ngIf="f.date_naissance_utilisateur.errors.required"> Date de naissance est obligatoire </div>
+            <div *ngIf="f.date_naissance_utilisateur.errors.required"> La date de naissance est obligatoire </div>
         </div>
     </div> 
 <!-- lieu_naissance_utilisateur field avec un control de validite -->
@@ -30,50 +33,50 @@
         <label >Lieu de naissance</label>
         <input class="form-control" type="text"  formControlName="lieu_naissance_utilisateur"  placeholder="Saint-Louis"  [ngClass]="{ 'is-invalid': submitted && f.lieu_naissance_utilisateur.errors }"/>
         <div *ngIf="submitted && f.lieu_naissance_utilisateur.errors" class="invalid-feedback">
-            <div *ngIf="f.lieu_naissance_utilisateur.errors.required"> Lieu de naissance est obligatoire </div>
+            <div *ngIf="f.lieu_naissance_utilisateur.errors.required"> Le lieu de naissance est obligatoire </div>
         </div>
     </div> 
 <!-- date_insertion_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-        <label >Date d'insertion</label>
+        <label >Date d'insertion <span class="text-danger fs-1">*</span></label>
         <input class="form-control" type="date"  formControlName="date_insertion_utilisateur"  placeholder="date_insertion_utilisateur"  [ngClass]="{ 'is-invalid': submitted && f.date_insertion_utilisateur.errors }"/>
         <div *ngIf="submitted && f.date_insertion_utilisateur.errors" class="invalid-feedback">
-            <div *ngIf="f.date_insertion_utilisateur.errors.required"> date_insertion_utilisateur est obligatoire </div>
+            <div *ngIf="f.date_insertion_utilisateur.errors.required"> La date d'insertion est obligatoire </div>
         </div>
     </div>
 <!-- telephone_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-        <label >Numéro de téléphone</label>
+        <label >Numéro de téléphone <span class="text-danger fs-1">*</span></label>
         <input class="form-control" type="text"  formControlName="telephone_utilisateur"  placeholder="772101232"  [ngClass]="{ 'is-invalid': submitted && f.telephone_utilisateur.errors }"/>
         <div *ngIf="submitted && f.telephone_utilisateur.errors" class="invalid-feedback">
-            <div *ngIf="f.telephone_utilisateur.errors.required"> Téléphone est obligatoire </div>
+            <div *ngIf="f.telephone_utilisateur.errors.required"> Le numéro de téléphone est obligatoire </div>
         </div>
     </div> 
 <!-- id_role field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Privilège</label>
+      <label >Privilège <span class="text-danger fs-1">*</span> </label>
       <select class="form-control" type="text"  formControlName="id_role"  placeholder="id_role"  [ngClass]="{ 'is-invalid': submitted && f.id_role.errors }">
         <option value=""> Selectionner le privilège de l'utilisateur</option>
         <option value="{{un_role.id_role}}" *ngFor="let un_role of api.les_roles_des_utilisateurs">{{un_role.libelle_role}} </option>
       </select>  
       <div *ngIf="submitted && f.id_role.errors" class="invalid-feedback">
-          <div *ngIf="f.id_role.errors.required"> Privilège est obligatoire </div>
+          <div *ngIf="f.id_role.errors.required"> le privilège est obligatoire </div>
       </div>
     </div>   
 <!-- email_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Email</label>
+      <label >Email <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="text"  formControlName="email_utilisateur"  placeholder="ouli@gmail.com"  [ngClass]="{ 'is-invalid': submitted && f.email_utilisateur.errors }"/>
       <div *ngIf="submitted && f.email_utilisateur.errors" class="invalid-feedback">
-          <div *ngIf="f.email_utilisateur.errors.required"> Email est obligatoire </div>
+          <div *ngIf="f.email_utilisateur.errors.required"> L'email est obligatoire </div>
       </div>
     </div>  
 <!-- password_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Mot de passe</label>
+      <label >Mot de passe <span class="text-danger fs-1">*</span> </label>
       <input class="form-control" type="password"  formControlName="password_utilisateur"  placeholder="........"  [ngClass]="{ 'is-invalid': submitted && f.password_utilisateur.errors }"/>
       <div *ngIf="submitted && f.password_utilisateur.errors" class="invalid-feedback">
-          <div *ngIf="f.password_utilisateur.errors.required"> Mot de passe est obligatoire </div>
+          <div *ngIf="f.password_utilisateur.errors.required"> Le mot de passe est obligatoire </div>
       </div>
     </div>   
 </form>

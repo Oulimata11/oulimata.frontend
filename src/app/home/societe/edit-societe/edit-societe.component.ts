@@ -11,7 +11,6 @@ export class EditSocieteComponent {
   reactiveForm_edit_societe !: FormGroup;
   submitted: boolean = false
   loading_edit_societe: boolean = false
-  hasChange :boolean =false
   @Input()
   societe_to_edit: any = {}
   @Output()
@@ -26,14 +25,14 @@ export class EditSocieteComponent {
   init_form() {
       this.reactiveForm_edit_societe  = this.formBuilder.group({
 nom_societe: ["", Validators.required],
-description_societe: ["", Validators.required],
+description_societe: ["",],
       });
   }
   // mise à jour du formulaire
   update_form(societe_to_edit:any) {
       this.reactiveForm_edit_societe = this.formBuilder.group({
 nom_societe: [societe_to_edit.nom_societe, Validators.required],
-description_societe: [societe_to_edit.description_societe, Validators.required],
+description_societe: [societe_to_edit.description_societe,],
       });
   }
 
@@ -47,8 +46,7 @@ description_societe: [societe_to_edit.description_societe, Validators.required],
       if (this.reactiveForm_edit_societe.invalid) {
           return;
       }
-      this.hasChange=this.api.check_change(this.reactiveForm_edit_societe.value,this.societe_to_edit)
-      if(!this.hasChange) {
+      if(!this.check_change()) {
         alert("Il n'y a pas eu de changement");
         return;
       }
@@ -82,4 +80,15 @@ description_societe: [societe_to_edit.description_societe, Validators.required],
           this.loading_edit_societe = false;
       })
   }
+      //determiner s'il y'a chagement au niveau du formulaire ou pas 
+      check_change() : boolean {
+        // retourne true s'il y'a changement et false sinon
+        for (const [key, value] of Object.entries(this.reactiveForm_edit_societe.value)) {
+          if (this.societe_to_edit[key] != value) {
+            // il y'a eu un changement
+            return true;
+          }
+        }
+        return false;
+      }
 }

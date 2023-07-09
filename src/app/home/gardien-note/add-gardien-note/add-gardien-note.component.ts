@@ -29,7 +29,7 @@ export class AddGardienNoteComponent {
     id_gardien: ["", Validators.required],
     id_note: ["", Validators.required],
     date_note: ["", Validators.required],
-    commentaire: ["", Validators.required],
+    commentaire: [""],
       });
   }
 

@@ -34,7 +34,7 @@ export class EditGardienNoteComponent {
     id_gardien: ["", Validators.required],
     id_note: ["", Validators.required],
     date_note: ["", Validators.required],
-    commentaire: ["", Validators.required],
+    commentaire: ["",],
       });
   }
   // mise à jour du formulaire
@@ -43,7 +43,7 @@ export class EditGardienNoteComponent {
     id_gardien: [gardien_note_to_edit.id_gardien, Validators.required],
     id_note: [gardien_note_to_edit.id_note, Validators.required],
     date_note: [gardien_note_to_edit.date_note, Validators.required],
-    commentaire: [gardien_note_to_edit.commentaire, Validators.required],
+    commentaire: [gardien_note_to_edit.commentaire,],
       });
   }
 
@@ -57,8 +57,7 @@ export class EditGardienNoteComponent {
       if (this.reactiveForm_edit_gardien_note.invalid) {
           return;
       }
-      this.hasChange= this.api.check_change(this.reactiveForm_edit_gardien_note.value,this.gardien_note_to_edit)
-      if(!this.hasChange){
+      if(!this.check_change()){
         alert("Il n'y a pas eu de changement");
         return;
       }
@@ -129,4 +128,15 @@ export class EditGardienNoteComponent {
       this.loading_get_gardien = false;
     })
   }
+      //determiner s'il y'a chagement au niveau du formulaire ou pas 
+      check_change() : boolean {
+        // retourne true s'il y'a changement et false sinon
+        for (const [key, value] of Object.entries(this.reactiveForm_edit_gardien_note.value)) {
+          if (this.gardien_note_to_edit[key] != value) {
+            // il y'a eu un changement
+            return true;
+          }
+        }
+        return false;
+      }
 }

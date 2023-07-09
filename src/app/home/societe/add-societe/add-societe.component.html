@@ -1,20 +1,23 @@
 
+<div class="alert alert-warning text-center">
+  <p>Tous les champs marqués d'un astérisque (*) sont obligatoires.</p>
+</div>
 <form  [formGroup]="reactiveForm_add_societe " (ngSubmit)="onSubmit_add_societe ()" #form_add_societe ="ngForm" class="row">
 <!-- nom_societe field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >Nom </label>
+    <div class="form-group col-6">
+      <label >Nom  <span class="text-danger fs-1">*</span> </label>
       <input class="form-control" type="text"  formControlName="nom_societe"  placeholder="Christa SEN"  [ngClass]="{ 'is-invalid': submitted && f.nom_societe.errors }"/>
       <div *ngIf="submitted && f.nom_societe.errors" class="invalid-feedback">
-          <div *ngIf="f.nom_societe.errors.required"> nom_societe est obligatoire </div>
+          <div *ngIf="f.nom_societe.errors.required"> Le nom est obligatoire </div>
       </div>
     </div>  
 <!-- description_societe field avec un control de validite -->
-    <div class="form-group col-sm-6">
+    <div class="form-group col-8">
       <label >Description</label>
       <textarea class="form-control" type="text"  formControlName="description_societe"  placeholder="Societe de Gardiennage"  [ngClass]="{ 'is-invalid': submitted && f.description_societe.errors }">
         </textarea>
       <div *ngIf="submitted && f.description_societe.errors" class="invalid-feedback">
-          <div *ngIf="f.description_societe.errors.required"> description_societe est obligatoire </div>
+          <div *ngIf="f.description_societe.errors.required"> La description est obligatoire </div>
       </div>
     </div> 
 </form>

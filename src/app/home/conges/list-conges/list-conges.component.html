@@ -1,7 +1,7 @@
 <!-- entete -->
-<div class="d-flex align-items-center justify-content-between">
+<div class="d-flex justify-content-between align-items-center ">
   <h2 class="m-0 text-primary">Les Conges  - {{les_conges.length}} </h2>
-  <div class="d-flex">
+  <div class="d-flex align-items-center m-1">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_conges"
     (click)="open_modal(modal_add_conges)">Ajouter Conges
     <i class="bi bi-calendar-plus ml-1"></i>  </button>
@@ -14,8 +14,6 @@
       <tr>
 <th scope="col">conges</th>
 <th scope="col">Date de début</th>
-<th scope="col">Date de fin</th>
-<th scope="col">Date de la demande</th>
 <th scope="col">actions</th>
       </tr>
     </thead>
@@ -23,8 +21,6 @@
       <tr *ngFor="let one_conges of les_conges">
         <td>{{one_conges.prenom_gardien+" "+one_conges.nom_gardien}}</td>
         <td>{{one_conges.date_debut_conges | date : "dd-MM-yyyy"}}</td>
-        <td>{{one_conges.date_fin_conges | date : "dd-MM-yyyy"}}</td>
-        <td>{{one_conges.date_demande_conges | date : "dd-MM-yyyy"}}</td>
         <td>
           <div ngbDropdown container="body">
             <button type="button"  ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">

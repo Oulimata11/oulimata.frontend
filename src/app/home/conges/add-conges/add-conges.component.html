@@ -10,7 +10,7 @@
         <option value="{{one_gardien.id_gardien}}" *ngFor="let one_gardien of les_gardiens"> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}} </option>
         </select>
       <div *ngIf="submitted && f.id_gardien.errors" class="invalid-feedback">
-          <div *ngIf="f.id_gardien.errors.required"> id_gardien est obligatoire </div>
+          <div *ngIf="f.id_gardien.errors.required"> Le gardien est obligatoire </div>
       </div>
     </div>  
 <!-- date_debut_conges field avec un control de validite -->
@@ -18,7 +18,7 @@
       <label >Date de debut<span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_debut_conges"  placeholder="date_debut_conges"  [ngClass]="{ 'is-invalid': submitted && f.date_debut_conges.errors }"/>
       <div *ngIf="submitted && f.date_debut_conges.errors" class="invalid-feedback">
-          <div *ngIf="f.date_debut_conges.errors.required"> date_debut_conges est obligatoire </div>
+          <div *ngIf="f.date_debut_conges.errors.required"> La date de début est obligatoire </div>
       </div>
     </div>    
 </form>

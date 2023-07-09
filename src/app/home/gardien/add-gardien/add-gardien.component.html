@@ -8,7 +8,7 @@
     <label >Prénom <span class="text-danger fs-1">*</span></label>
     <input class="form-control" type="text"  formControlName="prenom_gardien"  placeholder="Souleymane"  [ngClass]="{ 'is-invalid': submitted && f.prenom_gardien.errors }"/>
     <div *ngIf="submitted && f.prenom_gardien.errors" class="invalid-feedback">
-        <div *ngIf="f.prenom_gardien.errors.required"> prenom_gardien est obligatoire </div>
+        <div *ngIf="f.prenom_gardien.errors.required"> Le prénom est obligatoire </div>
     </div>
   </div>  
   <!-- nom_gardien field avec un control de validite -->
@@ -16,7 +16,7 @@
       <label >Nom <span class="text-danger fs-1">*</span> </label>
       <input class="form-control" type="text"  formControlName="nom_gardien"  placeholder="SENE"  [ngClass]="{ 'is-invalid': submitted && f.nom_gardien.errors }"/>
       <div *ngIf="submitted && f.nom_gardien.errors" class="invalid-feedback">
-          <div *ngIf="f.nom_gardien.errors.required"> nom_gardien est obligatoire </div>
+          <div *ngIf="f.nom_gardien.errors.required"> Le nom est obligatoire </div>
       </div>
     </div>  
 
@@ -25,7 +25,7 @@
       <label >Date de naissance <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_naissance_gardien"  placeholder="date_naissance_gardien"  [ngClass]="{ 'is-invalid': submitted && f.date_naissance_gardien.errors }"/>
       <div *ngIf="submitted && f.date_naissance_gardien.errors" class="invalid-feedback">
-          <div *ngIf="f.date_naissance_gardien.errors.required"> date_naissance_gardien est obligatoire </div>
+          <div *ngIf="f.date_naissance_gardien.errors.required"> La date de naissance est obligatoire </div>
       </div>
     </div>  
 <!-- lieu_naissance_gardien field avec un control de validite -->
@@ -33,7 +33,7 @@
       <label >Lieu de naissance</label>
       <input class="form-control" type="text"  formControlName="lieu_naissance_gardien"  placeholder="Dakar"  [ngClass]="{ 'is-invalid': submitted && f.lieu_naissance_gardien.errors }"/>
       <div *ngIf="submitted && f.lieu_naissance_gardien.errors" class="invalid-feedback">
-          <div *ngIf="f.lieu_naissance_gardien.errors.required"> lieu_naissance_gardien est obligatoire </div>
+          <div *ngIf="f.lieu_naissance_gardien.errors.required"> Le lieu de naissance est obligatoire </div>
       </div>
     </div>  
 <!-- date_insertion_gardien field avec un control de validite -->
@@ -41,7 +41,7 @@
   <label >Date d'insertion <span class="text-danger fs-1">*</span></label>
   <input class="form-control" type="date"  formControlName="date_insertion_gardien"  placeholder="date_insertion_gardien"  [ngClass]="{ 'is-invalid': submitted && f.date_insertion_gardien.errors }"/>
   <div *ngIf="submitted && f.date_insertion_gardien.errors" class="invalid-feedback">
-      <div *ngIf="f.date_insertion_gardien.errors.required"> date_insertion_gardien est obligatoire </div>
+      <div *ngIf="f.date_insertion_gardien.errors.required">La date d'insertion est obligatoire </div>
   </div>
 </div>
 <!-- telephone_gardien field avec un control de validite -->
@@ -49,7 +49,7 @@
       <label >Numéro de téléphone <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="text"  formControlName="telephone_gardien"  placeholder="77 550 21 23"  [ngClass]="{ 'is-invalid': submitted && f.telephone_gardien.errors }"/>
       <div *ngIf="submitted && f.telephone_gardien.errors" class="invalid-feedback">
-          <div *ngIf="f.telephone_gardien.errors.required"> telephone_gardien est obligatoire </div>
+          <div *ngIf="f.telephone_gardien.errors.required"> Le numéro de téléphone est obligatoire </div>
       </div>
     </div>  
 <!-- email_gardien field avec un control de validite -->
@@ -57,7 +57,7 @@
       <label >Email</label>
       <input class="form-control" type="text"  formControlName="email_gardien"  placeholder="souleymane@gmail.com"  [ngClass]="{ 'is-invalid': submitted && f.email_gardien.errors }"/>
       <div *ngIf="submitted && f.email_gardien.errors" class="invalid-feedback">
-          <div *ngIf="f.email_gardien.errors.required"> email_gardien est obligatoire </div>
+          <div *ngIf="f.email_gardien.errors.required"> L'email est obligatoire </div>
       </div>
     </div>  
   
