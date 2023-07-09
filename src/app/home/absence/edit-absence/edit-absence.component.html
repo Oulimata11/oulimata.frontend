@@ -1,9 +1,10 @@
-
+<div class="alert alert-warning text-center">
+  <p>Tous les champs marqués d'un astérisque (*) sont obligatoires.</p>
+</div>
 <form  [formGroup]="reactiveForm_edit_absence " (ngSubmit)="onSubmit_edit_absence ()" #form_edit_absence ="ngForm" class="row">
- 
 <!-- id_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Gardien</label>
+      <label >Gardien <span class="text-danger fs-1">*</span></label>
       <select class="form-control" type="text"  formControlName="id_gardien"  placeholder="id_gardien"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien.errors }">
         <option value="{{one_gardien.id_gardien}}" *ngFor="let one_gardien of les_gardiens"> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</option>
         </select>
@@ -13,7 +14,7 @@
     </div>  
 <!-- date_absence field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Date de l'absence</label>
+      <label >Date de l'absence <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_absence"  placeholder="date_absence"  [ngClass]="{ 'is-invalid': submitted && f.date_absence.errors }"/>
       <div *ngIf="submitted && f.date_absence.errors" class="invalid-feedback">
           <div *ngIf="f.date_absence.errors.required"> date_absence est obligatoire </div>
@@ -32,6 +33,6 @@
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_absence ? true: !hasChange"
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_absence || !check_change()"
         (click)="form_edit_absence .ngSubmit.emit()">{{loading_edit_absence ?"En cours ...":"Valider"}}</button>
 </div>

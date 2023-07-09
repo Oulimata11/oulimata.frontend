@@ -90,7 +90,7 @@
     {{"Êtes-vous sûr de vouloir supprimer"}}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_gardien()">
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" [disabled]="loading_delete_gardien" (click)="delete_gardien()">
         {{ loading_delete_gardien ? "En cours ..." : "Oui" }}
     </button>
   <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non

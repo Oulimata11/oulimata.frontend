@@ -81,7 +81,7 @@ export class ListAbsenceComponent {
     this.loading_delete_absence = true;
     this.api.taf_post("absence/delete",{id:this.absence_to_delete.id_absence},(reponse: any)=>{
         //when success
-    this.loading_delete_absence = true;
+    this.loading_delete_absence = false;
         if(reponse.status){
         console.log("Opération effectuée avec succés sur la table absence . Réponse = ",reponse)
         this.api.Swal_success("Suppression effectuée avec succes ! ")
@@ -93,7 +93,7 @@ export class ListAbsenceComponent {
     },
     (error: any)=>{
         //when error
-    this.loading_delete_absence = true;
+    this.loading_delete_absence = false;
         console.log("Erreur inconnue! ",error)
     })
     }

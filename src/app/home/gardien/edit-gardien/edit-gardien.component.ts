@@ -26,20 +26,13 @@ export class EditGardienComponent {
   init_form() {
     this.reactiveForm_edit_gardien  = this.formBuilder.group({
         
-id_gardien: ["", Validators.required],
-id_utilisateur: ["", Validators.required],
-id_societe: ["", Validators.required],
-matricule_gardien: ["", Validators.required],
 nom_gardien: ["", Validators.required],
 prenom_gardien: ["", Validators.required],
 date_naissance_gardien: ["", Validators.required],
-lieu_naissance_gardien: ["", Validators.required],
+lieu_naissance_gardien: ["",],
 date_insertion_gardien: ["", Validators.required],
 telephone_gardien: ["", Validators.required],
-email_gardien: ["", Validators.required],
-statut_gardien: ["", Validators.required],
-created_at: ["", Validators.required],
-updated_at: ["", Validators.required]
+email_gardien: ["",],
     });
 }
   // mise à jour du formulaire
@@ -49,10 +42,10 @@ updated_at: ["", Validators.required]
 nom_gardien: [gardien_to_edit.nom_gardien, Validators.required],
 prenom_gardien: [gardien_to_edit.prenom_gardien, Validators.required],
 date_naissance_gardien: [gardien_to_edit.date_naissance_gardien, Validators.required],
-lieu_naissance_gardien: [gardien_to_edit.lieu_naissance_gardien, Validators.required],
+lieu_naissance_gardien: [gardien_to_edit.lieu_naissance_gardien,],
 date_insertion_gardien: [gardien_to_edit.date_insertion_gardien, Validators.required],
 telephone_gardien: [gardien_to_edit.telephone_gardien, Validators.required],
-email_gardien: [gardien_to_edit.email_gardien, Validators.required],
+email_gardien: [gardien_to_edit.email_gardien,],
     });
 }
 
@@ -67,8 +60,7 @@ email_gardien: [gardien_to_edit.email_gardien, Validators.required],
       if (this.reactiveForm_edit_gardien.invalid) {
           return;
       }
-      this.hasChange=this.api.check_change(this.reactiveForm_edit_gardien.value,this.gardien_to_edit)
-      if(!this.hasChange){
+      if(!this.check_change()){
         alert("Il y'a pas eu de changement");
         return;
       }
@@ -102,4 +94,15 @@ email_gardien: [gardien_to_edit.email_gardien, Validators.required],
           this.loading_edit_gardien = false;
       })
   }
+     //determiner s'il y'a chagement au niveau du formulaire ou pas 
+     check_change() : boolean {
+        // retourne true s'il y'a changement et false sinon
+        for (const [key, value] of Object.entries(this.reactiveForm_edit_gardien.value)) {
+          if (this.gardien_to_edit[key] != value) {
+            // il y'a eu un changement
+            return true;
+          }
+        }
+        return false;
+      }
 }

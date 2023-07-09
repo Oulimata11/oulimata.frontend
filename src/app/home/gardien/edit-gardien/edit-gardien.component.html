@@ -1,8 +1,10 @@
-
+<div class="alert alert-warning text-center">
+  <p>Tous les champs marqués d'un astérisque (*) sont obligatoires.</p>
+</div>
 <form  [formGroup]="reactiveForm_edit_gardien " (ngSubmit)="onSubmit_edit_gardien ()" #form_edit_gardien ="ngForm" class="row">
 <!-- prenom_gardien field avec un control de validite -->
   <div class="form-group col-sm-6">
-    <label >Prénom</label>
+    <label >Prénom <span class="text-danger fs-1">*</span></label>
     <input class="form-control" type="text"  formControlName="prenom_gardien"  placeholder="prenom_gardien"  [ngClass]="{ 'is-invalid': submitted && f.prenom_gardien.errors }"/>
     <div *ngIf="submitted && f.prenom_gardien.errors" class="invalid-feedback">
         <div *ngIf="f.prenom_gardien.errors.required"> prenom_gardien est obligatoire </div>
@@ -10,7 +12,7 @@
   </div> 
 <!-- nom_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Nom</label>
+      <label >Nom<span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="text"  formControlName="nom_gardien"  placeholder="nom_gardien"  [ngClass]="{ 'is-invalid': submitted && f.nom_gardien.errors }"/>
       <div *ngIf="submitted && f.nom_gardien.errors" class="invalid-feedback">
           <div *ngIf="f.nom_gardien.errors.required"> nom_gardien est obligatoire </div>
@@ -18,7 +20,7 @@
     </div>  
 <!-- date_naissance_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Date de naissance</label>
+      <label >Date de naissance <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_naissance_gardien"  placeholder="date_naissance_gardien"  [ngClass]="{ 'is-invalid': submitted && f.date_naissance_gardien.errors }"/>
       <div *ngIf="submitted && f.date_naissance_gardien.errors" class="invalid-feedback">
           <div *ngIf="f.date_naissance_gardien.errors.required"> date_naissance_gardien est obligatoire </div>
@@ -34,7 +36,7 @@
     </div>  
  <!-- date_insertion_gardien field avec un control de validite -->
  <div class="form-group col-sm-6">
-  <label >Date d'insertion</label>
+  <label >Date d'insertion<span class="text-danger fs-1">*</span></label>
   <input class="form-control" type="date"  formControlName="date_insertion_gardien"  placeholder="date_insertion_gardien" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date_insertion_gardien.errors }"/>
   <div *ngIf="submitted && f.date_insertion_gardien.errors" class="invalid-feedback">
       <div *ngIf="f.date_insertion_gardien.errors.required"> date_insertion_gardien est obligatoire </div>
@@ -42,7 +44,7 @@
 </div>
 <!-- telephone_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Numéro de téléphone</label>
+      <label >Numéro de téléphone<span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="text"  formControlName="telephone_gardien"  placeholder="telephone_gardien"  [ngClass]="{ 'is-invalid': submitted && f.telephone_gardien.errors }"/>
       <div *ngIf="submitted && f.telephone_gardien.errors" class="invalid-feedback">
           <div *ngIf="f.telephone_gardien.errors.required"> telephone_gardien est obligatoire </div>
@@ -61,6 +63,6 @@
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_gardien || !hasChange"
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_gardien || !check_change()"
         (click)="form_edit_gardien .ngSubmit.emit()">{{loading_edit_gardien ?"En cours ...":"Valider"}}</button>
 </div>

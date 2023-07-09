@@ -1,9 +1,11 @@
 
+<div class="alert alert-warning text-center">
+  <p>Tous les champs marqués d'un astérisque (*) sont obligatoires.</p>
+</div>
 <form  [formGroup]="reactiveForm_edit_conges " (ngSubmit)="onSubmit_edit_conges ()" #form_edit_conges ="ngForm" class="row">
-
 <!-- id_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Gardien</label>
+      <label >Gardien <span class="text-danger fs-1">*</span></label>
       <select class="form-control" type="text"  formControlName="id_gardien"  placeholder="id_gardien"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien.errors }">
         <option  value="{{one_gardien.id_gardien}}" *ngFor="let one_gardien of les_gardiens "> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</option>
         </select>
@@ -13,32 +15,16 @@
     </div>  
 <!-- date_debut_conges field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Date de début</label>
+      <label >Date de début <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_debut_conges"  placeholder="date_debut_conges"  [ngClass]="{ 'is-invalid': submitted && f.date_debut_conges.errors }"/>
       <div *ngIf="submitted && f.date_debut_conges.errors" class="invalid-feedback">
           <div *ngIf="f.date_debut_conges.errors.required"> date_debut_conges est obligatoire </div>
-      </div>
-    </div>  
-<!-- date_fin_conges field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >Date de fin</label>
-      <input class="form-control" type="date"  formControlName="date_fin_conges"  placeholder="date_fin_conges"  [ngClass]="{ 'is-invalid': submitted && f.date_fin_conges.errors }"/>
-      <div *ngIf="submitted && f.date_fin_conges.errors" class="invalid-feedback">
-          <div *ngIf="f.date_fin_conges.errors.required"> date_fin_conges est obligatoire </div>
-      </div>
-    </div>  
-<!-- date_demande_conges field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >Date de la demande</label>
-      <input class="form-control" type="date"  formControlName="date_demande_conges"  placeholder="date_demande_conges"  [ngClass]="{ 'is-invalid': submitted && f.date_demande_conges.errors }"/>
-      <div *ngIf="submitted && f.date_demande_conges.errors" class="invalid-feedback">
-          <div *ngIf="f.date_demande_conges.errors.required"> date_demande_conges est obligatoire </div>
       </div>
     </div>   
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_conges || !hasChange "
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_conges || !check_change()"
         (click)="form_edit_conges .ngSubmit.emit()">{{loading_edit_conges ?"En cours ...":"Valider"}}</button>
 </div>

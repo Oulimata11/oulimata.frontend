@@ -1,9 +1,11 @@
 
+<div class="alert alert-warning text-center">
+  <p>Tous les champs marqués d'un astérisque (*) sont obligatoires.</p>
+</div>
 <form  [formGroup]="reactiveForm_edit_societe_gardien " (ngSubmit)="onSubmit_edit_societe_gardien ()" #form_edit_societe_gardien ="ngForm" class="row">
-
 <!-- id_societe field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Societe</label>
+      <label >Societe <span class="text-danger fs-1">*</span></label>
       <select class="form-control" type="text"  formControlName="id_societe"  placeholder="id_societe"  [ngClass]="{ 'is-invalid': submitted && f.id_societe.errors }">
         <option value="{{one_societe.id_societe}}" *ngFor="let one_societe of les_societes "> {{one_societe.nom_societe}} </option>
         </select>
@@ -13,7 +15,7 @@
     </div>  
 <!-- id_gardien field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Gardien</label>
+      <label >Gardien<span class="text-danger fs-1">*</span></label>
       <select class="form-control" type="text"  formControlName="id_gardien"  placeholder="id_gardien"  [ngClass]="{ 'is-invalid': submitted && f.id_gardien.errors }">
         <option *ngFor="let one_gardien of les_gardiens"> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</option>
         </select>
@@ -23,7 +25,7 @@
     </div>  
 <!-- date_affectation field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Date d'affectation</label>
+      <label >Date d'affectation <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_affectation"  placeholder="date_affectation"  [ngClass]="{ 'is-invalid': submitted && f.date_affectation.errors }"/>
       <div *ngIf="submitted && f.date_affectation.errors" class="invalid-feedback">
           <div *ngIf="f.date_affectation.errors.required"> date_affectation est obligatoire </div>
@@ -33,6 +35,6 @@
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_societe_gardien || !hasChange "
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_societe_gardien || !check_change()"
         (click)="form_edit_societe_gardien .ngSubmit.emit()">{{loading_edit_societe_gardien ?"En cours ...":"Valider"}}</button>
 </div>

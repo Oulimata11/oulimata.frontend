@@ -58,8 +58,7 @@ date_affectation: ["", Validators.required],
       if (this.reactiveForm_edit_societe_gardien.invalid) {
           return;
       }
-  this.hasChange= this.api.check_change(this.reactiveForm_edit_societe_gardien.value,this.societe_gardien_to_edit)
-  if(!this.hasChange){
+  if(!this.check_change()){
     alert("Il n'y a pas eu de changement");
     return;
   }
@@ -125,4 +124,15 @@ date_affectation: ["", Validators.required],
           this.loading_get_gardien = false;
         })
       }
+     //determiner s'il y'a chagement au niveau du formulaire ou pas 
+     check_change() : boolean {
+      // retourne true s'il y'a changement et false sinon
+      for (const [key, value] of Object.entries(this.reactiveForm_edit_societe_gardien.value)) {
+        if (this.societe_gardien_to_edit[key] != value) {
+          // il y'a eu un changement
+          return true;
+        }
+      }
+      return false;
+    }
 }

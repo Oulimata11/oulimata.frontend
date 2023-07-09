@@ -27,8 +27,6 @@ export class AddCongesComponent {
       this.reactiveForm_add_conges  = this.formBuilder.group({
 id_gardien: ["", Validators.required],
 date_debut_conges: ["", Validators.required],
-date_fin_conges: ["", Validators.required],
-date_demande_conges: ["", Validators.required],
       });
   }
 
@@ -46,8 +44,6 @@ date_demande_conges: ["", Validators.required],
         id_utilisateur: this.api.token.user_connected.id_utilisateur,
         id_gardien : this.f.id_gardien.value,
         date_debut_conges: this.f.date_debut_conges.value,
-        date_fin_conges: this.f.date_fin_conges.value,
-        date_demande_conges: this.f.date_demande_conges.value,
       }
       this.add_conges (conges )
   }

@@ -31,8 +31,6 @@ export class EditCongesComponent {
       this.reactiveForm_edit_conges  = this.formBuilder.group({
         id_gardien: ["", Validators.required],
         date_debut_conges: ["", Validators.required],
-        date_fin_conges: ["", Validators.required],
-        date_demande_conges: ["", Validators.required],
       });
   }
   // mise à jour du formulaire
@@ -40,8 +38,6 @@ export class EditCongesComponent {
     this.reactiveForm_edit_conges = this.formBuilder.group({
     id_gardien: [conges_to_edit.id_gardien, Validators.required],
     date_debut_conges: [conges_to_edit.date_debut_conges, Validators.required],
-    date_fin_conges: [conges_to_edit.date_fin_conges, Validators.required],
-    date_demande_conges: [conges_to_edit.date_demande_conges, Validators.required],
       });
   }
 
@@ -55,8 +51,7 @@ export class EditCongesComponent {
       if (this.reactiveForm_edit_conges.invalid) {
           return;
       }
-      this.hasChange= this.api.check_change(this.reactiveForm_edit_conges.value,this.conges_to_edit)
-      if(!this.hasChange){
+      if(!this.check_change()){
         alert("Il y'a pas eu de changement");
         return;
       }
@@ -94,6 +89,7 @@ export class EditCongesComponent {
      get_gardien() {
         this.loading_get_gardien = true;
         this.api.taf_post("gardien/get", {}, (reponse: any) => {
+          this.loading_get_gardien = false;
           if (reponse.status) {
             this.les_gardiens = reponse.data
             this.les_gardiens=this.les_gardiens.map(gardien => {
@@ -106,9 +102,19 @@ export class EditCongesComponent {
             console.log("L'opération sur la table gardien a échoué. Réponse= ", reponse);
             alert("L'opération a echoué")
           }
-          this.loading_get_gardien = false;
         }, (error: any) => {
           this.loading_get_gardien = false;
         })
+      }
+      //determiner s'il y'a chagement au niveau du formulaire ou pas 
+      check_change() : boolean {
+        // retourne true s'il y'a changement et false sinon
+        for (const [key, value] of Object.entries(this.reactiveForm_edit_conges.value)) {
+          if (this.conges_to_edit[key] != value) {
+            // il y'a eu un changement
+            return true;
+          }
+        }
+        return false;
       }
 }

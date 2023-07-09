@@ -59,8 +59,7 @@ export class EditIndemniteGardienComponent {
       if (this.reactiveForm_edit_indemnite_gardien.invalid) {
           return;
       }
-      this.hasChange=this.api.check_change(this.reactiveForm_edit_indemnite_gardien.value,this.indemnite_gardien_to_edit)
-      if(!this.hasChange){
+      if(!this.check_change()){
         alert("Il n'y a pas eu de changement");
         return;
       }
@@ -124,4 +123,15 @@ export class EditIndemniteGardienComponent {
           this.loading_get_indemnite = false;
         })
       }
+         //determiner s'il y'a chagement au niveau du formulaire ou pas 
+    check_change() : boolean {
+      // retourne true s'il y'a changement et false sinon
+      for (const [key, value] of Object.entries(this.reactiveForm_edit_indemnite_gardien.value)) {
+        if (this.indemnite_gardien_to_edit[key] != value) {
+          // il y'a eu un changement
+          return true;
+        }
+      }
+      return false;
+    }
 }

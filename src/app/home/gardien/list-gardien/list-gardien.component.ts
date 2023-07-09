@@ -90,7 +90,7 @@ export class ListGardienComponent {
     this.loading_delete_gardien = true;
     this.api.taf_post("gardien/delete",{id:this.gardien_to_delete.id_gardien},(reponse: any)=>{
         //when success
-    this.loading_delete_gardien = true;
+    this.loading_delete_gardien = false;
         if(reponse.status){
         console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
         this.api.Swal_success("Suppression effectuée avec succes ! ")
@@ -102,7 +102,7 @@ export class ListGardienComponent {
     },
     (error: any)=>{
         //when error
-    this.loading_delete_gardien = true;
+    this.loading_delete_gardien = false;
         console.log("Erreur inconnue! ",error)
     })
     }

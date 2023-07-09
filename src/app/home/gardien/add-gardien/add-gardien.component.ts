@@ -24,10 +24,10 @@ export class AddGardienComponent {
     nom_gardien: ["", Validators.required],
     prenom_gardien: ["", Validators.required],
     date_naissance_gardien: ["", Validators.required],
-    lieu_naissance_gardien: ["", Validators.required],
+    lieu_naissance_gardien: ["",],
     date_insertion_gardien: ["", Validators.required],
     telephone_gardien: ["", Validators.required],
-    email_gardien: ["", Validators.required],
+    email_gardien: ["",],
         });
 }
 

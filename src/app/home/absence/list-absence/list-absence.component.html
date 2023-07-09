@@ -78,8 +78,9 @@
     {{"Êtes-vous sûr de vouloir supprimer"}}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_absence()">
-        {{ loading_delete_absence ? "En cours ..." : "Oui" }}
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="delete_absence()"
+    [disabled]="loading_delete_absence">
+        {{loading_delete_absence ? "En cours ..." : "Oui" }}
     </button>
   <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
     </button>

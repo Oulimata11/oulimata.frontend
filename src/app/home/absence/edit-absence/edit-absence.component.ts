@@ -18,14 +18,13 @@ export class EditAbsenceComponent {
    //les gardiens
    loading_get_gardien = false
    les_gardiens: any[] = []
-   hasChange : boolean =false
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
-      
   }
   ngOnInit(): void {
       this.init_form()
       this.update_form(this.absence_to_edit)
       this.get_gardien()
+
   }
   init_form() {
       this.reactiveForm_edit_absence  = this.formBuilder.group({
@@ -39,7 +38,7 @@ raison_absence: [""],
       this.reactiveForm_edit_absence = this.formBuilder.group({
 id_gardien: [absence_to_edit.id_gardien, Validators.required],
 date_absence: [absence_to_edit.date_absence, Validators.required],
-raison_absence: [absence_to_edit.raison_absence, Validators.required],
+raison_absence: [absence_to_edit.raison_absence],
       });
   }
 
@@ -52,12 +51,9 @@ raison_absence: [absence_to_edit.raison_absence, Validators.required],
       // stop here if form is invalid
       if (this.reactiveForm_edit_absence.invalid) {
           return;
-      }
-    //     //determiner s'il y'a chagement au niveau du formulaire ou pas 
-     this.hasChange= this.api.check_change(this.reactiveForm_edit_absence.value,this.absence_to_edit)
-    if (!this.hasChange) {
-        alert("Il n'y a pas eu de changements");
-        console.log("La valeur apres comparaison", this.hasChange)
+      } 
+      if(!this.check_change()){
+        alert("il n'y a pas eu de changement");
         return;
       }
       var absence = this.reactiveForm_edit_absence.value
@@ -88,7 +84,6 @@ raison_absence: [absence_to_edit.raison_absence, Validators.required],
           this.loading_edit_absence = false;
       })
   }
-
   //liste des gardiens
     get_gardien() {
         this.loading_get_gardien = true;
@@ -104,5 +99,16 @@ raison_absence: [absence_to_edit.raison_absence, Validators.required],
         }, (error: any) => {
           this.loading_get_gardien = false;
         })
+  }
+    //determiner s'il y'a chagement au niveau du formulaire ou pas 
+    check_change() : boolean {
+      // retourne true s'il y'a changement et false sinon
+      for (const [key, value] of Object.entries(this.reactiveForm_edit_absence.value)) {
+        if (this.absence_to_edit[key] != value) {
+          // il y'a eu un changement
+          return true;
+        }
+      }
+      return false;
     }
 }
