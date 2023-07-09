@@ -27,8 +27,10 @@
             </span>
           </div>
           <div class="mt-2">
-            <a (click)="open_modal_edit(modal_edit_utilisateur,one_utilisateur)" class="btn btn-outline-warning" rippleEffect>Modifier</a>
-            <a *ngIf="one_utilisateur.statut_utilisateur==1" class="btn btn-outline-danger ml-1" rippleEffect>Désactiver </a>
+            <a *ngIf="one_utilisateur.statut_utilisateur==0" class="btn btn-outline-warning" 
+            (click)="activer_compte(one_utilisateur)" rippleEffect>Activer</a>
+            <a *ngIf="one_utilisateur.statut_utilisateur==1" class="btn btn-outline-danger ml-1" 
+            (click)="open_modal_desactiver_compte(modal_desactiver_compte,one_utilisateur)" rippleEffect>Désactiver </a>
           </div>
         </div>
       </div>
@@ -50,17 +52,23 @@
   </div>
 </ng-template>
 
-<!-- modification -->
-<ng-template #modal_edit_utilisateur let-modal>
-  <div class="modal-header" data-bs-theme="dark">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification Utilisateur</h5>
-    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+<!-- desactiver compte -->
+<ng-template #modal_desactiver_compte let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Désactivation du compte</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <app-edit-utilisateur *ngIf="utilisateur_to_edit" (cb_edit_utilisateur)="after_edit($event)"
-     [utilisateur_to_edit]="utilisateur_to_edit"></app-edit-utilisateur>
+    {{"Êtes-vous sûr de vouloir désactiver ce compte ? "}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" (click)="desactiver_compte()">
+        {{ loading_desactiver_compte ? "En cours ..." : "Oui" }}
+    </button>
+  <button type="button"class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+    </button>
   </div>
 </ng-template>
 

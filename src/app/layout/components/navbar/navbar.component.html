@@ -63,14 +63,14 @@
           <span class="user-name font-weight-bolder">{{this.api.token.token_decoded.taf_data.prenom_utilisateur+" "+this.api.token.token_decoded.taf_data.nom_utilisateur}}</span>
           <span class="user-status">{{this.api.token.token_decoded.taf_data.libelle_role}}</span>
         </div>
-        <span class="avatar"
+        <!-- <span class="avatar"
           ><img
             class="round"
             src="../../../../assets/images/portrait/small/avatar-s-11.jpg"
             alt="avatar"
             height="40"
             width="40" /><span class="avatar-status-online"></span
-        ></span>
+        ></span> -->
       </a>
       <div ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-right">
         <a ngbDropdownItem [routerLink]="['/home/utilisateur/profil']"><span [data-feather]="'user'" [class]="'mr-50'"></span> Profil</a>
