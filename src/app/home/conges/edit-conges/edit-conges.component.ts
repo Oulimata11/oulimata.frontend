@@ -18,7 +18,6 @@ export class EditCongesComponent {
    //les gardiens
    loading_get_gardien = false
    les_gardiens: any[] = []
-   hasChange : boolean =false 
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }

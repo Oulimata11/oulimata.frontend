@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 
 @Component({
@@ -9,9 +10,9 @@ import { ApiService } from 'app/service/api/api.service';
 export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
-  user:any =undefined
+  user?:any;
 
-  constructor(public api: ApiService) {}
+  constructor(public api: ApiService, private modalService: NgbModal) {}
   ngOnInit(): void {
     this.get_utilisateur(this.api.token.token_decoded.taf_data.id_utilisateur)
   }
@@ -30,5 +31,13 @@ export class ProfilUtilisateurComponent implements OnInit {
       this.loading_get_utilisateur = false;
     })
   }
-
+  open_modal_edit_profil(modal) {
+    this.modalService.open(modal, {
+      centered: true,
+    });
+  }
+  call_back_edit_profil(event: any) {
+    // renouveler le token
+    this.user = event
+  }
 }

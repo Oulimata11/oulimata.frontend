@@ -51,6 +51,7 @@ import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-
 import { AddSocieteGardienComponent } from './societe-gardien/add-societe-gardien/add-societe-gardien.component';
 import { EditSocieteGardienComponent } from './societe-gardien/edit-societe-gardien/edit-societe-gardien.component';
 import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
+import { EditProfilUtilisateurComponent } from './utilisateur/edit-profil-utilisateur/edit-profil-utilisateur.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gard
     AddSocieteGardienComponent,
     EditSocieteGardienComponent,
     ListSocieteGardienComponent,
+    EditProfilUtilisateurComponent,
   ],
   imports: [
     CommonModule,

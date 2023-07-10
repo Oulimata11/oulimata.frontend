@@ -3,11 +3,11 @@
     <div class="col-4">
         <img src="assets/images/portrait/small/avatar-s-5.jpg"  class="img-fluid rounded-top" alt="">
     </div>
-    <div class="col-8">
+    <div class="col-8" *ngIf="user">
         <div class="border-left-primary pl-2">
             <div class="d-flex justify-content-between align-items-center">
                 <h1> {{ user.prenom_utilisateur+" "+user.nom_utilisateur}}</h1>
-                <button class="btn btn-primary"> Modifier mon profil</button>
+                <button class="btn btn-primary mr-1" type="button" (click)="open_modal_edit_profil(modal_edit_profil)"> Modifier mon profil</button>
             </div>
         </div>
         <ul class="list-group m-1">
@@ -15,7 +15,26 @@
             <li class="list-group-item"> Lieu de naissance : {{user.lieu_naissance_utilisateur}} </li>
             <li class="list-group-item"> Téléphone : {{user.telephone_utilisateur}} </li>
             <li class="list-group-item"> Email : {{user.email_utilisateur}} </li>
-            <li class="list-group-item"> Mot de pass : ******** </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                 Mot de pass : ********
+                </div>
+                <button class="m-25" type="button" class="btn btn-outline-secondary"> Changer le mot de passe</button>
+             </li>
         </ul>
     </div>
 </div>
+
+<!--Modifier profil-->
+<ng-template #modal_edit_profil let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title text-primary" id="exampleModalCenterTitle"> Modifier ses informations</h5>
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus *ngIf="user">
+      <app-edit-profil-utilisateur [user_to_edit]="user" (call_back)="call_back_edit_profil($event)"></app-edit-profil-utilisateur>
+    </div>
+  </ng-template>
+<!--/-->
