@@ -10,7 +10,7 @@ import { ApiService } from 'app/service/api/api.service';
 export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
-  user:any 
+  utilisateur:any =undefined 
   constructor(public api: ApiService,private modalService:NgbModal) {}
   ngOnInit(): void {
     console.log("utilisateur connecté",this.api.token.token_decoded.taf_data)
@@ -20,7 +20,7 @@ export class ProfilUtilisateurComponent implements OnInit {
     this.loading_get_utilisateur = true;
     this.api.taf_post("utilisateur/profil", {id_utilisateur : id_utilisateur}, (reponse: any) => {
       if (reponse.status) {
-        this.user= reponse.data[0]
+        this.utilisateur= reponse.data[0]
         console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ",reponse);
       } else {
         console.log("L'opération sur la table utilisateur a échoué. Réponse= ", reponse);
