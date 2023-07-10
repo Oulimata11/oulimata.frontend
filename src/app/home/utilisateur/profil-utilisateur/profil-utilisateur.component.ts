@@ -10,7 +10,7 @@ export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
   user:any =undefined
-  
+
   constructor(public api: ApiService) {}
   ngOnInit(): void {
     this.get_utilisateur(this.api.token.token_decoded.taf_data.id_utilisateur)
@@ -30,4 +30,5 @@ export class ProfilUtilisateurComponent implements OnInit {
       this.loading_get_utilisateur = false;
     })
   }
+
 }
