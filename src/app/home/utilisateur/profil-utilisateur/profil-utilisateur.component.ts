@@ -9,11 +9,10 @@ import { ApiService } from 'app/service/api/api.service';
 export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
-  utilisateur:any =undefined 
+  utilisateur:any
   
   constructor(public api: ApiService) {}
   ngOnInit(): void {
-    console.log("utilisateur connecté",this.api.token.token_decoded.taf_data)
     this.get_utilisateur(this.api.token.token_decoded.taf_data.id_utilisateur)
   }
   get_utilisateur(id_utilisateur:number) {
