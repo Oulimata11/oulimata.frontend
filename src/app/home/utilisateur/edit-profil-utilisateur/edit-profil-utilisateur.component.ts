@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'app/service/api/api.service';
 
 @Component({
@@ -10,14 +8,15 @@ import { ApiService } from 'app/service/api/api.service';
   styleUrls: ['./edit-profil-utilisateur.component.scss']
 })
 export class EditProfilUtilisateurComponent implements OnInit {
-  @Input()
-  user_to_edit: any = {};
-  @Output()
-  call_back = new EventEmitter();
+
   reactiveForm_edit_utilisateur !: FormGroup;
   submitted: boolean = false
   loading_edit_utilisateur: boolean = false
   utilisateur_to_edit: any = {}
+  @Input()
+  user_to_edit: any = {};
+  @Output()
+  call_back = new EventEmitter();
   constructor(private formBuilder: FormBuilder, public api: ApiService) { }
   ngOnInit(): void {
       this.init_form()
@@ -46,7 +45,7 @@ export class EditProfilUtilisateurComponent implements OnInit {
   }
 
   // acces facile au champs de votre formulaire
-  get f(): any { return this.reactiveForm_edit_utilisateur .controls; }
+  get f(): any { return this.reactiveForm_edit_utilisateur.controls; }
   // validation du formulaire
   onSubmit_edit_utilisateur() {
       this.submitted = true;
@@ -88,10 +87,9 @@ export class EditProfilUtilisateurComponent implements OnInit {
   }
       //determiner s'il y'a chagement au niveau du formulaire ou pas 
   check_change() : boolean {
-    // retourne true s'il y'a changement et false sinon
+  // retourne true s'il y'a changement et false sinon
     for (const [key, value] of Object.entries(this.reactiveForm_edit_utilisateur.value)) {
       if (this.edit_utilisateur[key] != value) {
-        // il y'a eu un changement
         return true;
       }
     }
