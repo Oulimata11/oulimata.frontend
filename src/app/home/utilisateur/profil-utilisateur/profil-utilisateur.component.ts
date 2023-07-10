@@ -9,7 +9,7 @@ import { ApiService } from 'app/service/api/api.service';
 export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
-  utilisateur:any
+  user:any =undefined
   
   constructor(public api: ApiService) {}
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class ProfilUtilisateurComponent implements OnInit {
     this.loading_get_utilisateur = true;
     this.api.taf_post("utilisateur/profil", {id_utilisateur : id_utilisateur}, (reponse: any) => {
       if (reponse.status) {
-        this.utilisateur= reponse.data[0]
+        this.user= reponse.data[0]
         console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ",reponse);
       } else {
         console.log("L'opération sur la table utilisateur a échoué. Réponse= ", reponse);
