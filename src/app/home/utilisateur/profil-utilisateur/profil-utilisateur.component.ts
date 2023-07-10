@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 
 @Component({
@@ -11,7 +10,8 @@ export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
   utilisateur:any =undefined 
-  constructor(public api: ApiService,private modalService:NgbModal) {}
+  
+  constructor(public api: ApiService) {}
   ngOnInit(): void {
     console.log("utilisateur connecté",this.api.token.token_decoded.taf_data)
     this.get_utilisateur(this.api.token.token_decoded.taf_data.id_utilisateur)
