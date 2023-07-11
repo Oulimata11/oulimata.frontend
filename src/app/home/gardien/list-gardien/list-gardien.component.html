@@ -3,7 +3,7 @@
   <h2 class="m-0 text-primary"> Les Gardiens - {{les_gardiens.length}}</h2>
   <div class="d-flex align-items-center">
     <div class="form-group m-0">
-      <input class="form-control" type="text" [(ngModel)]="searchText">
+      <input class="form-control" type="text" [(ngModel)]="search" (input)="recherche_change()">
     </div>
     <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
       (click)="open_modal(modal_add_gardien)">
@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let one_gardien of les_gardiens | filter : searchText">
+      <tr *ngFor="let one_gardien of les_gardiens">
         <td>
           <div class="avatar-group">
             <div data-toggle="tooltip" data-popup="tooltip-custom" placement="top" container="body" title=""
@@ -36,9 +36,13 @@
         </td>
         <td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</td>
         <td>{{one_gardien.telephone_gardien}}</td>
-        <td
-          class="{{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-light-success mr-1' : 'badge badge-pill badge-light-danger mr-1'}}">
-          {{one_gardien.statut}}</td>
+        <td > 
+          <button data-toggle="tooltip" data-popup="tooltip-custom" placement="top" container="body"  ngbTooltip="Désactiver le gardien"
+          (click)="open_modal_desactiver(modal_desactiver_gardien,one_gardien)"
+          class="btn {{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-light-success mr-1' : 'badge badge-pill badge-light-danger mr-1'}}">
+          {{one_gardien.statut}} 
+        </button>
+        </td>
           <td>
             <div ngbDropdown container="body">
               <button type="button" class="btn p-0  hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
@@ -76,6 +80,7 @@
     <app-add-gardien (cb_add_gardien)="after_add($event)"></app-add-gardien>
   </div>
 </ng-template>
+
 <!-- modification -->
 <ng-template #modal_edit_gardien let-modal>
   <div class="modal-header">
@@ -89,6 +94,7 @@
       (cb_edit_gardien)="after_edit($event)"> </app-edit-gardien>
   </div>
 </ng-template>
+
 <!-- Supprimer -->
 <ng-template #modal_delete_gardien let-modal>
   <div class="modal-header">
@@ -109,6 +115,7 @@
     </button>
   </div>
 </ng-template>
+
 <!-- Details -->
 <ng-template #modal_detail_gardien let-modal>
   <div class="modal-header">
@@ -119,5 +126,26 @@
   </div>
   <div class="modal-body">
     <app-detail-gardien [gardien_detail]="gardien_detail"> </app-detail-gardien>
+  </div>
+</ng-template>
+
+<!-- Désactiver-->
+<ng-template #modal_desactiver_gardien let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Désactivation</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{"Désactiver un gardien signifie que son contrat est terminé. Êtes vous sûr de vouloir le désactiver?"}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn bg-danger  bg-darken-2 text-white" [disabled]="loading_desactiver_gardien"
+      (click)="desactiver_gardien()">
+      {{ loading_desactiver_gardien ? "En cours ..." : "Oui" }}
+    </button>
+    <button type="button" class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
+    </button>
   </div>
 </ng-template>

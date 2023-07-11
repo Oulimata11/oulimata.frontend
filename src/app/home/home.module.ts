@@ -52,6 +52,7 @@ import { AddSocieteGardienComponent } from './societe-gardien/add-societe-gardie
 import { EditSocieteGardienComponent } from './societe-gardien/edit-societe-gardien/edit-societe-gardien.component';
 import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
 import { EditProfilUtilisateurComponent } from './utilisateur/edit-profil-utilisateur/edit-profil-utilisateur.component';
+import { EditPasswordUtilisateurComponent } from './utilisateur/edit-password-utilisateur/edit-password-utilisateur.component';
 
 
 @NgModule({
@@ -96,6 +97,7 @@ import { EditProfilUtilisateurComponent } from './utilisateur/edit-profil-utilis
     EditSocieteGardienComponent,
     ListSocieteGardienComponent,
     EditProfilUtilisateurComponent,
+    EditPasswordUtilisateurComponent,
   ],
   imports: [
     CommonModule,

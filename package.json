@@ -59,6 +59,7 @@
     "jant-taf": "^1.0.8",
     "katex": "0.13.11",
     "lodash": "4.17.21",
+    "moment": "^2.29.4",
     "ng-apexcharts": "1.5.8",
     "ng-block-ui": "3.0.2",
     "ng2-charts": "2.4.2",

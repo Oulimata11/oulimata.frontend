@@ -1,6 +1,6 @@
 
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-add-gardien-note',
@@ -107,6 +107,17 @@ export class AddGardienNoteComponent {
     }, (error: any) => {
       this.loading_get_gardien = false;
     })
+  }
+
+  public ctrl = new FormControl(null, Validators.required);
+  // Public Methods
+  // -----------------------------------------------------------------------------------------------------
+  toggle() {
+    if (this.ctrl.disabled) {
+      this.ctrl.enable();
+    } else {
+      this.ctrl.disable();
+    }
   }
 
 }

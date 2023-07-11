@@ -8,14 +8,13 @@ import { ApiService } from 'app/service/api/api.service';
   styleUrls: ['./edit-profil-utilisateur.component.scss']
 })
 export class EditProfilUtilisateurComponent implements OnInit {
-
+    @Input()
+    user_to_edit: any = {};
+    @Output()
+    cb_edit_profil = new EventEmitter();
   reactiveForm_edit_utilisateur !: FormGroup;
   submitted: boolean = false
   loading_edit_utilisateur: boolean = false
-  @Input()
-  user_to_edit: any = {};
-  @Output()
-  call_back = new EventEmitter();
   constructor(private formBuilder: FormBuilder, public api: ApiService) { }
   ngOnInit(): void {
       this.init_form()
@@ -74,6 +73,7 @@ export class EditProfilUtilisateurComponent implements OnInit {
           this.loading_edit_utilisateur = false;
           if (reponse.status) {
               console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", reponse);
+              this.cb_edit_profil.emit({new_data:JSON.parse(utilisateur.data)})
               this.onReset_edit_utilisateur()
               alert("Opération effectuée avec succés sur la table utilisateur")
           } else {

@@ -13,6 +13,7 @@ export class ListCongesComponent {
   selected_conges: any = undefined
   conges_to_edit: any = undefined
   conges_to_delete : any =undefined
+  search :''
   constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
@@ -89,5 +90,14 @@ export class ListCongesComponent {
     this.loading_delete_conges = true;
         console.log("Erreur inconnue! ",error)
     })
-    }
+  }
+   //recherche 
+   recherche_change() {
+    this.les_conges= this.les_conges
+      .filter((un_conges: any) => {
+        return (un_conges.prenom_gardien + un_conges.nom_gardien)
+        .toLowerCase()
+        .includes(this.search.toLowerCase().replace(/\s/g, ''))
+      })
+}
 }

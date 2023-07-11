@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
@@ -11,13 +10,13 @@ import { ApiService } from 'app/service/api/api.service';
 export class ListGardienComponent {
   loading_get_gardien = false
   loading_delete_gardien =false
+  loading_desactiver_gardien = false
   les_gardiens: any[] = []
-  selected_gardien: any = undefined
   gardien_to_edit: any = undefined
   gardien_to_delete :any = undefined
   gardien_detail : any =undefined
-  searchText : any 
-
+  gardien_disable : any =undefined
+  search : ''
   constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
@@ -107,5 +106,41 @@ export class ListGardienComponent {
         console.log("Erreur inconnue! ",error)
     })
     }
-
+//desactiver-gardien
+open_modal_desactiver( modal:any , one_gardien: any){
+  this.gardien_disable = one_gardien
+  this.modalService.open(modal, {
+    centered: true
+  });
+}
+//fonction qui desactive un gardien
+desactiver_gardien (){
+  this.loading_desactiver_gardien = true;
+  this.api.taf_post("gardien/disable_gardien",{id_gardien:this.gardien_disable.id_gardien},(reponse: any)=>{
+      //when success
+  this.loading_desactiver_gardien = false;
+      if(reponse.status){
+      console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
+      this.api.Swal_success("Suppression effectuée avec succes ! ")
+      this.modalService.dismissAll()
+      this.get_gardien()
+      }else{
+      console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)
+      }
+  },
+  (error: any)=>{
+      //when error
+  this.loading_desactiver_gardien = false;
+      console.log("Erreur inconnue! ",error)
+  })
+  }
+  //recherche 
+  recherche_change() {
+    this.les_gardiens = this.les_gardiens
+      .filter((un_gardien: any) => {
+        return (un_gardien.prenom_gardien + un_gardien.nom_gardien + un_gardien.telephone_gardien)
+        .toLowerCase()
+        .includes(this.search.toLowerCase().replace(/\s/g, ''))
+      })
+}
 }

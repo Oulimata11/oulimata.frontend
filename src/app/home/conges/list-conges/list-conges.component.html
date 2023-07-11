@@ -2,7 +2,10 @@
 <div class="d-flex justify-content-between align-items-center ">
   <h2 class="m-0 text-primary">Les Conges  - {{les_conges.length}} </h2>
   <div class="d-flex align-items-center m-1">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_conges"
+    <div class="form-group m-0">
+      <input class="form-control" type="text" [(ngModel)]="search" (input)="recherche_change()">
+    </div>
+    <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_conges"
     (click)="open_modal(modal_add_conges)">Ajouter Conges
     <i class="bi bi-calendar-plus-fill ml-1"></i>  </button>
   </div>

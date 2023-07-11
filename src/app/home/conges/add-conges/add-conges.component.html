@@ -16,12 +16,16 @@
 <!-- date_debut_conges field avec un control de validite -->
     <div class="form-group col-sm-6">
       <label >Date de debut<span class="text-danger fs-1">*</span></label>
-      <input class="form-control" type="date"  formControlName="date_debut_conges"  placeholder="date_debut_conges"  [ngClass]="{ 'is-invalid': submitted && f.date_debut_conges.errors }"/>
+      <input class="form-control" type="date" (change)="calcul_fin_conges()"
+       formControlName="date_debut_conges"  placeholder="date_debut_conges"  [ngClass]="{ 'is-invalid': submitted && f.date_debut_conges.errors }"/>
       <div *ngIf="submitted && f.date_debut_conges.errors" class="invalid-feedback">
           <div *ngIf="f.date_debut_conges.errors.required"> La date de début est obligatoire </div>
       </div>
     </div>    
 </form>
+  <div class="alert alert-info text-center" *ngIf="date_fin_conges">
+    <p> Le congés prendra fin le {{ date_fin_conges}}.</p>
+  </div>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">

@@ -19,7 +19,7 @@
                 <div>
                  Mot de pass : ********
                 </div>
-                <button class="m-25" type="button" class="btn btn-outline-secondary"> Changer le mot de passe</button>
+                <button class="m-25" type="button" class="btn btn-outline-secondary" (click)="open_modal_edit_password(modal_edit_password)">Changer le mot de passe</button>
              </li>
         </ul>
     </div>
@@ -34,7 +34,20 @@
       </button>
     </div>
     <div class="modal-body" tabindex="0" ngbAutofocus *ngIf="user">
-      <app-edit-profil-utilisateur [user_to_edit]="user" (call_back)="call_back_edit_profil($event)"></app-edit-profil-utilisateur>
+      <app-edit-profil-utilisateur [user_to_edit]="user" (cb_edit_profil)="call_back_edit_profil($event)"></app-edit-profil-utilisateur>
     </div>
   </ng-template>
 <!--/-->
+ <!-- Modifier password-->
+ <ng-template #modal_edit_password let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="myModalLabel160">Modifier son mot de pass</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <app-edit-password-utilisateur *ngIf="user" [utilisateur_to_edit]="user"
+      (cb_edit_password)="call_back_edit_password($event)"></app-edit-password-utilisateur>
+  </div>
+</ng-template>

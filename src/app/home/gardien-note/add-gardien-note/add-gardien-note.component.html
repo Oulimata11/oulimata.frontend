@@ -43,6 +43,14 @@
       </div>
     </div>  
  
+<div class="form-group">
+  <div class="rating">
+    <ngb-rating [formControl]="ctrl" class="outline-none"></ngb-rating>
+  </div>
+</div>
+<hr>
+<pre class="p-1 text-white">Note Attribuée:<b>{{ ctrl.value}}</b></pre>
+
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 

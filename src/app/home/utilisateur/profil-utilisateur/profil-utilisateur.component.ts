@@ -10,7 +10,7 @@ import { ApiService } from 'app/service/api/api.service';
 export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
-  user?:any;
+  user:any = undefined;
 
   constructor(public api: ApiService, private modalService: NgbModal) {}
   ngOnInit(): void {
@@ -39,5 +39,15 @@ export class ProfilUtilisateurComponent implements OnInit {
   call_back_edit_profil(event: any) {
     // renouveler le token
     this.user = event
+    this.modalService.dismissAll()
+    this.get_utilisateur(this.api.token.token_decoded.taf_data.id_utilisateur)
+  }
+  open_modal_edit_password(modal) {
+    this.modalService.open(modal, {
+      centered: true,
+    });
+  }
+  call_back_edit_password(event: any) {
+    this.modalService.dismissAll()
   }
 }
