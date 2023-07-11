@@ -12,7 +12,6 @@ export class EditProfilUtilisateurComponent implements OnInit {
   reactiveForm_edit_utilisateur !: FormGroup;
   submitted: boolean = false
   loading_edit_utilisateur: boolean = false
-  utilisateur_to_edit: any = {}
   @Input()
   user_to_edit: any = {};
   @Output()
@@ -59,8 +58,8 @@ export class EditProfilUtilisateurComponent implements OnInit {
         return;
       }
       var utilisateur = this.reactiveForm_edit_utilisateur.value
-      this.edit_utilisateur({
-      condition:JSON.stringify({id_utilisateur:this.utilisateur_to_edit.id_utilisateur}),
+      this.edit_profil({
+      condition:JSON.stringify({id_utilisateur:this.user_to_edit.id_utilisateur}),
       data:JSON.stringify(utilisateur)
       })
   }
@@ -69,7 +68,7 @@ export class EditProfilUtilisateurComponent implements OnInit {
       this.submitted = false;
       this.reactiveForm_edit_utilisateur.reset();
   }
-  edit_utilisateur(utilisateur: any) {
+  edit_profil(utilisateur: any) {
       this.loading_edit_utilisateur = true;
       this.api.taf_post("utilisateur/edit", utilisateur, (reponse: any) => {
           this.loading_edit_utilisateur = false;
@@ -88,11 +87,11 @@ export class EditProfilUtilisateurComponent implements OnInit {
       //determiner s'il y'a chagement au niveau du formulaire ou pas 
   check_change() : boolean {
   // retourne true s'il y'a changement et false sinon
-    for (const [key, value] of Object.entries(this.reactiveForm_edit_utilisateur.value)) {
-      if (this.edit_utilisateur[key] != value) {
-        return true;
+  for (const [key, value] of Object.entries(this.reactiveForm_edit_utilisateur.value)) {
+    if (this.user_to_edit[key] != value) {
+      return true;
       }
     }
-        return false;
-      }
+      return false;
+  }
 }
