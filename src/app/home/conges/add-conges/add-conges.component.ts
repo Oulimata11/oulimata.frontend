@@ -97,7 +97,7 @@ export class AddCongesComponent {
   calcul_fin_conges() {
     if (this.reactiveForm_add_conges.valid) {
       const dateDebut = this.reactiveForm_add_conges.value.date_debut_conges;
-      const momentDateDebut = moment(dateDebut, 'YYYY-MM-DD').add(1, 'month');;
+      const momentDateDebut = moment(dateDebut, 'YYYY-MM-DD').add(1, 'month');
       this.date_fin_conges = momentDateDebut.format('DD/MM/YYYY');
     } else {
       this.date_fin_conges = '';

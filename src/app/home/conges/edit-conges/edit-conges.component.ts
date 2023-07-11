@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'app/service/api/api.service';
+import moment from 'moment';
 @Component({
   selector: 'app-edit-conges',
   templateUrl: './edit-conges.component.html',
@@ -18,6 +19,7 @@ export class EditCongesComponent {
    //les gardiens
    loading_get_gardien = false
    les_gardiens: any[] = []
+   date_fin_conges : any
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
@@ -115,5 +117,14 @@ export class EditCongesComponent {
           }
         }
         return false;
+      }
+      calcul_fin_conges() {
+        if (this.reactiveForm_edit_conges.valid) {
+          const dateDebut = this.reactiveForm_edit_conges.value.date_debut_conges;
+          const momentDateDebut = moment(dateDebut, 'YYYY-MM-DD').add(1, 'month');
+          this.date_fin_conges = momentDateDebut.format('DD/MM/YYYY');
+        } else {
+          this.date_fin_conges = '';
+        }
       }
 }
