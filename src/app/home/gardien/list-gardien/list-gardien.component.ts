@@ -11,11 +11,13 @@ export class ListGardienComponent {
   loading_get_gardien = false
   loading_delete_gardien =false
   loading_desactiver_gardien = false
+  loading_activer_gardien=false
   les_gardiens: any[] = []
   gardien_to_edit: any = undefined
   gardien_to_delete :any = undefined
   gardien_detail : any =undefined
   gardien_disable : any =undefined
+  gardien_enable : any =undefined
   search : ''
   constructor(public api: ApiService,private modalService: NgbModal) {
 
@@ -134,8 +136,28 @@ desactiver_gardien (){
       console.log("Erreur inconnue! ",error)
   })
   }
-  //recherche 
-  recherche_change() {
+  //fonction qui active un gardien
+activer_gardien (){
+  this.loading_activer_gardien = true;
+  this.api.taf_post("gardien/gardien_enable",{id_gardien:this.gardien_enable.id_gardien},(reponse: any)=>{
+      //when success
+  this.loading_activer_gardien = false;
+      if(reponse.status){
+      console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
+      this.api.Swal_success("Suppression effectuée avec succes ! ")
+      this.get_gardien()
+      }else{
+      console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)
+      }
+  },
+  (error: any)=>{
+      //when error
+  this.loading_activer_gardien = false;
+      console.log("Erreur inconnue! ",error)
+  })
+  }
+//champs de recherche 
+recherche_change() {
     this.les_gardiens = this.les_gardiens
       .filter((un_gardien: any) => {
         return (un_gardien.prenom_gardien + un_gardien.nom_gardien + un_gardien.telephone_gardien)
