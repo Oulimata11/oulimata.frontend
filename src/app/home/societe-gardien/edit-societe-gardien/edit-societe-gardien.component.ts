@@ -36,7 +36,9 @@ export class EditSocieteGardienComponent {
       this.reactiveForm_edit_societe_gardien  = this.formBuilder.group({
 id_societe: ["", Validators.required],
 id_gardien: ["", Validators.required],
-date_affectation: ["", Validators.required],
+// date_affectation: ["", Validators.required],
+heure_debut_sg: [0,],
+heure_fin_sg: [0,],
       });
   }
   // mise à jour du formulaire
@@ -44,7 +46,9 @@ date_affectation: ["", Validators.required],
     this.reactiveForm_edit_societe_gardien = this.formBuilder.group({
     id_societe: [societe_gardien_to_edit.id_societe, Validators.required],
     id_gardien: [societe_gardien_to_edit.id_gardien, Validators.required],
-    date_affectation: [societe_gardien_to_edit.date_affectation, Validators.required],
+    // date_affectation: [societe_gardien_to_edit.date_affectation, Validators.required],
+    heure_debut_sg: [societe_gardien_to_edit.heure_debut_sg, Validators.required],
+    heure_fin_sg: [societe_gardien_to_edit.heure_fin_sg, Validators.required],
       });
   }
 
@@ -82,8 +86,8 @@ date_affectation: ["", Validators.required],
               })
               console.log("Opération effectuée avec succés sur la table societe_gardien. Réponse= ", reponse);
               this.onReset_edit_societe_gardien()
-              alert("Opération effectuée avec succés sur la table societe_gardien")
-          } else {
+              this.api.Swal_success("Affectation modifiée avec succés")
+            } else {
               console.log("L'opération sur la table societe_gardien a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }

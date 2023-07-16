@@ -60,11 +60,10 @@ raison_absence: ["",],
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table absence. Réponse= ", reponse);
           this.onReset_add_absence()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Absence ajoutée avec succés")
           this.cb_add_absence.emit({
             status:true,
-            absence:reponse.data
-          })
+            absence:reponse.data})
       } else {
           console.log("L'opération sur la table absence a échoué. Réponse= ", reponse);
           alert("L'opération a echoué")

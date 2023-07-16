@@ -26,6 +26,7 @@ export class ListSocieteGardienComponent {
       if (reponse.status) {
         this.les_societe_gardiens = reponse.data
         console.log("Opération effectuée avec succés sur la table societe_gardien. Réponse= ", reponse);
+        console.log("les societes gardiens", this.les_societe_gardiens)
       } else {
         console.log("L'opération sur la table societe_gardien a échoué. Réponse= ", reponse);
         alert("L'opération a echoué")

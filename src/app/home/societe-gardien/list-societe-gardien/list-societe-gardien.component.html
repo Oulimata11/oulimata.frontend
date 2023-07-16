@@ -16,6 +16,7 @@
         <th scope="col">Societe</th>
         <th scope="col">Gardien</th>
         <th scope="col">Date d'affectation</th>
+        <th scope="col">Horaire</th>
         <th scope="col">actions</th>
       </tr>
     </thead>
@@ -23,7 +24,8 @@
       <tr *ngFor="let one_societe_gardien of les_societe_gardiens">
         <td>{{one_societe_gardien.nom_societe}}</td>
         <td>{{one_societe_gardien.prenom_gardien+" "+one_societe_gardien.nom_gardien}}</td>
-        <td>{{one_societe_gardien.date_affectation | date : "dd-MM-yyyy"}}</td>
+        <td>{{api.format_date( one_societe_gardien.created_at_sg)}}</td>
+        <td>{{api.format_hour(one_societe_gardien.heure_debut_sg)+"-"+api.format_hour(one_societe_gardien.heure_fin_sg)}}</td>
         <td>
           <div ngbDropdown container="body">
             <button type="button" ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">

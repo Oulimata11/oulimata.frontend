@@ -81,8 +81,8 @@ export class EditIndemniteGardienComponent {
               this.cb_edit_indemnite_gardien.emit({new_data:JSON.parse(indemnite_gardien.data)})
               console.log("Opération effectuée avec succés sur la table indemnite_gardien. Réponse= ", reponse);
               this.onReset_edit_indemnite_gardien()
-              alert("Opération effectuée avec succés sur la table indemnite_gardien")
-          } else {
+              this.api.Swal_success("Indemnité modifiée avec succés")
+            } else {
               console.log("L'opération sur la table indemnite_gardien a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }

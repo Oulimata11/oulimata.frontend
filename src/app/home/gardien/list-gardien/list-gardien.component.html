@@ -39,7 +39,7 @@
         <td > 
           <button data-toggle="tooltip" data-popup="tooltip-custom" placement="top" container="body" 
            ngbTooltip="{{one_gardien.statut == 'Actif' ? 'Désactiver le gardien' : 'Activer le gardien'}}"
-          (click)="open_modal_desactiver(modal_desactiver_gardien,one_gardien)"
+           (click)="one_gardien.statut == 'Actif' ? open_modal_desactiver(modal_desactiver_gardien,one_gardien) : activer_gardien(one_gardien) "
           class="btn {{one_gardien.statut == 'Actif' ? 'badge badge-pill badge-light-success mr-1' : 'badge badge-pill badge-light-danger mr-1'}}">
           {{one_gardien.statut}} 
         </button>

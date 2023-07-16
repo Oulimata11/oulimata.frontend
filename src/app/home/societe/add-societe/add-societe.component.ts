@@ -50,7 +50,7 @@ export class AddSocieteComponent {
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table societe. Réponse= ", reponse);
           this.onReset_add_societe()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Société ajoutée avec succés")
           this.cb_add_societe.emit({
             status:true,
             societe:reponse.data

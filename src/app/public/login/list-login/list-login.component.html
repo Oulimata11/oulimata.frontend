@@ -1,14 +1,14 @@
 <div class="auth-wrapper auth-v2">
   <div class="auth-inner row m-0">
     <!-- Brand logo--><a class="brand-logo" href="javascript:void(0);">
-      <img src="" alt="image ici" height="28" />
-      <h2 class="brand-text text-primary ml-1">oulimata.frontend</h2>
+      <!-- <img src="assets/images/logo/CHRISTASEN.png" alt="image ici" height="28" /> -->
+      <!-- <h2 class="brand-text text-primary ml-1">oulimata.frontend</h2> -->
     </a>
     <!-- /Brand logo-->
     <!-- Left Text-->
     <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
-      <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
-        <img class="img-fluid" [src]="'assets/images/logo/christa.jpg'
+      <div class="w-100 d-lg-flex align-items-center justify-content-center px-10">
+        <img class="img-fluid" [src]="'assets/images/logo/CHRISTASEN.png'
           " alt="Login V2" />
       </div>
     </div>
@@ -16,35 +16,25 @@
     <!-- Login-->
     <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
       <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-        <h2 class="card-title font-weight-bold mb-1">Welcome to <span class="text-primary"> ChristaTeam 👋 </span> </h2>
-        <form class="auth-login-form mt-2" [formGroup]="reactiveForm_login_login " (ngSubmit)="onSubmit_login_login ()"
-          #form_login_login="ngForm" class="row">
+        <h2 class="card-title font-weight-bold mb-1 text-uppercase">Gestion interne <span class="text-primary"> ChristaTeam</span> </h2>
+        <form class="auth-login-form mt-2" [formGroup]="reactiveForm_login_login " (ngSubmit)="onSubmit_login_login ()"#form_login_login="ngForm" class="row">
           <!-- login field avec un control de validite -->
           <div class="form-group">
             <label>Email</label>
-            <div class="input-group input-group-merge">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <span [data-feather]="'mail'"> </span> </span>
-              </div>
-              <input class="form-control" type="email" formControlName="login" placeholder="xxxx@gmail.com"
+              <input class="form-control" type="text" formControlName="login" placeholder="xxxx@gmail.com"
                 [ngClass]="{ 'is-invalid': submitted && f.login.errors }" />
-            </div>
             <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
-              <div *ngIf="f.login.errors.required"> login est obligatoire </div>
+              <div *ngIf="f.login.errors.required"> L'email est obligatoire </div>
+              <div *ngIf="f.login.errors.email">L'email doit être valide</div>
             </div>
           </div>
           <!-- pwd field avec un control de validite -->
           <div class="form-group">
             <label>Mot de passe</label>
-            <div class="input-group input-group-merge">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <span [data-feather]="'lock'"> </span> </span>
-              </div>
-              <input class="form-control" type="text" formControlName="pwd" placeholder="......."
+              <input class="form-control" type="password" formControlName="pwd" placeholder="......."
                 [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
-            </div>
             <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
-              <div *ngIf="f.pwd.errors.required"> pwd est obligatoire </div>
+              <div *ngIf="f.pwd.errors.required"> Le mot de pass est obligatoire </div>
             </div>
           </div>
           <div class="text-center">

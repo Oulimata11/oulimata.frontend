@@ -76,8 +76,8 @@ export class EditCongesComponent {
               })
               console.log("Opération effectuée avec succés sur la table conges. Réponse= ", reponse);
               this.onReset_edit_conges()
-              alert("Opération effectuée avec succés sur la table conges")
-          } else {
+              this.api.Swal_success(" Congés modifié avec succés")
+            } else {
               console.log("L'opération sur la table conges a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }

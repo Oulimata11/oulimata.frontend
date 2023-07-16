@@ -10,7 +10,7 @@ import { ApiService } from 'app/service/api/api.service';
 })
 export class ListLoginComponent {
   reactiveForm_login_login !: FormGroup;
-  submitted:boolean=false
+  public submitted:boolean=false
   loading_login_login :boolean=false
   constructor(private formBuilder: FormBuilder,public api:ApiService,private router:Router) { }
 
@@ -19,8 +19,8 @@ export class ListLoginComponent {
   }
   init_form() {
       this.reactiveForm_login_login  = this.formBuilder.group({
-          login: ["", Validators.required],
-pwd: ["", Validators.required]
+        login: ["", [Validators.required, Validators.email]],
+        pwd: ["", Validators.required]
       });
   }
 
@@ -53,7 +53,7 @@ pwd: ["", Validators.required]
           this.router.navigate(['/home'])
       } else {
           console.log("L'opération sur la table login a échoué. Réponse= ", reponse);
-          alert("L'opération a echoué")
+          this.api.Swal_error("La tentative d'authentification a échoué !")
       }
       this.loading_login_login = false;
   }, (error: any) => {

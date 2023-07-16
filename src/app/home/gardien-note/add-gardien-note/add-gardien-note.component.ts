@@ -58,7 +58,7 @@ export class AddGardienNoteComponent {
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table gardien_note. Réponse= ", reponse);
           this.onReset_add_gardien_note()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Note ajouté avec succés")
           this.cb_add_gardien_note.emit({
             status:true,
             gardien_note:reponse.data

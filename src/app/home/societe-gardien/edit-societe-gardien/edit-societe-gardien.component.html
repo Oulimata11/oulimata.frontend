@@ -25,14 +25,33 @@
           <div *ngIf="f.id_gardien.errors.required"> Le gardien est obligatoire </div>
       </div>
     </div>  
-<!-- date_affectation field avec un control de validite -->
+<!-- date_affectation field avec un control de validite
     <div class="form-group col-sm-6">
       <label >Date d'affectation <span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="date"  formControlName="date_affectation"  placeholder="date_affectation"  [ngClass]="{ 'is-invalid': submitted && f.date_affectation.errors }"/>
       <div *ngIf="submitted && f.date_affectation.errors" class="invalid-feedback">
           <div *ngIf="f.date_affectation.errors.required"> La date d'affectation est obligatoire </div>
       </div>
-    </div>    
+    </div>     -->
+    <div class="w-100 alert alert-warning text-center">
+      <p>Les horaires</p>
+    </div>
+    <!-- heure_debut_sg field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >Heure de début</label>
+      <input class="form-control" type="time"  formControlName="heure_debut_sg"  placeholder="heure_debut_sg" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.heure_debut_sg.errors }"/>
+      <div *ngIf="submitted && f.heure_debut_sg.errors" class="invalid-feedback">
+          <div *ngIf="f.heure_debut_sg.errors.required"> heure_debut_sg est obligatoire </div>
+      </div>
+    </div>		
+    <!-- heure_fin_sg field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >Heure de fin</label>
+      <input class="form-control" type="time"  formControlName="heure_fin_sg"  placeholder="heure_fin_sg" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.heure_fin_sg.errors }"/>
+      <div *ngIf="submitted && f.heure_fin_sg.errors" class="invalid-feedback">
+          <div *ngIf="f.heure_fin_sg.errors.required"> heure_fin_sg est obligatoire </div>
+      </div>
+    </div>
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 

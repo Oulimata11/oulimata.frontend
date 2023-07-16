@@ -17,7 +17,6 @@ export class ListGardienComponent {
   gardien_to_delete :any = undefined
   gardien_detail : any =undefined
   gardien_disable : any =undefined
-  gardien_enable : any =undefined
   search : ''
   constructor(public api: ApiService,private modalService: NgbModal) {
 
@@ -123,7 +122,7 @@ desactiver_gardien (){
   this.loading_desactiver_gardien = false;
       if(reponse.status){
       console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
-      this.api.Swal_success("Suppression effectuée avec succes ! ")
+      this.api.Swal_success("Gardien désactivé avec succes ! ")
       this.modalService.dismissAll()
       this.get_gardien()
       }else{
@@ -137,14 +136,14 @@ desactiver_gardien (){
   })
   }
   //fonction qui active un gardien
-activer_gardien (){
+activer_gardien (gardien_enable){
   this.loading_activer_gardien = true;
-  this.api.taf_post("gardien/gardien_enable",{id_gardien:this.gardien_enable.id_gardien},(reponse: any)=>{
+  this.api.taf_post("gardien/enable_gardien",{id_gardien:gardien_enable.id_gardien},(reponse: any)=>{
       //when success
   this.loading_activer_gardien = false;
       if(reponse.status){
       console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
-      this.api.Swal_success("Suppression effectuée avec succes ! ")
+      this.api.Swal_success("Gardien activé avec succes ! ")
       this.get_gardien()
       }else{
       console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)

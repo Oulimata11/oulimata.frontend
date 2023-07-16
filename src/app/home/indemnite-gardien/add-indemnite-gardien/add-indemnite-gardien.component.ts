@@ -60,7 +60,7 @@ export class AddIndemniteGardienComponent {
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table indemnite_gardien. Réponse= ", reponse);
           this.onReset_add_indemnite_gardien()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Indemnité ajoutée avec succés")
           this.cb_add_indemnite_gardien.emit({
             status:true,
             indemnite_gardien:reponse.data

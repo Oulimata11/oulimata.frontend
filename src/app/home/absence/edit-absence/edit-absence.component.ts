@@ -75,8 +75,8 @@ raison_absence: [absence_to_edit.raison_absence],
               this.cb_edit_absence.emit({new_data:JSON.parse(absence.data)})
               console.log("Opération effectuée avec succés sur la table absence. Réponse= ", reponse);
               this.onReset_edit_absence()
-              alert("Opération effectuée avec succés sur la table absence")
-          } else {
+              this.api.Swal_success("Absence modifiée avec succés")
+            } else {
               console.log("L'opération sur la table absence a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }

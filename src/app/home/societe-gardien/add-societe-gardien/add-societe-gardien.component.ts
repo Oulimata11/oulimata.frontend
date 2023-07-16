@@ -30,7 +30,9 @@ export class AddSocieteGardienComponent {
       this.reactiveForm_add_societe_gardien  = this.formBuilder.group({
         id_societe: ["", Validators.required],
         id_gardien: ["", Validators.required],
-        date_affectation: ["", Validators.required],
+        // date_affectation: ["", Validators.required],
+        heure_debut_sg: [0,],
+        heure_fin_sg: [0,],
       });
   }
 
@@ -59,7 +61,7 @@ export class AddSocieteGardienComponent {
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table societe_gardien. Réponse= ", reponse);
           this.onReset_add_societe_gardien()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Gardien affecté avec succés")
           this.cb_add_societe_gardien.emit({
             status:true,
             societe_gardien:reponse.data

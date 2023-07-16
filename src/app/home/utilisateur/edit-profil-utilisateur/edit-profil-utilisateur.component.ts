@@ -75,8 +75,8 @@ export class EditProfilUtilisateurComponent implements OnInit {
               console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", reponse);
               this.cb_edit_profil.emit({new_data:JSON.parse(utilisateur.data)})
               this.onReset_edit_utilisateur()
-              alert("Opération effectuée avec succés sur la table utilisateur")
-          } else {
+              this.api.Swal_success("Profil modifié avec succés")
+            } else {
               console.log("L\'opération sur la table utilisateur a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }

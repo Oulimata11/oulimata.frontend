@@ -70,8 +70,8 @@ description_societe: [societe_to_edit.description_societe,],
               })
               console.log("Opération effectuée avec succés sur la table societe. Réponse= ", reponse);
               this.onReset_edit_societe()
-              alert("Opération effectuée avec succés sur la table societe")
-          } else {
+              this.api.Swal_success("Société modifiée avec succés")
+            } else {
               console.log("L'opération sur la table societe a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import moment from 'moment';
 import Swal from 'sweetalert2';
 
 
@@ -143,6 +144,16 @@ export class ApiService {
     });
     return succes
   }
+  Swal_error(title:any){
+    let succes= Swal.fire({
+      title:title,
+      icon:"error",
+      timer:1500,
+      showConfirmButton: false,
+      position:"top-start"
+    });
+    return succes
+  }
   //determiner s'il y'a chagement au niveau du formulaire ou pas 
   check_change(formulaire_actuel : any, donnees_update :any) : boolean {
     // retourne true s'il y'a changement et false sinon
@@ -153,5 +164,14 @@ export class ApiService {
       }
     }
     return false;
+  }
+  //format date 
+  format_date(date: string): string {// 2021-06-18 12:00
+    let res = moment(date).locale("fr").format('DD-MM-YYYY')
+    return res // 18-06-2021
+  }
+  format_hour(hour: string) {
+    let res = moment(hour, "hh:mm:ss").locale("fr").format("HH:mm")
+    return res
   }
 }

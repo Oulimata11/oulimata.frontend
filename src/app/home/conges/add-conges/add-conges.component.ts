@@ -60,7 +60,7 @@ export class AddCongesComponent {
       if (reponse.status) {
           console.log("Opération effectuée avec succés sur la table conges. Réponse= ", reponse);
           this.onReset_add_conges()
-          alert("Opération éffectuée avec succés")
+          this.api.Swal_success("Congés ajouté avec succés")
           this.cb_add_conges.emit({
             status:true,
             conges:reponse.data

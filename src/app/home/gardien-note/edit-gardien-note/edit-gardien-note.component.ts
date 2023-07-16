@@ -81,8 +81,8 @@ export class EditGardienNoteComponent {
               })
               console.log("Opération effectuée avec succés sur la table gardien_note. Réponse= ", reponse);
               this.onReset_edit_gardien_note()
-              alert("Opération effectuée avec succés sur la table gardien_note")
-          } else {
+              this.api.Swal_success("Note modifiée avec succés")
+            } else {
               console.log("L'opération sur la table gardien_note a échoué. Réponse= ", reponse);
               alert("L'opération a echoué")
           }
