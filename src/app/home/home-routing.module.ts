@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: "indemnite", component: ListIndemniteGardienComponent },
   { path: "societe_gardien", component: ListSocieteGardienComponent},
   { path: "localisation", component: ListLocalisationComponent },
-  { path: "evaluation", component: ListGardienNoteComponent },
+  { path: "evaluation", component: ListNoteComponent },
   { path: "role", component: ListRoleComponent },
   { path: "societe", component: ListSocieteComponent },
   //utilisateur

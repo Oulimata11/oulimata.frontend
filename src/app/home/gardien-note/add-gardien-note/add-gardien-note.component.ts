@@ -61,8 +61,7 @@ export class AddGardienNoteComponent {
           this.api.Swal_success("Note ajouté avec succés")
           this.cb_add_gardien_note.emit({
             status:true,
-            gardien_note:reponse.data
-          })
+            gardien_note:reponse.data})
       } else {
           console.log("L'opération sur la table gardien_note a échoué. Réponse= ", reponse);
           alert("L'opération a echoué")
