@@ -1,6 +1,6 @@
 
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-add-note',
@@ -22,8 +22,7 @@ export class AddNoteComponent {
       this.get_gardien()
   }
   init_form() {
-      this.reactiveForm_add_note  = this.formBuilder.group({
-          
+      this.reactiveForm_add_note  = this.formBuilder.group({       
   id_gardien: ["", Validators.required],
   note: ["", Validators.required],
   commentaire: [""],
@@ -92,5 +91,12 @@ export class AddNoteComponent {
     })
   }
 
-  
+  // -----------------------------------------------------------------------------------------------------
+  toggle() {
+    if (this.f.note.disabled) {
+      this.f.note.enable();
+    } else {
+      this.f.note.disable();
+    }
+  }
 }

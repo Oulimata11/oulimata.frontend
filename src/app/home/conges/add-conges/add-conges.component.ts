@@ -61,10 +61,7 @@ export class AddCongesComponent {
           console.log("Opération effectuée avec succés sur la table conges. Réponse= ", reponse);
           this.onReset_add_conges()
           this.api.Swal_success("Congés ajouté avec succés")
-          this.cb_add_conges.emit({
-            status:true,
-            conges:reponse.data
-          })
+          this.cb_add_conges.emit({status:true,conges:reponse.data})
       } else {
           console.log("L'opération sur la table conges a échoué. Réponse= ", reponse);
           alert("L'opération a echoué")
@@ -102,5 +99,12 @@ export class AddCongesComponent {
     } else {
       this.date_fin_conges = '';
     }
+  }
+  
+  verifier_quota() {
+//choisir la date
+//verifier la date si dans le mois y'a pas deja de conges 
+//si oui alerte choisir une autre date
+//si non on ajoute
   }
 }

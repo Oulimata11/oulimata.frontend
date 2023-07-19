@@ -12,9 +12,10 @@
     </div>
   </div>		
   <!-- note field avec un control de validite -->
-  <div class="form-group col-sm-6">
-    <label >Note</label>
-    <input class="form-control" type="text"  formControlName="note"  placeholder="note"  [ngClass]="{ 'is-invalid': submitted && f.note.errors }"/>
+  <div class="form-group col-sm-6 rating">
+    <label >Note : {{f.note.value}}</label>
+    <ngb-rating class="form-control" type="text"  formControlName="note"  placeholder="note"  [ngClass]="{ 'is-invalid': submitted && f.note.errors }">
+    </ngb-rating>
     <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
         <div *ngIf="f.note.errors.required"> La note est obligatoire </div>
     </div>
@@ -29,7 +30,6 @@
     </div>
   </div>		
 </form>
-<!-- vous pouvez valider votre formulaire n\'importe ou -->
 
 <div class="text-center m-2">
 <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_note "
