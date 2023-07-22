@@ -28,6 +28,21 @@ export class ApiService {
   //mes tableaux
   les_utilisateurs : any []=[]
   les_roles_des_utilisateurs :any []=[]
+  //les droits
+  /*
+  1=>admin
+  2=>Directeur
+  3=>Assistant Secretaire
+  4=> Superviseur
+  5=>Responsable Financier 
+  */
+  les_droits : any ={
+    //utilisateurs
+    add_user: [1],
+    list_user: [1],
+    edit_user: [1],
+    delete_user: [1],
+  }
   constructor(private http: HttpClient, private route: Router) { }
   // sauvegardes
   async get_from_local_storage(key: string): Promise<any> {
@@ -173,5 +188,13 @@ export class ApiService {
   format_hour(hour: string) {
     let res = moment(hour, "hh:mm:ss").locale("fr").format("HH:mm")
     return res
+  }
+  can(action: string) {
+    let id_privilege = this.token.token_decoded.taf_data.id_privilege || 0
+    if (this.les_droits[action].indexOf(+id_privilege) != -1) {
+      return true
+    } else {
+      return false
+    }
   }
 }

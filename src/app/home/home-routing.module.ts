@@ -13,9 +13,10 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
 import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
 import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-gardien-note.component';
 import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
+import { DashboardGeneralComponent } from './dashboard-general/dashboard-general.component';
 
 const routes: Routes = [
-  { path: "", component: ListUtilisateurComponent },
+  { path: "", component: DashboardGeneralComponent },
   { path: "absence", component: ListAbsenceComponent },
   { path: "conges", component: ListCongesComponent },
   { path: "gardien", component: ListGardienComponent },

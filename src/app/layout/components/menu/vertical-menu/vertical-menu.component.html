@@ -3,7 +3,7 @@
   <ul class="nav navbar-nav flex-row">
     <li class="nav-item mr-auto">
       <!-- App Branding -->
-      <a class="navbar-brand" [routerLink]="['/']">
+      <a class="navbar-brand">
         <span class="brand-logo">
           <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" />
         </span>
@@ -15,7 +15,7 @@
     <li class="nav-item nav-toggle">
       <a class="nav-link modern-nav-toggle d-none d-xl-block pr-0" (click)="toggleSidebarCollapsible()">
         <i
-          [ngClass]="isCollapsed === true ? 'icon-circle' : 'icon-disc'"
+          [ngClass]="isCollapsed === true ? 'icon-circle' : 'icon-x-circle'"
           class="toggle-icon feather font-medium-4 collapse-toggle-icon text-primary"
         ></i>
       </a>

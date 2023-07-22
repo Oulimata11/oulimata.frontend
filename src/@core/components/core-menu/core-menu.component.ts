@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { CoreMenuService } from '@core/components/core-menu/core-menu.service';
+import { ApiService } from 'app/service/api/api.service';
+import { get_menu } from 'app/menu/menu';
 
 @Component({
   selector: '[core-menu]',
@@ -29,7 +31,7 @@ export class CoreMenuComponent implements OnInit {
    * @param {ChangeDetectorRef} _changeDetectorRef
    * @param {CoreMenuService} _coreMenuService
    */
-  constructor(private _changeDetectorRef: ChangeDetectorRef, private _coreMenuService: CoreMenuService) {
+  constructor(private _changeDetectorRef: ChangeDetectorRef, private _coreMenuService: CoreMenuService,private api: ApiService) {
     // Set the private defaults
     this._unsubscribeAll = new Subject();
   }
@@ -41,16 +43,15 @@ export class CoreMenuComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    let user = this.api.token.token_decoded.taf_data
     // Set the menu either from the input or from the service
-    this.menu = this.menu || this._coreMenuService.getCurrentMenu();
-
+    this.menu = this.menu || get_menu(user)//this._coreMenuService.getCurrentMenu();
     // Subscribe to the current menu changes
     this._coreMenuService.onMenuChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
       this.currentUser = this._coreMenuService.currentUser;
 
       // Load menu
-      this.menu = this._coreMenuService.getCurrentMenu();
-
+      this.menu = get_menu(user)//this._coreMenuService.getCurrentMenu();
       this._changeDetectorRef.markForCheck();
     });
   }

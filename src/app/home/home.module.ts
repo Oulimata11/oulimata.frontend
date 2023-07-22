@@ -53,6 +53,7 @@ import { EditSocieteGardienComponent } from './societe-gardien/edit-societe-gard
 import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
 import { EditProfilUtilisateurComponent } from './utilisateur/edit-profil-utilisateur/edit-profil-utilisateur.component';
 import { EditPasswordUtilisateurComponent } from './utilisateur/edit-password-utilisateur/edit-password-utilisateur.component';
+import { DashboardGeneralComponent } from './dashboard-general/dashboard-general.component';
 
 
 @NgModule({
@@ -98,6 +99,7 @@ import { EditPasswordUtilisateurComponent } from './utilisateur/edit-password-ut
     ListSocieteGardienComponent,
     EditProfilUtilisateurComponent,
     EditPasswordUtilisateurComponent,
+    DashboardGeneralComponent,
   ],
   imports: [
     CommonModule,

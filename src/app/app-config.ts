@@ -17,8 +17,8 @@ import { CoreConfig } from '@core/types';
 export const coreConfig: CoreConfig = {
   app: {
     appName     : 'Christa SEN',                                        // App Name
-    appTitle    : 'oulimata.frontend - Angular 14+ Bootstrap Admin Template', // App Title
-    appLogoImage: 'assets/images/logo/christa.jpg',                  // App Logo
+    appTitle    : 'Christa SEN GIE', // App Title
+    appLogoImage: 'assets/images/logo/Logo_Christa.png',                  // App Logo
     appLanguage : 'en',                                           // App Default Language (en, fr, de, pt etc..)
   },
   layout: {
