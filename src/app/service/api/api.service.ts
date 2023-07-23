@@ -26,7 +26,6 @@ export class ApiService {
     date_expiration: null
   }
   //mes tableaux
-  les_utilisateurs : any []=[]
   les_roles_des_utilisateurs :any []=[]
   //les droits
   /*

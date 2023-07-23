@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ColumnMode } from '@swimlane/ngx-datatable';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
   selector: 'app-list-utilisateur',
@@ -11,26 +12,29 @@ export class ListUtilisateurComponent {
   loading_desactiver_compte =false
   loading_activer_compte =false
   selected_utilisateur: any = undefined
+  les_utilisateurs : any []=[]
   utilisateur_to_edit: any = undefined
   user_disable :any =undefined
   path_backend = this.api.taf_base_url + "images/"
-  public contentHeader: object;
+  public ColumnMode = ColumnMode;
+
   constructor(public api: ApiService,private modalService:NgbModal) {
 
   }
   ngOnInit(): void {
     this.get_utilisateur()
+    console.log("c'est moi",this.les_utilisateurs)
   }
   get_utilisateur() {
     this.loading_get_utilisateur = true;
     this.api.taf_post("utilisateur/get", {}, (reponse: any) => {
       if (reponse.status) {
-        this.api.les_utilisateurs = reponse.data
-        this.api.les_utilisateurs=this.api.les_utilisateurs.map(user =>{
+        this.les_utilisateurs = reponse.data
+        this.les_utilisateurs=this.les_utilisateurs.map(user =>{
           const statut_compte= user.statut_utilisateur == 1 ? "Actif" : "Inactif";
           return {...user,statut_compte};
         });
-        console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", this.api.les_utilisateurs);
+        console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", this.les_utilisateurs);
       } else {
         console.log("L'opération sur la table utilisateur a échoué. Réponse= ", reponse);
         alert("L'opération a echoué")
@@ -43,7 +47,7 @@ export class ListUtilisateurComponent {
 
   after_add(event: any) {
     if (event.status) {
-      this.api.les_utilisateurs.unshift(event.utilisateur)
+      this.les_utilisateurs.unshift(event.utilisateur)
       this.get_utilisateur()
       this.modalService.dismissAll()
     } else {
@@ -51,7 +55,7 @@ export class ListUtilisateurComponent {
     }
   }
   after_edit(params: any) {
-    this.api.les_utilisateurs[this.api.les_utilisateurs.indexOf(this.utilisateur_to_edit)]=params.new_data;
+    this.les_utilisateurs[this.les_utilisateurs.indexOf(this.utilisateur_to_edit)]=params.new_data;
     this.modalService.dismissAll()
     this.get_utilisateur()
   }
