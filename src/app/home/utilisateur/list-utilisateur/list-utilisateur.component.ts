@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'app/service/api/api.service';
 @Component({
@@ -13,6 +13,8 @@ export class ListUtilisateurComponent {
   selected_utilisateur: any = undefined
   utilisateur_to_edit: any = undefined
   user_disable :any =undefined
+  path_backend = this.api.taf_base_url + "images/"
+  public contentHeader: object;
   constructor(public api: ApiService,private modalService:NgbModal) {
 
   }
@@ -118,4 +120,9 @@ export class ListUtilisateurComponent {
       }
     );
   }
-}
+   
+ 
+ 
+
+  
+ }

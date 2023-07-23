@@ -54,6 +54,8 @@ import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gard
 import { EditProfilUtilisateurComponent } from './utilisateur/edit-profil-utilisateur/edit-profil-utilisateur.component';
 import { EditPasswordUtilisateurComponent } from './utilisateur/edit-password-utilisateur/edit-password-utilisateur.component';
 import { DashboardGeneralComponent } from './dashboard-general/dashboard-general.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ContentHeaderModule } from 'app/layout/components/content-header/content-header.module';
 
 
 @NgModule({
@@ -113,10 +115,13 @@ import { DashboardGeneralComponent } from './dashboard-general/dashboard-general
    CoreCommonModule,
    CoreSidebarModule,
    CoreThemeCustomizerModule,
+   ContentHeaderModule,
+   CardSnippetModule,
    //NgbModalModule,
    
    FormsModule,
   Ng2SearchPipeModule,
+  NgxDatatableModule,
    /* SampleModule */
    LayoutModule,
    NgbModalModule,

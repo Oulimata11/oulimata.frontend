@@ -79,6 +79,11 @@
           <div *ngIf="f.password_utilisateur.errors.required"> Le mot de passe est obligatoire </div>
       </div>
     </div>   
+   <!-- image_utilisateur field avec un control de validite -->
+   <div class="form-group col-sm-6">
+        <label >Photo de Profil</label>
+        <input class="form-control" type="file" (change)="uploadImage($event)" placeholder="image_utilisateur" />
+    </div>	
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
