@@ -8,12 +8,9 @@
     <div class="w-100 text-center">
       <h2 class="mb-1 text-primary">Accès interdit !</h2>
       <p class="mb-2">Oops! 😖 vous êtes pas autorisé à acceder à cette page.</p>
-      <a class="btn btn-primary mb-2 btn-sm-block" (click)="api.go_back()" rippleEffect>Retour à la page précédente</a
-      ><img
-        class="img-fluid"
-        [src]="
-          coreConfig.layout.skin === 'dark' ? 'assets/images/pages/error-dark.svg' : 'assets/images/pages/error.svg'
-        "
+      <button class="btn btn-primary mb-2 btn-sm-block" [routerLink]="['/public/login']" rippleEffect>Se connecter</button> 
+      <img class="img-fluid"
+        [src]="coreConfig.layout.skin === 'dark' ? 'assets/images/pages/error-dark.svg' : 'assets/images/pages/error.svg'"
         alt="Error page"
       />
     </div>

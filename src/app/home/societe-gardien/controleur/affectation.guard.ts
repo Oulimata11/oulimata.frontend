@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserGuard implements CanActivate {
+export class AffectationGuard implements CanActivate {
   constructor(private api:ApiService,private routage:Router){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let id_role_user=parseInt(this.api.token.token_decoded.taf_data.id_role);
-      let index= this.api.les_droits.list_user.indexOf(id_role_user)
+      let index= this.api.les_droits.list_affectation.indexOf(id_role_user)
       if (index==-1) {// l'utilisateur n'est pas autorisé
         this.routage.navigate(['/public/error'], { queryParams: { returnUrl: state.url } });
         return false;
@@ -21,5 +21,4 @@ export class UserGuard implements CanActivate {
         return true;
       }
   }
-  
 }

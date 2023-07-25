@@ -15,18 +15,25 @@ import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-
 import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
 import { DashboardGeneralComponent } from './dashboard-general/dashboard-general.component';
 import { UserGuard } from './utilisateur/controleur/user.guard';
+import { AbsenceGuard } from './absence/controleur/absence.guard';
+import { NoteGuard } from './note/controleur/note.guard';
+import { AffectationGuard } from './societe-gardien/controleur/affectation.guard';
+import { IndemniteGardienGuard } from './indemnite-gardien/controleur/indemnite-gardien.guard';
+import { GardienGuard } from './gardien/controleur/gardien.guard';
+import { CongesGuard } from './conges/controleur/conges.guard';
+import { SocieteGuard } from './societe/controleur/societe.guard';
 
 const routes: Routes = [
-  { path: "", component: ListGardienComponent },
-  { path: "absence", component: ListAbsenceComponent },
-  { path: "conges", component: ListCongesComponent },
-  { path: "gardien", component: ListGardienComponent },
-  { path: "indemnite", component: ListIndemniteGardienComponent },
-  { path: "societe_gardien", component: ListSocieteGardienComponent},
-  { path: "localisation", component: ListLocalisationComponent },
-  { path: "evaluation", component: ListNoteComponent },
+  { path: "", component: ListGardienComponent,canActivate : [GardienGuard]},
+  { path: "absence", component: ListAbsenceComponent, canActivate : [AbsenceGuard]},
+  { path: "conges", component: ListCongesComponent, canActivate : [CongesGuard] },
+  { path: "gardien", component: ListGardienComponent, canActivate : [GardienGuard]},
+  { path: "indemnite", component: ListIndemniteGardienComponent, canActivate : [IndemniteGardienGuard] },
+  { path: "societe_gardien", component: ListSocieteGardienComponent, canActivate: [AffectationGuard]},
+  // { path: "localisation", component: ListLocalisationComponent },
+  { path: "evaluation", component: ListNoteComponent, canActivate: [NoteGuard]},
   { path: "role", component: ListRoleComponent },
-  { path: "societe", component: ListSocieteComponent },
+  { path: "societe", component: ListSocieteComponent,canActivate: [SocieteGuard] },
   //utilisateur
   { path: "utilisateur", component: ListUtilisateurComponent , canActivate: [UserGuard]},
   { path: "utilisateur/profil", component: ProfilUtilisateurComponent}
