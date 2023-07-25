@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { CoreConfigService } from '@core/services/config.service';
+import { ApiService } from 'app/service/api/api.service';
 
 @Component({
   selector: 'app-error',
@@ -21,7 +22,7 @@ export class ErrorComponent implements OnInit {
    *
    * @param {CoreConfigService} _coreConfigService
    */
-  constructor(private _coreConfigService: CoreConfigService) {
+  constructor(private _coreConfigService: CoreConfigService,public api: ApiService, ) {
     this._unsubscribeAll = new Subject();
 
     // Configure the layout

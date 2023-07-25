@@ -14,9 +14,10 @@ import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/pro
 import { ListGardienNoteComponent } from './gardien-note/list-gardien-note/list-gardien-note.component';
 import { ListSocieteGardienComponent } from './societe-gardien/list-societe-gardien/list-societe-gardien.component';
 import { DashboardGeneralComponent } from './dashboard-general/dashboard-general.component';
+import { UserGuard } from './utilisateur/controleur/user.guard';
 
 const routes: Routes = [
-  { path: "", component: DashboardGeneralComponent },
+  { path: "", component: ListGardienComponent },
   { path: "absence", component: ListAbsenceComponent },
   { path: "conges", component: ListCongesComponent },
   { path: "gardien", component: ListGardienComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: "role", component: ListRoleComponent },
   { path: "societe", component: ListSocieteComponent },
   //utilisateur
-  { path: "utilisateur", component: ListUtilisateurComponent },
+  { path: "utilisateur", component: ListUtilisateurComponent , canActivate: [UserGuard]},
   { path: "utilisateur/profil", component: ProfilUtilisateurComponent}
 ];
 

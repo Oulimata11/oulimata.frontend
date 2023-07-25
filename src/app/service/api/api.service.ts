@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import { Location } from '@angular/common';
 
 
 @Injectable({
@@ -39,10 +40,29 @@ export class ApiService {
     //utilisateurs
     add_user: [1],
     list_user: [1],
-    edit_user: [1],
-    delete_user: [1],
+    //gardiens 
+    add_gardien : [2,3],
+    list_gardien:[2,3,4,5],
+    //conges 
+    add_conges : [2,3],
+    list_conges :[2,3,4],
+    //absences 
+    add_absence: [2,3,4],
+    list_absence:[2,3,4],
+    //evolution 
+    add_note :[2,3,4],
+    list_note :[2,3,4],
+    //affectation
+    add_affectation : [2],
+    list_affectation :[2,3,4],
+    //indemnite
+    add_indemnite:[2,5],
+    list_indemnite:[2,3,5],
+    //collaborateurs
+    add_societe:[2,3],
+    list_societe:[2,3,4,5]
   }
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient, private route: Router,private location: Location) { }
   // sauvegardes
   async get_from_local_storage(key: string): Promise<any> {
     let res: any = await localStorage.getItem(this.local_storage_prefixe + key);
@@ -147,6 +167,9 @@ export class ApiService {
     alert("Votre session s'est expiré! Veuillez vous connecter à nouveau")
     this.delete_from_local_storage("token")
     this.route.navigate(['/public/login'])
+  }
+  go_back() {
+    this.location.back()
   }
   Swal_success(title:any){
     let succes= Swal.fire({

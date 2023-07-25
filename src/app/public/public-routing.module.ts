@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListLoginComponent } from './login/list-login/list-login.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
-  {path:"",component:ListLoginComponent},
-{path:"login",component:ListLoginComponent}
+  {path:"", component:ListLoginComponent},
+  {path:"login", component:ListLoginComponent},
+  {path:"error", component:ErrorComponent},
+
 ];
 
 @NgModule({
