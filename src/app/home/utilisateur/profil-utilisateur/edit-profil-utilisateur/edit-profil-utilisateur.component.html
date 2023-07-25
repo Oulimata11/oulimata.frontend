@@ -28,33 +28,29 @@
     </div>		
     <!-- lieu_naissance_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Lieu de naissance  <span class="text-danger fs-1">*</span></label>
+      <label >Lieu de naissance </label>
       <input class="form-control" type="text"  formControlName="lieu_naissance_utilisateur"  placeholder="lieu_naissance_utilisateur" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lieu_naissance_utilisateur.errors }"/>
       <div *ngIf="submitted && f.lieu_naissance_utilisateur.errors" class="invalid-feedback">
           <div *ngIf="f.lieu_naissance_utilisateur.errors.required"> lieu_naissance_utilisateur est obligatoire </div>
       </div>
-    </div>		
-    <!-- date_insertion_utilisateur field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >Date d'insertion  <span class="text-danger fs-1">*</span></label>
-      <input class="form-control" type="date"  formControlName="date_insertion_utilisateur"  placeholder="date_insertion_utilisateur" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date_insertion_utilisateur.errors }"/>
-      <div *ngIf="submitted && f.date_insertion_utilisateur.errors" class="invalid-feedback">
-          <div *ngIf="f.date_insertion_utilisateur.errors.required"> date_insertion_utilisateur est obligatoire </div>
-      </div>
-    </div>		
+    </div>				
     <!-- telephone_utilisateur field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Numéro de téléphone  <span class="text-danger fs-1">*</span></label>
+      <label >Numéro de téléphone </label>
       <input class="form-control" type="text"  formControlName="telephone_utilisateur"  placeholder="telephone_utilisateur" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telephone_utilisateur.errors }"/>
       <div *ngIf="submitted && f.telephone_utilisateur.errors" class="invalid-feedback">
           <div *ngIf="f.telephone_utilisateur.errors.required"> telephone_utilisateur est obligatoire </div>
       </div>
-    </div>			
+    </div>		
+    <div class="form-group col-sm-6">
+      <label>Photo</label>
+      <input type="file" accept="image/*" class="form-control" id="image_utilisateur" (change)="uploadImage($event)" />
+    </div>	
 </form>
 <!-- vous pouvez valider votre formulaire n\'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_utilisateur || !check_change()" (click)="form_edit_utilisateur.ngSubmit.emit()">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_utilisateur || (!check_change()&& !image_utilisateur)" (click)="form_edit_utilisateur.ngSubmit.emit()">
         {{loading_edit_utilisateur ?"En cours ...":"Valider"}}
     </button>
 </div>

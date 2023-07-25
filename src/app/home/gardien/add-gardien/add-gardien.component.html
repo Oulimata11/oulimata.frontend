@@ -60,7 +60,11 @@
           <div *ngIf="f.email_gardien.errors.required"> L'email est obligatoire </div>
       </div>
     </div>  
-  
+     <!-- image_gardien field avec un control de validite -->
+     <div class="form-group col-sm-6">
+      <label >Photo de Profil</label>
+      <input class="form-control" type="file" (change)="uploadImage($event)" placeholder="image_gardien" />
+  </div>
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 

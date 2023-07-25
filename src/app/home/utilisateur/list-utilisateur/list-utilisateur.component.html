@@ -41,35 +41,32 @@
     </div>
   </div>
 </div> -->
-
-  <ngx-datatable #table class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force" [headerHeight]="40"
-    [rowHeight]="58" [footerHeight]="50" rowHeight="auto" [rows]="les_utilisateurs">
-    <ngx-datatable-column name="Utilisateurs"[width]="180">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <div class="d-flex align-items-center">
-          <div>
-            <img class="rounded-circle mr-1" [src]="path_backend + row.image_utilisateur" height="32" width="32"
-              alt="datatable-avatar" />
+<!-- <div class="card shadow p-3 bg-body rounded "> -->
+  <section id="ngx-datatable-multi-purpose">
+    <ngx-datatable class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force" [headerHeight]="40"
+      [rowHeight]="58" [footerHeight]="50" rowHeight="auto"[limit]="10" [scrollbarH]="true"[rows]="les_utilisateurs">
+      <ngx-datatable-column name="Utilisateurs" [width]="180">
+        <ng-template  let-row="row" ngx-datatable-cell-template>
+          <div class="d-flex align-items-center">
+            <div>
+              <img class="rounded-circle mr-1" [src]="path_backend + row.image_utilisateur" height="32" width="32"
+                alt="datatable-avatar" />
+            </div>
+            <div class="cell-line-height">
+              <p class="font-medium-1 font-weight-bold line-height-1 mb-25">
+                {{ row.prenom_utilisateur }} {{ row.nom_utilisateur }}
+              </p>
+              <span [data-feather]="'phone'"></span>
+              <span class="text-muted font-small-2">{{ row.telephone_utilisateur}}</span>
+            </div>
           </div>
-          <div class="cell-line-height">
-            <p class="font-medium-1 font-weight-bold line-height-1 mb-25">
-              {{ row.prenom_utilisateur }} {{ row.nom_utilisateur }}
-            </p>
-            <span [data-feather]="'phone'"></span>
-            <span class="text-muted font-small-2">{{ row.telephone_utilisateur}}</span>
-          </div>
-        </div>
-          <div class="cell-line-height">
-            <p class="font-medium-1 line-height-1 mb-0">{{ name }}</p>
-            <span class="text-muted font-small-2"> {{ row.post }}</span>
-          </div>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Email" prop="email_utilisateur" [width]="100"></ngx-datatable-column>
-   <ngx-datatable-column name="Poste" prop="id_role" [width]="100">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <div class="badge badge-pill badge-light-primary">
-          {{
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Email" prop="email_utilisateur" [width]="100"></ngx-datatable-column>
+      <ngx-datatable-column name="Poste" prop="id_role" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="badge badge-pill badge-light-primary">
+            {{
             row.id_role == 1
             ? 'Administrateur'
             : row.id_role == 2
@@ -81,41 +78,43 @@
             : row.id_role == 5
             ? 'Responsable Financier'
             : 'Utilisateur simple'
-          }}
-        </div>
-      </ng-template>
-    </ngx-datatable-column> 
-    <ngx-datatable-column name="Statut " prop="statut_utilisateur" [width]="80">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <span class= "{{row.statut_compte == 'Inactif' ? 'badge badge-pill badge-light-danger': 'badge badge-pill badge-light-success'}} "> 
-          {{row.statut_compte}}
-        </span>
-      </ng-template>
-    </ngx-datatable-column> 
-    <!-- <ngx-datatable-column name="Actions" [width]="100" [sortable]="false">
-      <ng-template ngx-datatable-cell-template>
-        <div class="d-flex align-items-center">
-          <i data-feather="edit" class="text-primary cursor-pointer"></i>
-        </div>
-      </ng-template>
-    </ngx-datatable-column> -->
-    <ngx-datatable-column name="Actions" [width]="100" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <div class="d-flex align-items-center">
-          <span *ngIf="row.statut_utilisateur === 0" class="text-success cursor-pointer" (click)="activer_compte(row)">
-            <span [data-feather]="'check-circle'"></span>
+            }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Statut " prop="statut_utilisateur" [width]="80">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span
+            class="{{row.statut_compte == 'Inactif' ? 'badge badge-pill badge-light-danger': 'badge badge-pill badge-light-success'}} ">
+            {{row.statut_compte}}
           </span>
-          <span *ngIf="row.statut_utilisateur === 1" class="text-danger cursor-pointer" (click)="open_modal_desactiver_compte(modal_desactiver_compte, row)">
-            <span [data-feather]="'circle'"></span>
-          </span>
-        </div>
-      </ng-template>
-    </ngx-datatable-column>
-    
-  </ngx-datatable>
-  
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Actions" [width]="100" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="d-flex align-items-center">
+            <div ngbDropdown container="body">
+              <a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i data-feather="more-vertical" class="text-primary cursor-pointer mr-50"></i>
+              </a>
+              <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownBrowserState">
+                <a   *ngIf="row.statut_utilisateur === 0" ngbDropdownItem class="d-flex align-items-center"
+                (click)="activer_compte(row)"><i data-feather="user-check" class="mr-50"></i> Activer</a>
+                <a  *ngIf="row.statut_utilisateur === 1"  ngbDropdownItem class="d-flex align-items-center"
+                (click)="open_modal_desactiver_compte(modal_desactiver_compte,row)"><i data-feather="user-x"
+                    class="mr-50"></i> Désactiver</a>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
 
-  
+    </ngx-datatable>
+  </section>
+<!-- </div> -->
+
+
 <!-- Modal ajout adapté au template -->
 <ng-template #modal_add_utilisateur let-modal>
   <div class="modal-header">

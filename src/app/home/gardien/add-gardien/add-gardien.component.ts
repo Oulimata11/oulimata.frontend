@@ -13,6 +13,8 @@ export class AddGardienComponent {
   reactiveForm_add_gardien !: FormGroup;
   submitted:boolean=false
   loading_add_gardien :boolean=false
+  imageUrl: any;
+  image_gardien: any;
   constructor(private formBuilder: FormBuilder,public api:ApiService) { }
 
   ngOnInit(): void {
@@ -30,7 +32,16 @@ export class AddGardienComponent {
     email_gardien: ["",],
         });
 }
-
+uploadImage(event: any) {
+  if (event.target.files && event.target.files[0]) {
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    this.image_gardien= event.target.files[0];
+  }
+}
   // acces facile au champs de votre formulaire
   get f(): any { return this.reactiveForm_add_gardien .controls; }
   // validation du formulaire
@@ -41,16 +52,18 @@ export class AddGardienComponent {
       if (this.reactiveForm_add_gardien .invalid) {
           return;
       }
-      const gardien = {
-        id_utilisateur: this.api.token.user_connected.id_utilisateur,
-        nom_gardien: this.f.nom_gardien.value,
-        prenom_gardien: this.f.prenom_gardien.value,
-        date_naissance_gardien: this.f.date_naissance_gardien.value, 
-        lieu_naissance_gardien: this.f.lieu_naissance_gardien.value ,
-        date_insertion_gardien:this.f.date_insertion_gardien.value,
-        telephone_gardien:this.f.telephone_gardien.value,
-        email_gardien:this.f.email_gardien.value
+      const gardien =  new FormData() ; 
+      if (this.image_gardien) {
+        gardien.append("image_gardien", this.image_gardien, this.image_gardien.name);
       }
+        gardien.append("id_utilisateur", this.api.token.user_connected.id_utilisateur)
+        gardien.append("nom_gardien", this.f.nom_gardien.value)
+        gardien.append("prenom_gardien", this.f.prenom_gardien.value)
+        gardien.append("date_naissance_gardien", this.f.date_naissance_gardien.value)
+        gardien.append("lieu_naissance_gardien", this.f.lieu_naissance_gardien.value )
+        gardien.append("date_insertion_gardien", this.f.date_insertion_gardien.value)
+        gardien.append("telephone_gardien", this.f.telephone_gardien.value)
+        gardien.append("email_gardien", this.f.email_gardien.value),
       this.add_gardien (gardien)
     }
 

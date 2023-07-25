@@ -11,7 +11,7 @@ export class ProfilUtilisateurComponent implements OnInit {
 
   loading_get_utilisateur = false
   user:any = undefined;
-
+  path_backend = this.api.taf_base_url + "images/"
   constructor(public api: ApiService, private modalService: NgbModal) {}
   ngOnInit(): void {
     this.get_utilisateur(this.api.token.token_decoded.taf_data.id_utilisateur)
@@ -37,7 +37,6 @@ export class ProfilUtilisateurComponent implements OnInit {
     });
   }
   call_back_edit_profil(event: any) {
-    // renouveler le token
     this.user = event
     this.modalService.dismissAll()
     this.get_utilisateur(this.api.token.token_decoded.taf_data.id_utilisateur)
@@ -48,6 +47,7 @@ export class ProfilUtilisateurComponent implements OnInit {
     });
   }
   call_back_edit_password(event: any) {
+    // renouveler le token
     this.modalService.dismissAll()
   }
 }

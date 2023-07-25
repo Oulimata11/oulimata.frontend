@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public languageOptions: any;
   public navigation: any;
   public selectedLanguage: any;
+  path_backend = this.api.taf_base_url + "images/"
 
   @HostBinding('class.fixed-top')
   public isFixed = false;

@@ -58,11 +58,14 @@
           <div *ngIf="f.email_gardien.errors.required"> L'email est obligatoire </div>
       </div>
     </div>  
- 
+    <div class="form-group col-sm-6">
+      <label>Photo</label>
+      <input type="file" accept="image/*" class="form-control" id="image_gardien" (change)="uploadImage($event)" />
+    </div>	
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_gardien || !check_change()"
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_gardien || (!check_change() && !image_gardien)"
         (click)="form_edit_gardien .ngSubmit.emit()">{{loading_edit_gardien ?"En cours ...":"Valider"}}</button>
 </div>
