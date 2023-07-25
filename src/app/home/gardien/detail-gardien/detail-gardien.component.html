@@ -1,27 +1,91 @@
 
-<div  *ngFor="let one_gardien of les_gardiens">
-  <div class="border-left-primary pl-2">
-    <h4> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</h4>
-    <div>
-      <span [data-feather]="'phone'"></span> {{one_gardien.telephone_gardien}}
+<div *ngIf="un_gardien">
+  <div class="row">
+    <div class="col-sm-4">
+      <img [src]="path_backend+un_gardien.image_gardien"class="img-fluid rounded-top" alt="">
+    </div>
+    <div class="col-8">
+      <div class="border-left-primary pl-2">
+        <h4> {{un_gardien.prenom_gardien+" "+un_gardien.nom_gardien}}</h4>
+        <div>
+          <span [data-feather]="'phone'"></span> {{un_gardien.telephone_gardien}}
+        </div>
+      </div>
+      <ul class="list-group m-1">
+        <li class="list-group-item">Date de naissance : {{un_gardien.date_naissance_gardien}}</li>
+        <li class="list-group-item">Lieu de naissance : {{un_gardien.lieu_naissance_gardien}}</li>
+        <li class="list-group-item">Date d'insertion : {{un_gardien.date_insertion_gardien}}</li>
+        <li class="list-group-item">Email : {{un_gardien.email_gardien}}</li>
+      </ul>
     </div>
   </div>
-  <ul class="list-group m-1">
-      <li class="list-group-item">Date de naissance : {{one_gardien.date_naissance_gardien}}</li>
-      <li class="list-group-item">Lieu de naissance : {{one_gardien.lieu_naissance_gardien}}</li>
-      <li class="list-group-item">Date d'insertion : {{one_gardien.date_insertion_gardien}}</li>
-      <li class="list-group-item">Email : {{one_gardien.email_gardien}}</li>
-  </ul>
-  <div class="border-left-primary pl-2">
-    <h4> Les congès</h4>
+  <!-- L'historique des conges et les details -->
+<div>
+  <div class="divider divider-left-center divider-primary">
+    <div class="divider-text"> <h4>Congés </h4> </div>
   </div>
-  <div class="border-left-primary pl-2">
-    <h4> Les indemnités</h4>
+    <ngb-accordion [closeOthers]="true" activeIds="accordion-1">
+      <ngb-panel id="accordion-1">
+        <ng-template ngbPanelTitle>
+          <span class="lead collapse-title">Nombre de Congé : {{detail_conge?.nombre_conge}} </span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="divider">
+            <div class="divider-text">Dates</div>
+          </div>
+          <span> {{detail_conge?.date_debut_conges}} </span>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion> 
+</div>  
+<!--/end-->
+  <!-- L'historique des indemnités et les details -->
+<div>
+  <div class="divider divider-right-center divider-primary">
+    <div class="divider-text"> <h4>Indemnités </h4> </div>
   </div>
-  <div class="border-left-primary pl-2">
-    <h4> Les évaluations</h4>
-  </div>
-  <div class="border-left-primary pl-2">
-    <h4> Les absences</h4>
-  </div>
-</div>
+    <ngb-accordion [closeOthers]="true" activeIds="accordion-1">
+      <ngb-panel id="accordion-1">
+        <ng-template ngbPanelTitle>
+          <span class="lead collapse-title">Nombre d'indemnité: {{detail_indemnite?.nombre_indemnite}} </span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="divider">
+            <div class="divider-text">Dates</div>
+          </div>
+          <ul class="list-group m-1">
+            <li class="list-group-item">Perçue le {{detail_indemnite?.date_indemnite}} - Montant {{detail_indemnite?.montant_indemnite}} </li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>  
+</div> 
+<!--/end-->
+  <!-- L'historique des evaluations et les details -->
+  <div>
+    <div class="divider divider-left-center divider-primary">
+      <div class="divider-text"> <h4>Evaluation </h4> </div>
+    </div>
+      <ngb-accordion [closeOthers]="true" activeIds="accordion-1">
+        <ngb-panel id="accordion-1">
+          <ng-template ngbPanelTitle>
+            <span class="lead collapse-title">Moyenne des notes reçues : {{detail_note?.moyenne_note}} </span>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion> 
+  </div>  
+  <!--/end-->
+  <!-- L'historique des absences et les details -->
+  <div>
+    <div class="divider divider-right-center divider-primary">
+      <div class="divider-text"> <h4>Absences </h4> </div>
+    </div>
+      <ngb-accordion [closeOthers]="true" activeIds="accordion-1">
+        <ngb-panel id="accordion-1">
+          <ng-template ngbPanelTitle>
+            <span class="lead collapse-title">Nombre des absences: {{detail_absence?.nombre_absence}} </span>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>  
+  </div> 
+  <!--/end-->

@@ -6,6 +6,11 @@
       <input class="form-control" type="text" [(ngModel)]="search" (input)="recherche_change()">
     </div>
     <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
+      (click)="open_modal_affecter(modal_add_affectation)">
+      Affecter gardien
+      <span [data-feather]="'file-plus'"> </span>
+        </button>
+    <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
       (click)="open_modal(modal_add_gardien)">
       Ajouter gardien
       <span class="ml-1" [data-feather]="'user-plus'"> </span>
@@ -17,9 +22,11 @@
   <table class="table">
     <thead>
       <tr>
-        <th></th>
-        <th>Prénom</th>
+        <th>Prénom </th>
         <th>Télephone</th>
+        <th>Derniere note</th>
+        <th>Nombre d'absence</th>
+        <th>Derniére date de congé</th>
         <th>Statut</th>
         <th>Actions</th>
       </tr>
@@ -27,15 +34,16 @@
     <tbody>
       <tr *ngFor="let one_gardien of les_gardiens">
         <td>
-          <div class="avatar-group">
-            <div data-toggle="tooltip" data-popup="tooltip-custom" placement="top" container="body" title=""
+            <div *ngIf="one_gardien" data-toggle="tooltip" data-popup="tooltip-custom" placement="top" container="body" title=""
               class="avatar pull-up my-0" ngbTooltip="{{one_gardien.prenom_gardien+' '+one_gardien.nom_gardien}}">
-              <img src="assets/images/portrait/small/avatar-s-5.jpg" alt="Avatar" height="26" width="26" />
+              <img src="{{path_backend+ one_gardien.image_gardien}}" alt="" height="26" width="26" />
             </div>
-          </div>
+            {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}
         </td>
-        <td>{{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}</td>
         <td>{{one_gardien.telephone_gardien}}</td>
+        <td>{{one_gardien.derniere_note}}</td>
+        <td>{{one_gardien.nombre_absence}}</td>
+        <td>{{ one_gardien.derniere_date_conge ? api.format_date(one_gardien.derniere_date_conge) : "Congé non pris" }}</td>
         <td > 
           <button data-toggle="tooltip" data-popup="tooltip-custom" placement="top" container="body" 
            ngbTooltip="{{one_gardien.statut == 'Actif' ? 'Désactiver le gardien' : 'Activer le gardien'}}"
@@ -120,7 +128,7 @@
 <!-- Details -->
 <ng-template #modal_detail_gardien let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Gardien</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Informations Globales</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -148,5 +156,19 @@
     </button>
     <button type="button" class="btn bg-warning bg-darken-2 text-white" (click)="modal.dismiss()">Non
     </button>
+  </div>
+</ng-template>
+
+<!--Affecter un gardien-->
+<!-- ajout -->
+<ng-template #modal_add_affectation let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Affectation gardien</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-add-societe-gardien (cb_add_societe_gardien)="after_add($event)"></app-add-societe-gardien>
   </div>
 </ng-template>

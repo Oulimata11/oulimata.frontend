@@ -18,6 +18,7 @@ export class ListGardienComponent {
   gardien_detail : any =undefined
   gardien_disable : any =undefined
   search : ''
+  path_backend = this.api.taf_base_url + "images/"
   constructor(public api: ApiService,private modalService: NgbModal) {
 
   }
@@ -83,6 +84,13 @@ export class ListGardienComponent {
   open_modal_detail( modal:any , one_gardien: any){
     this.gardien_detail= one_gardien
     this.modalService.open(modal, {
+      centered: true,
+      size: 'lg'
+    });
+  }
+  //add-gardien
+  open_modal_affecter(modal:any){
+    this.modalService.open(modal, {
       centered: true
     });
   }
@@ -107,61 +115,61 @@ export class ListGardienComponent {
         console.log("Erreur inconnue! ",error)
     })
     }
-//desactiver-gardien
-open_modal_desactiver( modal:any , one_gardien: any){
-  this.gardien_disable = one_gardien
-  this.modalService.open(modal, {
-    centered: true
-  });
-}
-//fonction qui desactive un gardien
-desactiver_gardien (){
-  this.loading_desactiver_gardien = true;
-  this.api.taf_post("gardien/disable_gardien",{id_gardien:this.gardien_disable.id_gardien},(reponse: any)=>{
-      //when success
-  this.loading_desactiver_gardien = false;
-      if(reponse.status){
-      console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
-      this.api.Swal_success("Gardien désactivé avec succes ! ")
-      this.modalService.dismissAll()
-      this.get_gardien()
-      }else{
-      console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)
-      }
-  },
-  (error: any)=>{
-      //when error
-  this.loading_desactiver_gardien = false;
-      console.log("Erreur inconnue! ",error)
-  })
+  //desactiver-gardien
+  open_modal_desactiver( modal:any , one_gardien: any){
+    this.gardien_disable = one_gardien
+    this.modalService.open(modal, {
+      centered: true
+    });
   }
-  //fonction qui active un gardien
-activer_gardien (gardien_enable){
-  this.loading_activer_gardien = true;
-  this.api.taf_post("gardien/enable_gardien",{id_gardien:gardien_enable.id_gardien},(reponse: any)=>{
-      //when success
-  this.loading_activer_gardien = false;
-      if(reponse.status){
-      console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
-      this.api.Swal_success("Gardien activé avec succes ! ")
-      this.get_gardien()
-      }else{
-      console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)
-      }
-  },
-  (error: any)=>{
-      //when error
-  this.loading_activer_gardien = false;
-      console.log("Erreur inconnue! ",error)
-  })
+  //fonction qui desactive un gardien
+  desactiver_gardien (){
+    this.loading_desactiver_gardien = true;
+    this.api.taf_post("gardien/disable_gardien",{id_gardien:this.gardien_disable.id_gardien},(reponse: any)=>{
+        //when success
+    this.loading_desactiver_gardien = false;
+        if(reponse.status){
+        console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
+        this.api.Swal_success("Gardien désactivé avec succes ! ")
+        this.modalService.dismissAll()
+        this.get_gardien()
+        }else{
+        console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)
+        }
+    },
+    (error: any)=>{
+        //when error
+    this.loading_desactiver_gardien = false;
+        console.log("Erreur inconnue! ",error)
+    })
+    }
+    //fonction qui active un gardien
+  activer_gardien (gardien_enable){
+    this.loading_activer_gardien = true;
+    this.api.taf_post("gardien/enable_gardien",{id_gardien:gardien_enable.id_gardien},(reponse: any)=>{
+        //when success
+    this.loading_activer_gardien = false;
+        if(reponse.status){
+        console.log("Opération effectuée avec succés sur la table gardien . Réponse = ",reponse)
+        this.api.Swal_success("Gardien activé avec succes ! ")
+        this.get_gardien()
+        }else{
+        console.log("L\'opération sur la table gardien  a échoué. Réponse = ",reponse)
+        }
+    },
+    (error: any)=>{
+        //when error
+    this.loading_activer_gardien = false;
+        console.log("Erreur inconnue! ",error)
+    })
+    }
+  //champs de recherche 
+  recherche_change() {
+      this.les_gardiens = this.les_gardiens
+        .filter((un_gardien: any) => {
+          return (un_gardien.prenom_gardien + un_gardien.nom_gardien + un_gardien.telephone_gardien)
+          .toLowerCase()
+          .includes(this.search.toLowerCase().replace(/\s/g, ''))
+        })
   }
-//champs de recherche 
-recherche_change() {
-    this.les_gardiens = this.les_gardiens
-      .filter((un_gardien: any) => {
-        return (un_gardien.prenom_gardien + un_gardien.nom_gardien + un_gardien.telephone_gardien)
-        .toLowerCase()
-        .includes(this.search.toLowerCase().replace(/\s/g, ''))
-      })
-}
 }
