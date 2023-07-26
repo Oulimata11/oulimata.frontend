@@ -64,6 +64,7 @@ import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { CalendarEventSidebarComponent } from './test/test-calendar/calendar-sidebar/calendar-event-sidebar/calendar-event-sidebar.component';
 import { CalendarMainSidebarComponent } from './test/test-calendar/calendar-sidebar/calendar-main-sidebar/calendar-main-sidebar.component';
+import { TestDatatableComponent } from './test/test-datatable/test-datatable.component';
 
 FullCalendarModule.registerPlugins([dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]);
 
@@ -113,7 +114,8 @@ FullCalendarModule.registerPlugins([dayGridPlugin, timeGridPlugin, listPlugin, i
     DashboardGeneralComponent,
     TestCalendarComponent,
     CalendarEventSidebarComponent,
-    CalendarMainSidebarComponent
+    CalendarMainSidebarComponent,
+    TestDatatableComponent
   ],
   imports: [
     CommonModule,

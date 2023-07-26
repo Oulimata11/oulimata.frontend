@@ -23,6 +23,7 @@ import { GardienGuard } from './gardien/controleur/gardien.guard';
 import { CongesGuard } from './conges/controleur/conges.guard';
 import { SocieteGuard } from './societe/controleur/societe.guard';
 import { TestCalendarComponent } from './test/test-calendar/test-calendar.component';
+import { TestDatatableComponent } from './test/test-datatable/test-datatable.component';
 
 const routes: Routes = [
   { path: "", component: ListGardienComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
   { path: "utilisateur", component: ListUtilisateurComponent, canActivate: [UserGuard] },
   { path: "utilisateur/profil", component: ProfilUtilisateurComponent },
 
-  { path: "test/calendar", component: TestCalendarComponent }
+  { path: "test/calendar", component: TestCalendarComponent },
+  { path: "test/datatable", component: TestDatatableComponent },
 ];
 
 @NgModule({
