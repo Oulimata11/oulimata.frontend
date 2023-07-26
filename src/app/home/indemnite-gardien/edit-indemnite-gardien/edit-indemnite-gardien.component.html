@@ -5,7 +5,7 @@
 <form  [formGroup]="reactiveForm_edit_indemnite_gardien " (ngSubmit)="onSubmit_edit_indemnite_gardien ()" #form_edit_indemnite_gardien ="ngForm" class="row">
 <!-- id_indemnite field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Nature indemnite <span class="text-danger fs-1">*</span></label>
+      <label >Nature de l'indemnité <span class="text-danger fs-1">*</span></label>
       <select  class="form-control" type="text"  formControlName="id_indemnite"  placeholder="id_indemnite"  [ngClass]="{ 'is-invalid': submitted && f.id_indemnite.errors }">
         <option value="{{one_indemnite.id_indemnite}}" *ngFor="let one_indemnite of les_indemnites"> {{one_indemnite.nature_indemnite}}</option>
         </select>
@@ -25,7 +25,7 @@
     </div>  
  <!-- montant_indemnite field avec un control de validite -->
     <div class="form-group col-sm-6">
-      <label >Montant indemnite <span class="text-danger fs-1">*</span></label>
+      <label >Montant<span class="text-danger fs-1">*</span></label>
       <input class="form-control" type="number"  formControlName="montant_indemnite"  placeholder="1000000000" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.montant_indemnite.errors }"/>
       <div *ngIf="submitted && f.montant_indemnite.errors" class="invalid-feedback">
           <div *ngIf="f.montant_indemnite.errors.required"> Le montant est obligatoire </div>

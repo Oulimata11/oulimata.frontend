@@ -1,10 +1,10 @@
 <!-- entete -->
 <div class="d-flex justify-content-between align-items-center ">
-  <h2 class="m-0 text-primary">Les Absences  - {{les_absences.length}}</h2>
+  <h2 class="m-0 text-primary">Les absences  - {{les_absences.length}}</h2>
   <div class="d-flex align-items-center">
     <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_absence"
     (click)="open_modal(modal_add_absence)" >
-    Ajouter Absence
+    Ajouter une absence
     <i class="bi bi-clipboard2-plus-fill ml-1"></i>
   </button>
   </div>
@@ -17,7 +17,7 @@
         <th scope="col">Gardien</th>
         <th scope="col">Date absence</th>
         <th scope="col">Raison de l'absence</th>
-        <th scope="col">actions</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -47,7 +47,7 @@
 <!-- ajout -->
 <ng-template #modal_add_absence let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouveau Absence</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouvelle absence</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -59,7 +59,7 @@
 <!-- modification -->
 <ng-template #modal_edit_absence let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification Absence</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification d'une absence</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

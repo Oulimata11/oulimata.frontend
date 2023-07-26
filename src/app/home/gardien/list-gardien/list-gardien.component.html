@@ -1,18 +1,18 @@
 <!-- entete -->
 <div class="d-flex justify-content-between align-items-center ">
-  <h2 class="m-0 text-primary"> Les Gardiens - {{les_gardiens.length}}</h2>
+  <h2 class="m-0 text-primary"> Les gardiens - {{les_gardiens.length}}</h2>
   <div class="d-flex align-items-center">
     <div class="form-group m-1">
       <input class="form-control " type="text" [(ngModel)]="search" (input)="recherche_change()">
     </div>
     <button *ngIf="api.can('add_affectation')" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
       (click)="open_modal_affecter(modal_add_affectation)">
-      Affecter gardien
+      Affecter un gardien
       <span [data-feather]="'file-plus'"> </span>
         </button>
     <button *ngIf="api.can('add_gardien')" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
       (click)="open_modal(modal_add_gardien)">
-      Ajouter gardien
+      Ajouter un gardien
       <span class="ml-1" [data-feather]="'user-plus'"> </span>
     </button>
   </div>
@@ -93,7 +93,7 @@
 <!-- modification -->
 <ng-template #modal_edit_gardien let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification gardien</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification d'un gardien</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -141,7 +141,7 @@
 <!-- Désactiver-->
 <ng-template #modal_desactiver_gardien let-modal>
   <div class="modal-header">
-    <h5 class="modal-title">Désactivation</h5>
+    <h5 class="modal-title">Désactivation (Fin de contrat)</h5>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -163,7 +163,7 @@
 <!-- ajout -->
 <ng-template #modal_add_affectation let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Affectation gardien</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Affectation d'un gardien</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

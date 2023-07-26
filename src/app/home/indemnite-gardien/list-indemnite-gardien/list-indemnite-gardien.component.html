@@ -1,9 +1,9 @@
 <!-- entete -->
 <div class="d-flex justify-content-between align-items-center ">
-  <h2 class="m-0 text-primary">Les Indemnités  - {{les_indemnite_gardiens.length}}</h2>
+  <h2 class="m-0 text-primary">Les indemnités  - {{les_indemnite_gardiens.length}}</h2>
   <div class="d-flex align-items-center m-1">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_indemnite_gardien"
-    (click)="open_modal(modal_add_indemnite_gardien)">Ajouter indemnité
+    (click)="open_modal(modal_add_indemnite_gardien)">Ajouter une indemnité
     <span [data-feather]="'plus-circle'"> </span>
   </button>
   </div>
@@ -48,7 +48,7 @@
 <!-- ajout -->
 <ng-template #modal_add_indemnite_gardien let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Indemnite</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouvelle ndemnite</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -60,7 +60,7 @@
 <!-- modification -->
 <ng-template #modal_edit_indemnite_gardien let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Indemnite</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification d'une indemnite</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

@@ -24,7 +24,7 @@ import { CongesGuard } from './conges/controleur/conges.guard';
 import { SocieteGuard } from './societe/controleur/societe.guard';
 
 const routes: Routes = [
-  { path: "", component: ListGardienComponent,canActivate : [GardienGuard]},
+  { path: "", component: ListGardienComponent},
   { path: "absence", component: ListAbsenceComponent, canActivate : [AbsenceGuard]},
   { path: "conges", component: ListCongesComponent, canActivate : [CongesGuard] },
   { path: "gardien", component: ListGardienComponent, canActivate : [GardienGuard]},

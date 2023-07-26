@@ -5,7 +5,7 @@
 <form  [formGroup]="reactiveForm_add_indemnite_gardien " (ngSubmit)="onSubmit_add_indemnite_gardien ()" #form_add_indemnite_gardien ="ngForm" class="row">
   <!-- id_indemnite field avec un control de validite -->
   <div class="form-group col-sm-6">
-    <label >Nature indemnite <span class="text-danger fs-1">*</span></label>
+    <label >Nature de l' indemnite <span class="text-danger fs-1">*</span></label>
     <select class="form-control" type="text"  formControlName="id_indemnite"  placeholder="id_indemnite"  [ngClass]="{ 'is-invalid': submitted && f.id_indemnite.errors }">
       <option value="" disabled>Selectionnez la nature de l'indemnité</option>
       <option value="{{one_indemnite.id_indemnite}}" *ngFor="let one_indemnite of les_indemnites"> {{one_indemnite.nature_indemnite}}</option>

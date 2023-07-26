@@ -1,12 +1,12 @@
 <!-- entete -->
 <div class="d-flex justify-content-between align-items-center ">
-  <h2 class="m-0 text-primary">Les Conges  - {{les_conges.length}} </h2>
+  <h2 class="m-0 text-primary">Les congés  - {{les_conges.length}} </h2>
   <div class="d-flex align-items-center m-1">
     <div class="form-group m-0">
       <input class="form-control" type="text" [(ngModel)]="search" (input)="recherche_change()">
     </div>
     <button  *ngIf="api.can('add_conges')" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_conges"
-    (click)="open_modal(modal_add_conges)">Ajouter Conges
+    (click)="open_modal(modal_add_conges)">Ajouter un congé
     <i class="bi bi-calendar-plus-fill ml-1"></i>  </button>
   </div>
 </div>
@@ -15,7 +15,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-<th scope="col">conges</th>
+<th scope="col">Gardien</th>
 <th scope="col">Date de début</th>
 <th scope="col" *ngIf="api.can('add_conges')" >actions</th>
       </tr>
@@ -46,7 +46,7 @@
 <!-- ajout -->
 <ng-template #modal_add_conges let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouveau conges</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Nouveau congé</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -58,7 +58,7 @@
 <!-- modification -->
 <ng-template #modal_edit_conges let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification conges</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification d'un congé</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

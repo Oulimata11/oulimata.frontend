@@ -1,9 +1,9 @@
 <!-- entete -->
 <div class="d-flex justify-content-between align-items-center ">
-  <h2 class="m-0 text-primary">Les Evaluations  - {{les_notes.length}}</h2>
+  <h2 class="m-0 text-primary">Les évaluations  - {{les_notes.length}}</h2>
   <div class="d-flex align-items-center m-1">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_gardien_note"  
-    (click)="open_modal_add_note(modal_add_note)">Ajouter évaluation
+    (click)="open_modal_add_note(modal_add_note)">Ajouter une évaluation
     <span [data-feather]="'plus-circle'"> </span>
   </button>
   </div>
@@ -17,7 +17,7 @@
         <th scope="col">Note reçue</th>
         <th scope="col">Date</th>
         <th scope="col">Commentaire</th>
-        <th scope="col">actions</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -48,7 +48,7 @@
 <!-- ajout Note agent -->
 <ng-template #modal_add_note let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Evaluer gardien</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Evaluer un gardien</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -60,7 +60,7 @@
 <!-- modification -->
 <ng-template #modal_edit_note let-modal>
   <div class="modal-header">
-    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification note</h5>
+    <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Modification d'une note</h5>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
