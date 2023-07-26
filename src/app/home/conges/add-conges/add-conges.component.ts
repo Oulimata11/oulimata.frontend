@@ -16,8 +16,10 @@ export class AddCongesComponent {
   loading_add_conges :boolean=false
   date_fin_conges : any
    //les gardiens
+   loading_get_conges =false
    loading_get_gardien = false
    les_gardiens: any[] = []
+   les_conges : any []=[]
   constructor(private formBuilder: FormBuilder,public api:ApiService) { }
 
   ngOnInit(): void {
@@ -100,11 +102,42 @@ export class AddCongesComponent {
       this.date_fin_conges = '';
     }
   }
-  
-  verifier_quota() {
-//choisir la date
-//verifier la date si dans le mois y'a pas deja de conges 
-//si oui alerte choisir une autre date
-//si non on ajoute
+  get_conges() {
+    this.loading_get_conges = true;
+    this.api.taf_post("conges/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_conges = reponse.data
+        console.log("Opération effectuée avec succés sur la table conges. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table conges a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_conges = false;
+    }, (error: any) => {
+      this.loading_get_conges = false;
+    })
   }
+//   verifier_quota() {
+// //choisir la date
+// const dateDebutConge = this.reactiveForm_add_conges.value.date_debut_conges;
+// // Filtrer les congés pour le mois sélectionné
+// const congesPourLeMois = this.les_conges.filter(conge => {
+//   const dateDebutCongeMoment = moment(conge.date_debut_conges);
+//   return dateDebutCongeMoment.isSame(dateDebutConge, 'month');
+// });
+// //verifier la taille du tableau est inferieur a 2 
+// if (congesPourLeMois.length < 2) {
+//   var conges = {
+//     id_utilisateur: this.api.token.user_connected.id_utilisateur,
+//     id_gardien : this.f.id_gardien.value,
+//     date_debut_conges: this.f.date_debut_conges.value,
+//   }
+//   this.add_conges (conges )
+//   console.log("congepourlemois",congesPourLeMois);
+ 
+// }else {
+//   alert("Le quota de deux gardiens ayant des congés pour ce mois est déjà atteint. Choisissez une autre date.");
+//   return;
+// }
+//   }
 }

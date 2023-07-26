@@ -2,7 +2,7 @@
 <div class="d-flex align-items-center justify-content-between">
   <h2 class="m-0 text-primary">Nos collaborateurs - {{les_societes.length}}</h2>
   <div class="d-flex m-1">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_societe" 
+    <button *ngIf="api.can('add_societe')"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_societe" 
     (click)="open_modal(modal_add_societe)">Nouveau Collaborateur
     <span [data-feather]="'plus-circle'"> </span>
   </button>
@@ -15,7 +15,7 @@
       <tr>
 <th scope="col">nom_societe</th>
 <th scope="col">description_societe</th>
-<th scope="col">actions</th>
+<th scope="col" *ngIf="api.can('add_societe')" >actions</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
 <td>{{one_societe.nom_societe}}</td>
 <td>{{one_societe.description_societe}}</td>
 <td>
-  <div ngbDropdown container="body">
+  <div ngbDropdown container="body" *ngIf="api.can('add_societe')">
     <button type="button" class="btn p-0 hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
       <i data-feather="more-vertical"></i>
     </button>

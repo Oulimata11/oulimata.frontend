@@ -75,7 +75,7 @@ export class ListCongesComponent {
     this.loading_delete_conges = true;
     this.api.taf_post("conges/delete",{id:this.conges_to_delete.id_conges},(reponse: any)=>{
         //when success
-    this.loading_delete_conges = true;
+    this.loading_delete_conges = false;
         if(reponse.status){
         console.log("Opération effectuée avec succés sur la table conges . Réponse = ",reponse)
         this.api.Swal_success("Suppression effectuée avec succes ! ")
@@ -87,7 +87,7 @@ export class ListCongesComponent {
     },
     (error: any)=>{
         //when error
-    this.loading_delete_conges = true;
+    this.loading_delete_conges = false;
         console.log("Erreur inconnue! ",error)
     })
   }

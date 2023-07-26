@@ -55,6 +55,7 @@ export class ApiService {
     //affectation
     add_affectation : [2],
     list_affectation :[2,3,4],
+    edit_affectation : [2,3],
     //indemnite
     add_indemnite:[2,5],
     list_indemnite:[2,3,5],
@@ -212,8 +213,8 @@ export class ApiService {
     return res
   }
   can(action: string) {
-    let id_privilege = this.token.token_decoded.taf_data.id_privilege || 0
-    if (this.les_droits[action].indexOf(+id_privilege) != -1) {
+    let id_role = this.token.token_decoded.taf_data.id_role || 0
+    if (this.les_droits[action].indexOf(+id_role) != -1) {
       return true
     } else {
       return false

@@ -2,7 +2,7 @@
 <div class="d-flex  justify-content-between align-items-center">
   <h2 class="m-0 text-primary">Les Affectations - {{les_societe_gardiens.length}}</h2>
   <div class="d-flex align-items-center m-1">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_societe_gardien"
+    <button class="btn btn-primary" *ngIf="api.can('add_affectation')"  data-bs-toggle="modal" data-bs-target="#modal_add_societe_gardien"
     (click)="open_modal_add_affectation(modal_add_affectation)">Ajouter Affectation
     <span [data-feather]="'file-plus'"> </span>
   </button>
@@ -17,7 +17,7 @@
         <th scope="col">Gardien</th>
         <th scope="col">Date d'affectation</th>
         <th scope="col">Horaire</th>
-        <th scope="col">actions</th>
+        <th scope="col"*ngIf="api.can('edit_affectation')">actions</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
         <td>{{api.format_date( one_societe_gardien.created_at_sg)}}</td>
         <td>{{api.format_hour(one_societe_gardien.heure_debut_sg)+"-"+api.format_hour(one_societe_gardien.heure_fin_sg)}}</td>
         <td>
-          <div ngbDropdown container="body">
+          <div ngbDropdown container="body" *ngIf="api.can('edit_affectation')">
             <button type="button" ngbDropdownToggle class="btn p-0 hide-arrow" data-bs-toggle="dropdown">
               <i data-feather="more-vertical"></i>
             </button>

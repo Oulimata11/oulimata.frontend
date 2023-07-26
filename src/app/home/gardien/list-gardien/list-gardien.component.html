@@ -2,15 +2,15 @@
 <div class="d-flex justify-content-between align-items-center ">
   <h2 class="m-0 text-primary"> Les Gardiens - {{les_gardiens.length}}</h2>
   <div class="d-flex align-items-center">
-    <div class="form-group m-0">
-      <input class="form-control" type="text" [(ngModel)]="search" (input)="recherche_change()">
+    <div class="form-group m-1">
+      <input class="form-control " type="text" [(ngModel)]="search" (input)="recherche_change()">
     </div>
-    <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
+    <button *ngIf="api.can('add_affectation')" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
       (click)="open_modal_affecter(modal_add_affectation)">
       Affecter gardien
       <span [data-feather]="'file-plus'"> </span>
         </button>
-    <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
+    <button *ngIf="api.can('add_gardien')" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_add_gardien"
       (click)="open_modal(modal_add_gardien)">
       Ajouter gardien
       <span class="ml-1" [data-feather]="'user-plus'"> </span>
@@ -28,7 +28,7 @@
         <th>Nombre d'absence</th>
         <th>Derniére date de congé</th>
         <th>Statut</th>
-        <th>Actions</th>
+        <th *ngIf="api.can('add_gardien')">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +38,7 @@
               class="avatar pull-up my-0" ngbTooltip="{{one_gardien.prenom_gardien+' '+one_gardien.nom_gardien}}">
               <img src="{{path_backend+ one_gardien.image_gardien}}" alt="" height="26" width="26" />
             </div>
-            {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}}
+           <a class="text-primary" (click)="open_modal_detail(modal_detail_gardien,one_gardien)"> {{one_gardien.prenom_gardien+" "+one_gardien.nom_gardien}} </a> 
         </td>
         <td>{{one_gardien.telephone_gardien}}</td>
         <td>{{one_gardien.derniere_note}}</td>
@@ -53,7 +53,7 @@
         </button>
         </td>
           <td>
-            <div ngbDropdown container="body">
+            <div ngbDropdown container="body" *ngIf="api.can('add_gardien')">
               <button type="button" class="btn p-0  hide-arrow" ngbDropdownToggle data-bs-toggle="dropdown">
                 <i data-feather="more-vertical"></i>
               </button>
