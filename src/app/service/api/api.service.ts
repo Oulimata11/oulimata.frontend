@@ -12,7 +12,8 @@ import { Location } from '@angular/common';
 })
 export class ApiService {
   local_storage_prefixe = "oulimata.frontend";
-  taf_base_url = "http://localhost/oulimata.backend/";
+  //taf_base_url = "http://localhost/oulimata.backend/";
+  taf_base_url = "http://localhost/os/oulimata.backend/";
 
   network: any = {
     token: undefined,
@@ -27,7 +28,7 @@ export class ApiService {
     date_expiration: null
   }
   //mes tableaux
-  les_roles_des_utilisateurs :any []=[]
+  les_roles_des_utilisateurs: any[] = []
   //les droits
   /*
   1=>admin
@@ -36,34 +37,34 @@ export class ApiService {
   4=> Superviseur
   5=>Responsable Financier 
   */
-  les_droits : any ={
+  les_droits: any = {
     //utilisateurs
     add_user: [1],
     list_user: [1],
     //gardiens 
-    add_gardien : [2,3],
-    list_gardien:[2,3,4,5],
+    add_gardien: [2, 3],
+    list_gardien: [2, 3, 4, 5],
     //conges 
-    add_conges : [2,3],
-    list_conges :[2,3,4],
+    add_conges: [2, 3],
+    list_conges: [2, 3, 4],
     //absences 
-    add_absence: [2,3,4],
-    list_absence:[2,3,4],
+    add_absence: [2, 3, 4],
+    list_absence: [2, 3, 4],
     //evolution 
-    add_note :[2,3,4],
-    list_note :[2,3,4],
+    add_note: [2, 3, 4],
+    list_note: [2, 3, 4],
     //affectation
-    add_affectation : [2],
-    list_affectation :[2,3,4],
-    edit_affectation : [2,3],
+    add_affectation: [2],
+    list_affectation: [2, 3, 4],
+    edit_affectation: [2, 3],
     //indemnite
-    add_indemnite:[2,5],
-    list_indemnite:[2,3,5],
+    add_indemnite: [2, 5],
+    list_indemnite: [2, 3, 5],
     //collaborateurs
-    add_societe:[2,3],
-    list_societe:[2,3,4,5]
+    add_societe: [2, 3],
+    list_societe: [2, 3, 4, 5]
   }
-  constructor(private http: HttpClient, private route: Router,private location: Location) { }
+  constructor(private http: HttpClient, private route: Router, private location: Location) { }
   // sauvegardes
   async get_from_local_storage(key: string): Promise<any> {
     let res: any = await localStorage.getItem(this.local_storage_prefixe + key);
@@ -130,7 +131,7 @@ export class ApiService {
   }
   async taf_post_login(path: string, data_to_send: any, on_success: Function, on_error: Function) {
     let api_url = this.taf_base_url + path;
-    
+
     this.http.post(api_url, data_to_send).subscribe(
       (reponse: any) => {// on success
         on_success(reponse)
@@ -172,28 +173,28 @@ export class ApiService {
   go_back() {
     this.location.back()
   }
-  Swal_success(title:any){
-    let succes= Swal.fire({
-      title:title,
-      icon:"success",
-      timer:1500,
+  Swal_success(title: any) {
+    let succes = Swal.fire({
+      title: title,
+      icon: "success",
+      timer: 1500,
       showConfirmButton: false,
-      position:"top-start"
+      position: "top-start"
     });
     return succes
   }
-  Swal_error(title:any){
-    let succes= Swal.fire({
-      title:title,
-      icon:"error",
-      timer:1500,
+  Swal_error(title: any) {
+    let succes = Swal.fire({
+      title: title,
+      icon: "error",
+      timer: 1500,
       showConfirmButton: false,
-      position:"top-start"
+      position: "top-start"
     });
     return succes
   }
   //determiner s'il y'a chagement au niveau du formulaire ou pas 
-  check_change(formulaire_actuel : any, donnees_update :any) : boolean {
+  check_change(formulaire_actuel: any, donnees_update: any): boolean {
     // retourne true s'il y'a changement et false sinon
     for (const [key, value] of Object.entries(formulaire_actuel)) {
       if (donnees_update[key] != value) {

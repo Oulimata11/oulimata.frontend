@@ -22,21 +22,24 @@ import { IndemniteGardienGuard } from './indemnite-gardien/controleur/indemnite-
 import { GardienGuard } from './gardien/controleur/gardien.guard';
 import { CongesGuard } from './conges/controleur/conges.guard';
 import { SocieteGuard } from './societe/controleur/societe.guard';
+import { TestCalendarComponent } from './test/test-calendar/test-calendar.component';
 
 const routes: Routes = [
-  { path: "", component: ListGardienComponent},
-  { path: "absence", component: ListAbsenceComponent, canActivate : [AbsenceGuard]},
-  { path: "conges", component: ListCongesComponent, canActivate : [CongesGuard] },
-  { path: "gardien", component: ListGardienComponent, canActivate : [GardienGuard]},
-  { path: "indemnite", component: ListIndemniteGardienComponent, canActivate : [IndemniteGardienGuard] },
-  { path: "societe_gardien", component: ListSocieteGardienComponent, canActivate: [AffectationGuard]},
+  { path: "", component: ListGardienComponent },
+  { path: "absence", component: ListAbsenceComponent, canActivate: [AbsenceGuard] },
+  { path: "conges", component: ListCongesComponent, canActivate: [CongesGuard] },
+  { path: "gardien", component: ListGardienComponent, canActivate: [GardienGuard] },
+  { path: "indemnite", component: ListIndemniteGardienComponent, canActivate: [IndemniteGardienGuard] },
+  { path: "societe_gardien", component: ListSocieteGardienComponent, canActivate: [AffectationGuard] },
   // { path: "localisation", component: ListLocalisationComponent },
-  { path: "evaluation", component: ListNoteComponent, canActivate: [NoteGuard]},
+  { path: "evaluation", component: ListNoteComponent, canActivate: [NoteGuard] },
   { path: "role", component: ListRoleComponent },
-  { path: "societe", component: ListSocieteComponent,canActivate: [SocieteGuard] },
+  { path: "societe", component: ListSocieteComponent, canActivate: [SocieteGuard] },
   //utilisateur
-  { path: "utilisateur", component: ListUtilisateurComponent , canActivate: [UserGuard]},
-  { path: "utilisateur/profil", component: ProfilUtilisateurComponent}
+  { path: "utilisateur", component: ListUtilisateurComponent, canActivate: [UserGuard] },
+  { path: "utilisateur/profil", component: ProfilUtilisateurComponent },
+
+  { path: "test/calendar", component: TestCalendarComponent }
 ];
 
 @NgModule({

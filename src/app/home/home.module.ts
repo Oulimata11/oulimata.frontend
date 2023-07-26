@@ -56,7 +56,16 @@ import { EditPasswordUtilisateurComponent } from './utilisateur/profil-utilisate
 import { DashboardGeneralComponent } from './dashboard-general/dashboard-general.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ContentHeaderModule } from 'app/layout/components/content-header/content-header.module';
+import { TestCalendarComponent } from './test/test-calendar/test-calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import { CalendarEventSidebarComponent } from './test/test-calendar/calendar-sidebar/calendar-event-sidebar/calendar-event-sidebar.component';
+import { CalendarMainSidebarComponent } from './test/test-calendar/calendar-sidebar/calendar-main-sidebar/calendar-main-sidebar.component';
 
+FullCalendarModule.registerPlugins([dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]);
 
 @NgModule({
   declarations: [
@@ -102,6 +111,9 @@ import { ContentHeaderModule } from 'app/layout/components/content-header/conten
     EditProfilUtilisateurComponent,
     EditPasswordUtilisateurComponent,
     DashboardGeneralComponent,
+    TestCalendarComponent,
+    CalendarEventSidebarComponent,
+    CalendarMainSidebarComponent
   ],
   imports: [
     CommonModule,
@@ -110,25 +122,26 @@ import { ContentHeaderModule } from 'app/layout/components/content-header/conten
     FormsModule,
     CardSnippetModule,
 
-   //NgBootstrap
-   NgbModule,
-   CoreCommonModule,
-   CoreSidebarModule,
-   CoreThemeCustomizerModule,
-   ContentHeaderModule,
-   CardSnippetModule,
-   //NgbModalModule,
-   
-   FormsModule,
-  Ng2SearchPipeModule,
-  NgxDatatableModule,
-   /* SampleModule */
-   LayoutModule,
-   NgbModalModule,
-   NgbAccordionModule,
-   NgbCollapseModule,
-   BreadcrumbModule,
-   NgbModule,
+    //NgBootstrap
+    NgbModule,
+    CoreCommonModule,
+    CoreSidebarModule,
+    CoreThemeCustomizerModule,
+    ContentHeaderModule,
+    CardSnippetModule,
+    //NgbModalModule,
+
+    FormsModule,
+    Ng2SearchPipeModule,
+    NgxDatatableModule,
+    /* SampleModule */
+    LayoutModule,
+    NgbModalModule,
+    NgbAccordionModule,
+    NgbCollapseModule,
+    BreadcrumbModule,
+    NgbModule,
+    FullCalendarModule
   ]
 })
 export class HomeModule { }
